@@ -1,0 +1,1587 @@
+html,body{
+    height: 100%;
+    margin:0;
+    padding:0;
+    overflow: auto;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    &::-webkit-scrollbar {
+        width: 0px;  /* Remove scrollbar space */
+        background: lightgrey;  /* Optional: just make scrollbar invisible */
+    }
+    /* Optional: show position indicator in red */
+    &::-webkit-scrollbar-thumb {
+        background: darkblue;
+    }
+    //background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin transition($e) {
+    transition-timing-function: ease-in-out;
+    transition-duration: $e;
+    -webkit-transform: $e;
+    -moz-transform: $e;
+    transition: $e;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .dashboard{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-grow: 1;
+        margin:0;
+        background: #0C1827;
+        font-family: Roboto;
+
+        .wrapper-dashboard{
+            width: 100%;
+            display: flex;
+            height: auto;
+            flex-grow: 1;
+            background: #0C1827;
+        
+            .table-row{
+                width: 100vw;
+                height: auto;
+                //min-width: 100%;
+                display: flex;
+                flex-grow: 1;
+        
+                .sidebarCol{
+                    padding: 0;
+                    width: 100%;
+                    height: 100vh;
+                    max-width: 20%;
+                    display:flex;
+                    flex-grow: 1;
+                    flex-direction: column;
+                    box-sizing: border-box;
+
+                    .layer{
+                        padding: 0;
+                        position:fixed;
+                        max-width: 16.6%;
+                        box-sizing: border-box;
+                        height: 100%;
+                        background:#0C1827;
+                        
+                        
+                        .sidebar-divider{
+                            border:0.5px solid gray;
+                            width: 95%;
+                            opacity: 50%;
+                        }
+                
+                        .profile-pic{
+    
+                            width: 100%;
+                            height: auto;
+                            display: flex;
+                            flex-direction: column;
+                            text-decoration: none;
+
+                            .profile{
+                                margin-top: 20px;
+                                margin-left: 5%;
+                            }
+    
+                            a{
+                                margin-left: 3%;
+                                font-size: calc(1.5vw + .5vh);
+                                color: white;
+                                text-decoration: none;
+                                i {
+                                    margin-left: 3.5vw;
+                                    display: inline;
+                                    
+                                }
+                            }
+    
+                            #collapseOne{
+                                width: 100%;
+    
+                            }
+                        }
+    
+                        .navi{
+                            font-size: calc(.7vw + .8vh);
+                            padding-right: 0;
+                            height: 40%;
+                            color: lightgray;
+                            width: 100%;
+                            box-sizing: border-box;
+                            .active{
+                                background-color: rgba(242, 247, 255, 0.3);
+                                word-wrap:break-word;
+                                border-radius: 4px;
+                                height:20%;
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                margin: 0 auto;
+                                i{
+                                    margin-top: 3%;
+                                    width: 100%;
+                                    margin-left: 10%;
+                                    color: #44AACC;
+                                    word-wrap:break;
+                                    overflow-wrap: break-word;
+                                    hyphens: auto;
+    
+                                    span{
+                                        word-wrap:break;
+                                        overflow-wrap: break-word;
+                                        hyphens: auto;
+                                        margin-left: 10%;
+                                        color: #44AACC;
+                                        text-decoration: none;
+                                    }
+                                }
+                                
+                                &:hover{
+                                    background-color: rgba(81, 99, 131, 0.5);
+                                    @include transition(.4s ease-in-out);
+                                }
+                            }
+    
+                            .nav-items{
+                                height:20%;
+                                width: 100%;
+                                word-wrap: break-word;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                margin: 0 auto;
+                                
+                                i{
+                                    width: 100%;
+                                    margin-top: 5%;
+                                    margin-left: 10%;
+                                    color: lightgray;
+                                    span{
+                                        color:lightgray;
+                                        margin-left: 10%;
+                                        text-decoration: none;
+                                    }
+                                }
+
+                                &:hover{
+                                    background-color: rgba(242, 247, 255, 0.1);
+                                    border-radius: 4px;
+                                    margin: 0 auto;
+                                    @include transition(.4s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .page-content{
+                background: #123A50;
+                width: 100%;
+                min-width: 80%;
+
+                .page-header{
+                    margin-top: 5%;
+                    font-family: raleway black;
+                    color: lightgray;
+                    h2{
+                        font-size: calc(2vw + 2vh);
+                    }
+                }
+
+                .navpil{
+                    padding: 0;
+
+                    ul{
+
+                        li{
+                            .nav-link.active{
+                                background: #0D2031;
+                            }
+
+                            .nav-link{
+                                color: #AFBDD1;
+                                background: rgba(13, 32, 49, 0.5);
+
+                                &:hover{
+                                    background: rgba(13, 32, 49, 0.8);
+                                    @include transition(.8s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+
+                    .online-button{
+                        @include transition(.8s ease-in-out);
+                        button{
+                            border: 0;
+                            background:  #2BA2B2;
+                            @include transition(.8s ease-in-out);
+
+                            &:hover{
+                                background: #145057;
+                                @include transition(.4s ease-in-out);
+                            }
+                        }
+                    }
+                }
+
+                .chart{
+                    height: 100%;
+                    margin-top: 3%;
+
+                    .chart-state{
+                        height: 100%;
+                        color: white;
+                        min-width: 25vw;
+                        width: 100%;
+                        padding: 1vw;
+                        background:rgba(12, 24, 39, 0.75);
+                        
+                        .chart-state-header{
+                            width: 100%;
+                            color: white;
+                            h3{
+                                font-size: calc(1vw + 1.5vh);
+                            }
+
+                            .donut{
+                                margin-top: 10%;
+                                width: 100%;
+                                height: calc(13vw + 5vh);
+                            }
+
+                            .d-table{
+                                margin-top: 10%;
+                                width: 100%;
+                                .d-table-row{
+                                    width: 100%;
+                                    .legend-doughnut{
+                                        height: 100%;
+                                        margin-left: -0.5vw;
+                                        color: white;
+                                        font-size: calc(.7vw + .8vh);
+                                        
+                                        list-style: none;
+                                        li{
+                                            margin-top: 3vh;
+                                        }
+                                        
+                                        .Red{
+                                            &::before{
+                                                content: "\25a0"; 
+                                                font-weight: bold;
+                                                
+                                                color: red;
+                                                display: inline-block; 
+                                                width: 1vw;
+                                                margin-left: calc(-1.2vw + -1.2vh);
+                                            }
+                                        }
+                                        .Green{
+                                             &::before{
+                                                content: "\25a0"; 
+                                                font-weight: bold;
+                                                
+                                                color: green;
+                                                display: inline-block; 
+                                                width: 1vw;
+                                                margin-left: calc(-1.2vw + -1.2vh);
+                                            }
+                                        }
+        
+                                        .Blue{
+                                            &::before{
+                                               content: "\25a0"; 
+                                               font-weight: bold;
+                                               
+                                               color: blue;
+                                               display: inline-block; 
+                                               width: 1vw;
+                                               margin-left: calc(-1.2vw + -1.2vh);
+                                           }
+                                       }
+                                    }
+    
+                                    .percent-doughnut{
+                                        text-align: end;
+                                        padding: 0;
+                                        height: 100%;
+                                        width: 100%;
+                                        list-style: none;
+                                        font-size: calc(.7vw + 0.8vh);
+                                        margin-right: 0;
+        
+                                        li{
+    
+                                            margin-top: 3vh;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .total-usage{
+                        height: auto;
+                        padding: 2%;
+                        width: 100%;
+                        background:rgba(12, 24, 39, 0.75);
+
+                        .usage-header{
+                            width: 100%;
+                            color: white;
+                            h3{
+                                font-size: calc(1vw + 1.5vh);
+                            }
+
+                            .line{
+                                margin-top: 5%;
+                                width: 100%;
+                                height: calc(13vw + 13vh);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .power-detail{
+                height: 100%;
+                margin-top: 2%;
+                padding: 0;
+
+                .col-detail{
+                    width: 100%;
+                    .powerwall-detail{
+                        min-width: 25vw;
+                        height: calc(11vw + 11vh);
+                        background:rgba(12, 24, 39, 0.75);
+                        padding: 3%;
+                        color: white;
+                        width: 100%;
+                        .powerwall-header{
+                            width: 100%;
+                            h2{
+                                font-size: calc(1vw + 1.2vh);
+                            }
+                        }
+
+                        .powerwall-info{
+                            padding:0;
+                            width: 100%;
+                            font-size: calc(.6vw + .6vh);
+                            ul{
+                                width: 100%;
+                                padding: 0;
+                                li{
+                                    margin-top: 10%;
+                                    color: #A6ACBE;
+                                    width: 100%;
+                                    display: flex;
+                                    list-style: none;
+                                    span{
+                                        display: flex;
+                                        margin-left: auto;
+                                    }
+                                }
+                            }
+
+                            .code{
+                                width: 100%;
+                                padding: 0;
+                                li{
+                                    width: 100%;
+                                    list-style: none;
+                                    margin-left: 5%;
+                                    color:lightgray;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .col-overall{
+                    //margin-top: calc(-3vw + -3vh );
+                    width: 100%;
+                    padding-right: 0;
+                    min-height: 2em;
+
+                    //min-width: 14em;
+                    .overall{
+                        background:rgba(12, 24, 39, 0.75);
+                        padding: 3%;
+                        //min-width: 10em;
+                        height: 100%;
+                        color: white;
+                        width: 100%;
+                        box-sizing: border-box;
+
+                        .overall-header{
+                            width: 100%;
+                            color: #AFBDD1;
+                            h3{
+                                text-align: center;
+                                font-size: calc(1vw + 1vh);
+                            }
+                        }
+
+                        .bar-chart{
+                            width: 100%;
+                            height: calc(8vw + 8vh);
+                        }
+                    }
+                }
+
+                .col-log{
+                    //margin-top: calc(-3vw + -3vh );
+                    width: 100%;
+                    height: auto;
+                    .system-log{
+                        background:rgba(12, 24, 39, 0.75);
+                        overflow: auto;
+                        padding: 3%;
+                        height: auto;
+                        max-height: calc(11vw + 11vh);
+                        color: white;
+                        width: 100%;
+
+                        &::-webkit-scrollbar {
+                            width: 0px;  /* Remove scrollbar space */
+                            background: transparent;  /* Optional: just make scrollbar invisible */
+                        }
+                        /* Optional: show position indicator in red */
+                        &::-webkit-scrollbar-thumb {
+                            background: #FF0000;
+                        }
+
+                        .log-header{
+                            h3{
+                                text-align: center;
+                                color: #AFBDD1;
+                                font-weight: normal;
+                                font-size: calc(1vw + 1vh);
+                            }
+                        }
+
+                        .d-table{
+                            width: 100%;
+
+                            .d-table-row{
+                                width: 100%;
+
+                                .system-error{
+                                    padding: 0;
+                                    width: 100%;
+                                    padding-top: 5%;
+                                    margin-top: 5%;
+                                    background: rgba(18, 58, 80, 0.35);
+                                    border-radius: 10px;
+
+                                    .row{
+                                        width: 100%;
+
+                                        .icons{
+                                            width: 100%;
+                                            height: 100%;
+                                            .icon{
+                                                padding: 0;
+                                                height: 4vw;
+                                                width: 4vw;
+                                                border-radius: 50%;
+                                                background: rgba(130, 200, 238, 0.25);
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                img{
+                                                    width: 3vw;
+                                                    height: 3vw;
+                                                }
+                                            }
+                                        }
+
+                                        .titles{
+                                            padding: 0;
+                                            margin: 0;
+                                            width: 100%;
+                                            h4{
+                                                font-size: 1.5vw;
+                                                font-weight: bold;
+                                            }
+                                            p{
+                                                color: #A6ACBE;
+                                                font-size:1.5vw ;
+                                            }
+                                            span{
+                                                width: auto;
+                                                display: flex;
+                                                float: right;
+                                                color: #56657F;
+                                                font-size:1.2vw ;
+                                                i{
+                                                    color: white;
+                                                    font-size: 1.5vw;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:576px) and (max-width: 767px) {
+    .dashboard{
+        height: 100%;
+        width: 100%;
+        margin:0;
+        display: flex;
+        flex-grow: 1;
+        font-family: Roboto;
+        background:#07052b ;
+
+        .wrapper-dashboard{
+            min-height: 100%;
+            width: 100%;
+            display: flex;
+            flex-grow: 1;
+            background: #07052b;
+        
+            .table-row{
+                width: 100vw;
+                height: 100%;
+                display: flex;
+                flex-grow: 1;
+                min-width: 100%;
+        
+                .sidebarCol{
+                    padding: 0;
+                    height: 100vh;
+                    background: #07052b;
+                    display:flex;
+                    flex-grow: 1;
+                    flex-direction: column;
+
+                    .layer{
+                        position:fixed;
+                        padding: 0;
+                        max-width: 8.3%;
+                        height: 100%;
+
+                        .sidebar-divider{
+                            border:0.5px solid gray;
+                            width: 95%;
+                            opacity: 50%;
+                        }
+                
+                        .profile-pic{
+    
+                            width: 100%;
+                            height: auto;
+                            display: flex;
+                            flex-direction: column;
+                            
+    
+                            .profile{
+                                margin-top: 20px;
+                                margin-left: 5%;
+                            }
+    
+                            .collapsed{
+                                margin-left: 5%;
+                                display:none;
+                            }
+                            
+                            a{
+                                font-size: 2.5vh;
+                                color: white;
+                                text-decoration: none;
+                                i {
+                                    margin-left: 5vw;
+                                }
+                            }
+    
+                            #collapseOne{
+                                width: 100%;
+    
+                            }
+                        }
+    
+                        .navi{
+                            height: 100%;
+                            color: lightgray;
+                            .active{
+                                background-color: rgba(242, 247, 255, 0.3);
+                                border-radius: 4px;
+                                width: 100%;
+                                height: 7%;
+                                margin: 0 auto;
+                                margin-top: 10%;
+                                padding-top: 10%;
+                                padding-bottom: 10%;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                
+                                i{
+                                    font-size: calc(2.5vw + 1vh);
+
+                                    width: 100%;
+                                    color: #44AACC;
+                                    padding: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
+    
+                                    span{
+                                        color: #44AACC;
+                                        text-decoration: none;
+                                        font-size: x-small;
+                                        display: none;
+                                    }
+                                } 
+                            }
+    
+                            .nav-items{
+                                width: 100%;
+                                height: 7%;
+                                margin-top: 10%;
+                                margin: 0 auto;
+                                border-radius: 4px;
+                                padding-top: 10%;
+                                padding-bottom: 10%;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                a{
+                                    text-decoration: none;
+                                }
+                                i{
+                                    width: 100%;
+                                    //margin-top: 10%;
+                                    font-size: calc(2.5vw + 1vh)h;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-items: center;
+                                    align-items: center;
+                                    color: lightgray;
+                                    span{
+                                        color:lightgray;
+                                        text-decoration: none;
+                                        font-size: x-small;
+                                        display: none;
+                                    }
+                                }
+                                &:hover{
+                                    background-color: rgba(81, 99, 131, 0.5);
+                                    @include transition(.4s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .page-content{
+                background: #123A50;
+                width: 100%;
+
+                .page-header{
+                    margin-top: 5%;
+                    font-family: raleway black;
+                    color: lightgray;
+
+                    h2{
+                        font-size: 4vw;
+                    }
+                }
+
+                .navpil{
+                    ul{
+                        li{
+                            font-size: calc(1vw + 1vh);
+                            .nav-link.active{
+                                background: #0D2031;
+                            }
+
+                            .nav-link{
+                                color: #AFBDD1;
+                                background: rgba(13, 32, 49, 0.5);
+
+                                &:hover{
+                                    background: rgba(13, 32, 49, 0.8);
+                                    @include transition(.8s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+
+
+                    .online-button{
+                        button{
+                            font-size: calc(1vw + 1vh);
+                            border: 0;
+                            background:  #2BA2B2;
+
+                            &:hover{
+                                background: #145057;
+                                @include transition(.4s ease-in-out);
+                            }
+                        }
+                    }
+                }
+
+                .chart{
+                    height: 100%;
+                    margin-top: 3%;
+
+                    .colDoughnut{
+                        margin-top: 5%;
+                        .chart-state{
+                            width: 100%;
+                            height: 100%;
+                            min-width: 14em;
+                            background:rgba(12, 24, 39, 0.75);
+                            
+                            .chart-state-header{
+                                width: 100%;
+                                padding-top: 5%;
+                                color: white;
+                                h3{
+                                    font-size: calc(1vw + 1.5vh);
+                                }
+    
+                                .donut{
+                                    width: 100%;
+                                    height: 25vh;
+                                }
+                                .d-table{
+                                    width: 100%;
+                                    padding: 0;
+                                    .d-table-row{
+                                        display: flex;
+                                        width: 100%;
+                                        align-items: center;
+                                        padding: 0;
+                                        .legend-doughnut{
+                                            padding: 0;
+                                            li{
+                                                margin-top: 10%;
+                                            }
+                                            color: white;
+                                            font-size: calc(.5vw + 1vh);
+                                            list-style: none;
+                                            .Red{
+                                                &::before{
+                                                    content: "\25a0"; 
+                                                    font-weight: bold;
+                                                    
+                                                    color: red;
+                                                    display: inline-block; 
+                                                    width: 1em;
+                                                    margin-left: calc(-0.5vw + -0.5vh);
+                                                }
+                                            }
+                                            .Green{
+                                                &::before{
+                                                    content: "\25a0"; 
+                                                    font-weight: bold;
+                                                    
+                                                    color: green;
+                                                    display: inline-block; 
+                                                    width: 1em;
+                                                    margin-left: calc(-0.5vw + -0.5vh);
+                                                }
+                                            }
+        
+                                            .Blue{
+                                                &::before{
+                                                content: "\25a0"; 
+                                                font-weight: bold;
+                                                
+                                                color: blue;
+                                                display: inline-block; 
+                                                width: 1em;
+                                                margin-left: calc(-0.5vw + -0.5vh);
+                                                }
+                                            }
+                                        }
+        
+                                        .percent-doughnut{
+                                            padding: 0;
+                                            width: 100%;
+                                            li{
+                                                padding: 0;
+                                                width: 100%;
+                                                margin-top: 10%;
+                                            }
+    
+                                            text-align: end;
+                                            width: 100%;
+                                            list-style: none;
+                                            font-size: calc(.5vw + 1vh);
+                                        }
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                    
+                    .colUsage{
+                        margin-top: 5%;
+                        padding-left: 0;
+                        .total-usage{
+                            height: 100%;
+                            padding: 2%;
+                            width: 100%;
+                            min-width: 30vw;
+                            background:rgba(12, 24, 39, 0.75);
+    
+                            .usage-header{
+                                width: 100%;
+                                color: white;
+                                h3{
+                                    font-size: calc(1vw + 1.5vh);
+                                }
+    
+                                .line{
+                                    margin-top: 5%;
+                                    width: 100%;
+                                    height: calc(15vw + 15vh);
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                .power-detail{
+                    height: 100%;
+                    margin-top: 2%;
+
+                    .col-detail{
+                        width: 100%;
+                        .powerwall-detail{
+                            min-width: 14em;
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 3%;
+                            height: calc(10.5vw + 10.5vh);
+                            color: white;
+                            width: 100%;
+                            .powerwall-header{
+                                width: 100%;
+                                h2{
+                                    font-size: calc(1vw + 1.2vh);
+                                }
+                            }
+    
+                            .powerwall-info{
+                                padding:0;
+                                width: 100%;
+                                font-size: calc(.6vw + .7vh);
+                                ul{
+                                    width: 100%;
+                                    padding: 0;
+                                    li{
+                                        margin-top: 10%;
+                                        color: #A6ACBE;
+                                        width: 100%;
+                                        display: flex;
+                                        list-style: none;
+                                        span{
+                                            display: flex;
+                                            margin-left: auto;
+                                        }
+                                    }
+                                }
+    
+                                .code{
+                                    width: 100%;
+                                    padding: 0;
+                                    li{
+                                        width: 100%;
+                                        list-style: none;
+                                        margin-left: 5%;
+                                        color:lightgray;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .col-overall{
+                        width: 100%;
+                        padding-left: 0;
+    
+                        //min-width: 14em;
+                        .overall{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 0;
+                            padding-top: 5%;
+                            //min-width: 10em;
+                            height: 100%;
+                            color: white;
+                            width: 100%;
+                            box-sizing: border-box;
+    
+                            .overall-header{
+                                width: 100%;
+                                color: #AFBDD1;
+                                h3{
+                                    text-align: center;
+                                    font-size: calc(1vw + 1vh);
+                                }
+                            }
+    
+                            .bar-chart{
+                                width: 100%;
+                                height: calc(10vw + 5vh);
+                            }
+                        }
+                    }
+    
+                    .col-log{
+                        width: 100%;
+                        height: auto;
+                        padding-left: 0;
+                        .system-log{
+                            background:rgba(12, 24, 39, 0.75);
+                            overflow: auto;
+                            padding: 3%;
+                            //height: auto;
+                            height: calc(10.5vw + 10.5vh);
+                            color: white;
+                            width: 100%;
+    
+                            &::-webkit-scrollbar {
+                                width: 0px;  /* Remove scrollbar space */
+                                background: transparent;  /* Optional: just make scrollbar invisible */
+                            }
+                            /* Optional: show position indicator in red */
+                            &::-webkit-scrollbar-thumb {
+                                background: #FF0000;
+                            }
+    
+                            .log-header{
+                                h3{
+                                    text-align: center;
+                                    color: #AFBDD1;
+                                    font-weight: normal;
+                                    font-size: calc(1vw + 1vh);
+                                }
+                            }
+    
+                            .d-table{
+                                width: 100%;
+                                //height: 100%;
+    
+                                .d-table-row{
+                                    width: 100%;
+    
+                                    .system-error{
+                                        padding: 0;
+                                        width: 100%;
+                                        padding-top: 5%;
+                                        margin-top: 5%;
+                                        background: rgba(18, 58, 80, 0.35);
+                                        border-radius: 10px;
+                                        height: 100%;
+                                        box-sizing: border-box;
+    
+                                        .row{
+                                            width: 105%;
+                                            height: 100%;
+                                            padding: 0;
+    
+                                            .icons{
+
+                                                height: 100%;
+                                                //background: blue;
+                                                .icon{
+                                                    padding: 0;
+                                                    margin-top: 50%;
+                                                    height: 3.5vw;
+                                                    width: 3.5vw;
+                                                    border-radius: 50%;
+                                                    background: rgba(130, 200, 238, 0.25);
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+    
+                                                    img{
+                                                        width: 2.5vw;
+                                                        height: auto;
+                                                    }
+                                                }
+                                            }
+    
+                                            .titles{
+                                                padding: 0;
+                                                margin: 0;
+                                               // background: blue;
+                                                
+                                                h4{
+                                                    font-size: 1.4vw;
+                                                    font-weight: bold;
+                                                }
+                                                p{
+                                                    color: #A6ACBE;
+                                                    font-size:1.5vw ;
+                                                }
+                                                span{
+                                                    display: flex;
+                                                    float: right;
+                                                    color: #56657F;
+                                                    font-size:1.2vw ;
+                                                    i{
+                                                        color: white;
+                                                        font-size: 1.5vw;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:575px){
+    .dashboard{
+        height: 100vh;
+        width: 100%;
+        margin:0;
+        display: flex;
+        flex-grow: 1;
+        font-family: Roboto;
+        background:#07052b ;
+
+        .wrapper-dashboard{
+            min-height: 100%;
+            width: 100%;
+            display: flex;
+            flex-grow: 1;
+            background: #07052b;
+        
+            .table-row{
+                width: 100vw;
+                height: 100%;
+                min-width: 100%;
+        
+                .sidebarCol{
+                    padding: 0;
+                    height: 100%;
+                    background: #07052b;
+                    display:flex;
+                    flex-grow: 1;
+                    flex-direction: column;
+
+                    .layer{
+                        position:fixed;
+                        padding: 0;
+                        max-width: 8.3%;
+                        height: 100%;
+
+                        .sidebar-divider{
+                            border:0.5px solid gray;
+                            width: 95%;
+                            opacity: 50%;
+                        }
+                
+                        .profile-pic{
+    
+                            width: 100%;
+                            height: auto;
+                            display: flex;
+                            flex-direction: column;
+                            
+    
+                            .profile{
+                                margin-top: 20px;
+                                margin-left: 5%;
+                            }
+    
+                            .collapsed{
+                                margin-left: 5%;
+                                display:none;
+                            }
+                            
+                            a{
+                                font-size: 2vh;
+                                color: white;
+                                text-decoration: none;
+                                i {
+                                    font-size: 1vh;
+                                    margin-left: 5vw;
+                                }
+                            }
+    
+                            #collapseOne{
+                                width: 100%;
+    
+                            }
+                        }
+    
+                        .navi{
+                            height: 100%;
+                            color: lightgray;
+                            .active{
+                                background-color: rgba(242, 247, 255, 0.3);
+                                border-radius: 4px;
+                                width: 100%;
+                                height: 7%;
+                                margin: 0 auto;
+                                margin-top: 10%;
+                                padding-top: 10%;
+                                padding-bottom: 10%;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                
+                                a{
+                                    text-decoration: none;
+                                }
+                                i{
+                                    font-size: calc(2vw + 1vh);
+
+                                    width: 100%;
+                                    color: #44AACC;
+                                    padding: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
+    
+                                    span{
+                                        color: #44AACC;
+                                        text-decoration: none;
+                                        font-size: x-small;
+                                        display: none;
+                                    }
+                                } 
+                            }
+    
+                            .nav-items{
+                                width: 100%;
+                                height: 7%;
+                                margin-top: 10%;
+                                margin: 0 auto;
+                                border-radius: 4px;
+                                padding-top: 10%;
+                                padding-bottom: 10%;
+                                display: flex;
+                                flex-direction: column;
+                                align-content: center;
+                                justify-content: center;
+                                a{
+                                    text-decoration: none;
+                                }
+                                i{
+                                    width: 100%;
+                                    text-decoration: none;
+                                    margin-top: 15%;
+                                    font-size: calc(2vw + 1vh);
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    color: lightgray;
+                                    span{
+                                        color:lightgray;
+                                        text-decoration: none;
+                                        font-size: x-small;
+                                        display: none;
+                                    }
+                                }
+
+                                &:hover{
+                                    background-color: rgba(81, 99, 131, 0.5);
+                                    @include transition(.4s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .page-content{
+                background: #123A50;
+                width: 100%;
+
+                .page-header{
+                    margin-top: 5%;
+                    font-family: raleway black;
+                    color: lightgray;
+
+                    h2{
+                        font-size: 4vw;
+                    }
+                }
+
+                .navpil{
+                    ul{
+                        li{
+                            font-size: calc(1vw + 1vh);
+                            .nav-link.active{
+                                background: #0D2031;
+                            }
+
+                            .nav-link{
+                                color: #AFBDD1;
+                                background: rgba(13, 32, 49, 0.5);
+
+                                &:hover{
+                                    background: rgba(13, 32, 49, 0.8);
+                                    @include transition(.8s ease-in-out);
+                                }
+                            }
+                        }
+                    }
+
+
+                    .online-button{
+                        button{
+                            font-size: calc(1vw + 1vh);
+                            border: 0;
+                            background:  #2BA2B2;
+
+                            &:hover{
+                                background: #145057;
+                                @include transition(.4s ease-in-out);
+                            }
+                        }
+                    }
+                }
+
+                .chart{
+                    height: 100%;
+                    margin-top: 3%;
+
+                    .colDoughnut{
+                        padding: 0;
+                        margin-top: 5%;
+                        .chart-state{
+                            width: 100%;
+                            height: 100%;
+
+                            background:rgba(12, 24, 39, 0.75);
+                            
+                            .chart-state-header{
+                                width: 100%;
+                                padding-top: 5%;
+                                color: white;
+                                margin-bottom: 5%;
+                                h3{
+                                    font-size: calc(1vw + 1.5vh);
+                                }
+    
+                                .donut{
+                                    width: 100%;
+                                    height: 25vh;
+                                }
+                                .d-table{
+                                    width: 100%;
+                                    .d-table-row{
+                                        display: flex;
+                                        width: 100%;
+                                        align-items: center;
+                                        .legend-doughnut{
+    
+                                            li{
+                                                margin-top: 10%;
+                                            }
+                                            color: white;
+                                            font-size: calc(.5vw + 1.2vh);
+                                            list-style: none;
+                                            .Red{
+                                                &::before{
+                                                    content: "\25a0"; 
+                                                    font-weight: bold;
+                                                    
+                                                    color: red;
+                                                    display: inline-block; 
+                                                    width: 1em;
+                                                    margin-left: calc(-2.2vw + -2.2vh);
+                                                }
+                                            }
+                                            .Green{
+                                                &::before{
+                                                    content: "\25a0"; 
+                                                    font-weight: bold;
+                                                    
+                                                    color: green;
+                                                    display: inline-block; 
+                                                    width: 1em;
+                                                    margin-left: calc(-2.2vw + -2.2vh);
+                                                }
+                                            }
+        
+                                            .Blue{
+                                                &::before{
+                                                content: "\25a0"; 
+                                                font-weight: bold;
+                                                
+                                                color: blue;
+                                                display: inline-block; 
+                                                width: 1em;
+                                                margin-left: calc(-2.2vw + -2.2vh);
+                                                }
+                                            }
+                                        }
+        
+                                        .percent-doughnut{
+    
+                                            li{
+                                                margin-top: 10%;
+                                            }
+    
+                                            text-align: end;
+                                            width: 100%;
+                                            list-style: none;
+                                            font-size: calc(.5vw + 1.2vh);
+                                        }
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                    
+                    .colUsage{
+                        margin-top: 5%;
+                        padding-left: 0;
+                        padding: 0;
+                        .total-usage{
+                            height: 100%;
+                            padding: 2%;
+                            width: 100%;
+                            background:rgba(12, 24, 39, 0.75);
+    
+                            .usage-header{
+                                width: 100%;
+                                color: white;
+                                h3{
+                                    font-size: calc(1vw + 1.5vh);
+                                }
+    
+                                .line{
+                                    margin-top: 5%;
+                                    width: 100%;
+                                    height: calc(20vw + 15vh);
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                .power-detail{
+                    height: 100%;
+
+                    .col-detail{
+                        margin-top: 5%;
+                        padding: 0;
+                        width: 100%;
+                        .powerwall-detail{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 3%;
+                            color: white;
+                            width: 100%;
+                            .powerwall-header{
+                                width: 100%;
+                                h2{
+                                    font-size: calc(1vw + 1.5vh);
+                                }
+                            }
+    
+                            .powerwall-info{
+                                padding:0;
+                                width: 100%;
+                                font-size: calc(.6vw + 1vh);
+                                ul{
+                                    width: 100%;
+                                    padding: 0;
+                                    li{
+                                        margin-top: 10%;
+                                        color: #A6ACBE;
+                                        width: 100%;
+                                        display: flex;
+                                        list-style: none;
+                                        span{
+                                            display: flex;
+                                            margin-left: auto;
+                                        }
+                                    }
+                                }
+    
+                                .code{
+                                    width: 100%;
+                                    padding: 0;
+                                    li{
+                                        width: 100%;
+                                        list-style: none;
+                                        margin-left: 5%;
+                                        color:lightgray;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .col-overall{
+                        margin-top: 5%;
+                        width: 100%;
+                        padding: 0;
+                        height: 100%;
+    
+                        //min-width: 14em;
+                        .overall{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 0;
+                            padding-top: 5%;
+                            //min-width: 10em;
+                            height: 100%;
+                            color: white;
+                            width: 100%;
+                            box-sizing: border-box;
+    
+                            .overall-header{
+                                width: 100%;
+                                color: #AFBDD1;
+                                h3{
+                                    text-align: center;
+                                    font-size: calc(1vw + 1vh);
+                                }
+                            }
+    
+                            .bar-chart{
+                                width: 100%;
+                                height: calc(20vw + 5vh);
+                            }
+                        }
+                    }
+    
+                    .col-log{
+                        margin-top: 5%;
+                        width: 100%;
+                        height: auto;
+                        padding: 0;
+                        .system-log{
+                            background:rgba(12, 24, 39, 0.75);
+                            overflow: auto;
+                            padding: 3%;
+                            height: auto;
+                            max-height: 40vw;
+                            color: white;
+                            width: 100%;
+    
+                            &::-webkit-scrollbar {
+                                width: 0px;  /* Remove scrollbar space */
+                                background: transparent;  /* Optional: just make scrollbar invisible */
+                            }
+                            /* Optional: show position indicator in red */
+                            &::-webkit-scrollbar-thumb {
+                                background: #FF0000;
+                            }
+    
+                            .log-header{
+                                h3{
+                                    text-align: center;
+                                    color: #AFBDD1;
+                                    font-weight: normal;
+                                    font-size: 3vw;
+                                }
+                            }
+    
+                            .d-table{
+                                width: 100%;
+                                //height: 100%;
+    
+                                .d-table-row{
+                                    width: 100%;
+    
+                                    .system-error{
+                                        width: 100%;
+                                        margin-top: 5%;
+                                        background: rgba(18, 58, 80, 0.35);
+                                        border-radius: 10px;
+                                        height: 100%;
+                                        box-sizing: border-box;
+    
+                                        .row{
+                                            height: 100%;
+                                            padding: 0;
+                                            padding-top: 3%;
+                                            //background: blue;
+    
+                                            .icons{
+                                                height: 100%;
+                                                width: 100%;
+                                                //background: blue;
+                                                .icon{
+                                                    padding: 0;
+                                                    height: 10vw;
+                                                    width: 10vw;
+                                                    border-radius: 50%;
+                                                    background: rgba(130, 200, 238, 0.25);
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+    
+                                                    img{
+                                                        width: 7vw;
+                                                        height:auto;
+                                                    }
+                                                }
+                                            }
+    
+                                            .titles{
+
+                                                margin: 0;
+                                               // background: blue;
+                                                
+                                                h4{
+                                                    font-size: 3vw;
+                                                    font-weight: bold;
+                                                }
+                                                p{
+                                                    color: #A6ACBE;
+                                                    font-size:2vw ;
+                                                }
+                                                span{
+                                                    display: flex;
+                                                    float: right;
+                                                    color: #56657F;
+                                                    font-size:2vw ;
+                                                    i{
+                                                        color: white;
+                                                        font-size: 4vw;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

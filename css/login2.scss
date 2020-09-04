@@ -1,0 +1,112 @@
+html,body{
+    height: 100%;
+    margin:0;
+    padding:0;
+    overflow: auto;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    //background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.login2{
+    background: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+}
+
+@mixin transition($e) {
+    -webkit-transform: $e;
+    -moz-transform: $e;
+    transition: $e;
+}
+
+.login-only{
+    height: 100%;
+    justify-content: center;
+    .card{
+        margin: auto auto;
+        margin-top: 15%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 40em;
+        height: 100%;
+        padding: 40px 40px;
+        background-color: #F7F7F7;
+        -webkit-box-shadow: -1px 4px 13px 1px rgba(0,0,0,0.38);
+        -moz-box-shadow: -1px 4px 13px 1px rgba(0,0,0,0.38);
+        box-shadow: -1px 4px 13px 1px rgba(0,0,0,0.38);
+
+        .baran-photo{
+            margin: 0 auto;
+            width: 20vh;
+            height: auto;
+        }
+
+        .logo-title{
+            margin-top:5%;
+            text-align: center;
+        }
+
+        .form-signin{
+            width: 100%;
+            input{
+                padding: 10px 10px 10px 10px;
+                margin-top: 1em;
+                font-size: 2vh;
+            }
+
+            button{
+                margin: auto;
+                width: 50%;
+                margin-top: 1em;
+                font-size: 2vh;
+            }
+
+            .forgot-pass{
+                font-size: 2vh;
+                margin-top: 2%;
+
+                a{
+                    margin: auto;
+                    text-decoration: none;
+
+                    &:hover{
+                        color:deepskyblue;
+                        font-weight: bold;
+                        @include transition(.8s ease-in-out);
+                    }
+                }
+            }
+        }
+    }
+
+    .copyright{
+        margin-top: 2em;
+        font-family: raleway;
+        color: floralwhite;
+        font-size: small;
+        ul{
+            align-items: center;
+            text-align: center;
+            justify-content: space-evenly;
+            li{
+                display: inline;
+                text-decoration: none;
+                margin-right: 1em;
+
+                a{
+                    @include transition(.3s ease-in-out);
+                    color:lightgray ;
+                    text-decoration: none;
+
+                    &:hover{
+                        color: lightskyblue;
+                        font-weight: bolder;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
