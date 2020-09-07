@@ -18,6 +18,12 @@ export const firstReducer = (state=initialState, action) =>{
                 ...state,
                 username:''
             }
+        
+        case type.ACTIONS.RESET:
+            return{
+                ...state,
+                username: ''
+            }
         default:
             return state
     }

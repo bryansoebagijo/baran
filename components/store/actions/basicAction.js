@@ -13,3 +13,8 @@ export const delUser = (name)=>{
         payload: name
     })
 }
+
+export const reset = () =>{
+    return {type: type.ACTIONS.RESET
+    }
+}

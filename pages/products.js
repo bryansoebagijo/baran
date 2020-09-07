@@ -4,6 +4,8 @@ import Sidebar from '../components/sidebar'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 const productlist =[
     {
@@ -63,6 +65,23 @@ function products() {
     let serialselect;
     let productselect;
     let locationselect;
+
+    const route = useRouter();
+
+    const username = useSelector(state =>{
+        return state.state.username
+    })
+
+    console.log(username)
+
+    useEffect(()=>{
+        if(!username){
+            alert('you are not loggin yet!');
+            route.replace({
+                pathname:'/'
+            })
+        }
+    },[username]);
 
     const filterhandler=(e =>{
         onchecked = filterbyon.current.checked;
