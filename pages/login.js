@@ -33,17 +33,18 @@ function login() {
 
 
         try{
-            const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
-                method:"POST",
-                body : JSON.stringify(inputusername),
-                headers:{'Content-Type':'application/json'}
-            })
-
-            // const resp = await fetch('http://192.168.5.73/user/login',{
-            //     method :'POST',
+            // const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
+            //     method:"POST",
             //     body : JSON.stringify(inputusername),
             //     headers:{'Content-Type':'application/json'}
             // })
+
+            const resp = await fetch('http://192.168.5.73/user/login',{
+                method :'POST',
+                credentials:'include',
+                body : JSON.stringify(inputusername),
+                headers:{'Content-Type':'application/json'}
+            })
             
             if (resp.ok){
                     const data = await resp.json()
