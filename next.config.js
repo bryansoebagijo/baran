@@ -12,6 +12,8 @@ const pwa = withPWA({
     register : true,
     dest:'public',
     scope:'/app', 
+    sw: 'service-worker.js',
+    subdomain: isProd?process.env.NEXT_PUBLIC_BASE_PATH:''
   }
 })
 
