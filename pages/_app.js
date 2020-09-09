@@ -7,6 +7,10 @@ import '../css/login.scss'
 import '../css/dashboard.scss'
 import '../css/products.scss'
 
+const PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+//require(PREFIX + '../css/login.scss');
+
 function MyApp({Component, pageProps}) {
     return (
         <Component {...pageProps}></Component>
