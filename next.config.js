@@ -1,18 +1,8 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  webpack: (config) => {
-    config.node = {
-      fs: 'empty'
-    }
-    return config
-  },
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-  assetPrefix: isProd? '/baran' : '',
-  webpack:(config) =>{
-    config.output.publicPath = `/baran${config.output.publicPath}`;
-    return config;
-  }
+  assetPrefix: isProd? process.env.NEXT_PUBLIC_BASE_PATH : '',
 };
 
 // next.config.js
