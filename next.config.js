@@ -17,9 +17,11 @@ const pwa = withPWA({
 
 module.exports = 
   withPlugins([
-    [withImages, pwa]
+    [withImages,pwa]
   ],
   {
-    basePath : isProd?'/baran' :''
+    basePath : isProd? process.env.NEXT_PUBLIC_BASE_PATH :'',
+    assetPrefix : isProd? process.env.NEXT_PUBLIC_BASE_PATH : '',
+    trailingSlash : true
   }
   );
