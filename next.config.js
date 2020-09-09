@@ -8,7 +8,7 @@ module.exports = {
     return config
   },
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-  assetPrefix: isProd? process.env.NEXT_PUBLIC_BASE_PATH : '',
+  assetPrefix: isProd? '/baran' : '',
 };
 
 // next.config.js
