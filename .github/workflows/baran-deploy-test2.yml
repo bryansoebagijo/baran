@@ -26,7 +26,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build
+      env:
+        NEXT_PUBLIC_BASE_PATH: /baran
     - run: npm run export
+    - run: touch ./out/.nojekyll
+
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.5.9
