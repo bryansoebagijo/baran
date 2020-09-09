@@ -4,7 +4,9 @@ module.exports = {
       fs: 'empty'
     }
     return config
-  }
+  },
+  basePath:'/baran',
+  assetPrefix:'/baran'
 };
 
 // next.config.js

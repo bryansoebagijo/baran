@@ -50,7 +50,7 @@ function login() {
                     const data = await resp.json()
                     console.log(data);
                     dispatch(addUser(inputusername.username))
-                    location.assign('/products')
+                    //location.assign('/products')
                     // sessionStorage.setItem(
                     //     'username', inputusername.username
                     // )
