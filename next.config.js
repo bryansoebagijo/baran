@@ -13,7 +13,7 @@ const pwa = withPWA({
     dest:'public',
     scope:'/app', 
     sw: 'service-worker.js',
-    subdomain: isProd?process.env.NEXT_PUBLIC_BASE_PATH:''
+    subdomainPrefix: isProd?process.env.NEXT_PUBLIC_BASE_PATH:''
   }
 })
 
