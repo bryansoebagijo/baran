@@ -1,9 +1,4 @@
-const isProd = process.env.NODE_ENV === 'production'
-
-module.exports = {
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-  assetPrefix: isProd? process.env.NEXT_PUBLIC_BASE_PATH : '',
-};
+const isProd = process.env.NODE_ENV === 'production';
 
 // next.config.js
 const withPlugins = require('next-compose-plugins');
@@ -20,6 +15,11 @@ const pwa = withPWA({
   }
 })
 
-module.exports = withPlugins([
-  [withImages, pwa]
-])
+module.exports = 
+  withPlugins([
+    [withImages, pwa]
+  ],
+  {
+    basePath : isProd?'/baran' :''
+  }
+  );

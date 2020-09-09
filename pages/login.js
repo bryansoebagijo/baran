@@ -9,7 +9,7 @@ import {addUser, delUser} from '../components/store/actions/basicAction'
 
 function login() {
 
-    const PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || '';
+ //   const PREFIX = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_BASE_PATH : '';
 
     const baran_white = require("../public/Logo High-White.png");
     const route = useRouter();
@@ -104,7 +104,7 @@ function login() {
             <div className="login">
                 <Head></Head>
                 <nav className="navbar">
-                    <img src={PREFIX + baran_white} alt="Baran logo" className="navbar-brand"></img>
+                    <img src={baran_white} alt="Baran logo" className="navbar-brand"></img>
                     <i className="fa fa-map icon-pajangan" aria-hidden="true"></i>
                 </nav>
 
