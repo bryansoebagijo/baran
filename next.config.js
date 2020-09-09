@@ -9,6 +9,10 @@ module.exports = {
   },
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   assetPrefix: isProd? '/baran' : '',
+  webpack:(config) =>{
+    config.output.publicPath = `/baran${config.output.publicPath}`;
+    return config;
+  }
 };
 
 // next.config.js
