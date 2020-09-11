@@ -1,15 +1,14 @@
 import React from 'react'
-import Head from '../components/head'
 import Link from 'next/link'
-import { useDispatch} from 'react-redux'
-import {reset} from './store/actions/basicAction'
+//import { useDispatch} from 'react-redux'
+//import {reset} from './store/actions/basicAction'
 //import '../static/css/dashboard.scss'
 
 function sidebar(props) {
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const logout =() =>{
         sessionStorage.clear();
-        dispatch(reset);
+        //dispatch(reset);
         alert('you have been logged out');
         location.replace('/login')
     }

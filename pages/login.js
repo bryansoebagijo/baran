@@ -3,8 +3,8 @@ import Link from 'next/link'
 //import baran_white from '../static/public/Logo High-White.png'
 import Head from '../components/head'
 import { useRouter, Router } from 'next/router';
-import {useDispatch} from 'react-redux';
-import {addUser, delUser} from '../components/store/actions/basicAction'
+// import {useDispatch} from 'react-redux';
+// import {addUser, delUser} from '../components/store/actions/basicAction'
 
 
 function login() {
@@ -23,7 +23,7 @@ function login() {
     const input1= useRef();
     const input2 = useRef();
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     const submit = async (e) =>{
         e.preventDefault();
@@ -36,24 +36,24 @@ function login() {
 
 
         try{
-            // const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
-            //     method:"POST",
-            //     body : JSON.stringify(inputusername),
-            //     headers:{'Content-Type':'application/json'}
-            // })
-
-            const resp = await fetch('http://192.168.5.73/user/login',{
-                method :'POST',
-                credentials:'include',
+            const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
+                method:"POST",
                 body : JSON.stringify(inputusername),
                 headers:{'Content-Type':'application/json'}
             })
+
+            // const resp = await fetch('http://192.168.5.73/user/login',{
+            //     method :'POST',
+            //     credentials:'include',
+            //     body : JSON.stringify(inputusername),
+            //     headers:{'Content-Type':'application/json'}
+            // })
             
             if (resp.ok){
                     const data = await resp.json()
                     console.log(data);
-                    dispatch(addUser(inputusername.username))
-                    //location.assign('/products')
+                    //dispatch(addUser(inputusername.username))
+                    location.assign('/products')
                     // sessionStorage.setItem(
                     //     'username', inputusername.username
                     // )

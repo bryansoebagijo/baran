@@ -250,11 +250,11 @@ function dashboard(props) {
 
     const route = useRouter();
 
-    const username = useSelector(state =>{
-        return state.state.username
-    })
+    // const username = useSelector(state =>{
+    //     return state.state.username
+    // })
 
-    console.log(username)
+    //console.log(username)
 
     // useEffect(()=>{
     //     if(!sessionStorage.getItem('username')){
