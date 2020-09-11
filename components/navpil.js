@@ -3,7 +3,7 @@ import React from 'react'
 function Navpil() {
     return (
         <div className="row navpil">
-            <div className="col-md-9 col-sm-9 col-9">
+            <div className="col-md-9 col-sm-9 col-9 col-navpil">
                 <div className="navpill">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
