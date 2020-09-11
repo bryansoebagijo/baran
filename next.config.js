@@ -1,4 +1,5 @@
 const isProd = process.env.NODE_ENV === 'production';
+const next_public = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_BASE_PATH:'';
 
 // next.config.js
 const withPlugins = require('next-compose-plugins');
@@ -13,7 +14,7 @@ const pwa = withPWA({
     dest:'public',
     scope:'/app', 
     sw: 'service-worker.js',
-    subdomainPrefix: isProd?process.env.NEXT_PUBLIC_BASE_PATH:''
+    subdomainPrefix: isProd?next_public:''
   }
 })
 
@@ -22,8 +23,8 @@ module.exports =
     [withImages,pwa]
   ],
   {
-    basePath : isProd? process.env.NEXT_PUBLIC_BASE_PATH :'',
-    assetPrefix : isProd? process.env.NEXT_PUBLIC_BASE_PATH : '',
+    basePath : isProd? next_public :'',
+    assetPrefix : isProd? next_public: '',
     trailingSlash : true
   }
   );

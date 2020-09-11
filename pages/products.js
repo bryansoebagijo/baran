@@ -77,9 +77,9 @@ function products() {
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!');
-            route.replace({
-                pathname:'/'
-            })
+            // route.replace({
+            //     pathname:'/'
+            // })
         }
     },[username]);
 
