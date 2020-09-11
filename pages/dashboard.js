@@ -6,7 +6,7 @@ import { Chart as ChartJS } from 'react-chartjs-2';
 import {useRouter} from 'next/router';
 import Sidebar from '../components/sidebar';
 import useSWR from 'swr';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import Navpil from '../components/navpil';
 
 
@@ -310,7 +310,7 @@ function dashboard(props) {
  //       if (username){
             return (
                 <div className="dashboard">
-                    <Head></Head>
+                    <Head props={{description:"dashboard"}}></Head>
                     <div className="container-fluid wrapper-dashboard">
                         <div className="row table-row">
                             <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">

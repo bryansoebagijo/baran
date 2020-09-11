@@ -17,7 +17,7 @@ function sidebar(props) {
     return (
         <div className="col-12 layer">
             <div className="profile-pic">
-                <Link href="#"><a><img className="profile" src="none"></img></a></Link>
+                <Link href="#"><a><img className="profile" src="none" alt='profile'></img></a></Link>
                 <a role='button' className="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">username<i className="fa fa-caret-down" aria-hidden="true"></i></a>
                 <div className="collapse bg-white" id="collapseOne" aria-labelledby="headingOne">
                     <h5 className="collapse-header">Profile</h5>

@@ -10,7 +10,9 @@ import { useRouter, Router } from 'next/router';
 function login() {
     const isProd = process.env.NODE_ENV === 'production';
 
-    const PREFIX = isProd? process.env.NEXT_PUBLIC_BASE_PATH : '';
+    const next_public = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_BASE_PATH:'';
+    const PREFIX = isProd? next_public : '';
+
 
     const baran_white = require("../public/Logo High-White.png");
     const route = useRouter();
@@ -53,7 +55,7 @@ function login() {
                     const data = await resp.json()
                     console.log(data);
                     //dispatch(addUser(inputusername.username))
-                    location.assign('/products')
+                    location.assign(PREFIX+'/products')
                     // sessionStorage.setItem(
                     //     'username', inputusername.username
                     // )
