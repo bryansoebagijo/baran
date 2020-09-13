@@ -14,7 +14,7 @@ function login() {
     const PREFIX = isProd? next_public : '';
 
 
-    const baran_white = require("../public/Logo High-White.png");
+    const baran_white = require("../public/logo-baran.png");
     const route = useRouter();
 
     const [response, setResponse] = useState({
