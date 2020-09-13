@@ -28,6 +28,7 @@ const Head = (props) => (
 
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#000000" />
     <link rel='manifest' href='/manifest.json' />
+    <meta name='theme-color' content='#317EFB' />
     <link href='/favicon-16x16.png' rel='icon' type='image/png' sizes='16x16' />
     <link href='/favicon-32x32.png' rel='icon' type='image/png' sizes='32x32' />
     <meta property="og:url" content={props.url || defaultOGURL} />
