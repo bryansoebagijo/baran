@@ -3,6 +3,7 @@ html, body{
     margin:0;
     padding:0;
     background: #123A50;
+    font-family: Roboto;
     overflow: auto;
    // -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
    // -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -15,7 +16,6 @@ html, body{
     .login{
         background: #123A50;
         height: 100%;
-        font-family: Roboto;
 
         .navbar{
             margin-left: 2%;
