@@ -103,7 +103,6 @@ function login() {
     // },[response]);
 
     return (
-        
             <div className="login">
                 <Head></Head>
                 <nav className="navbar">
@@ -113,12 +112,12 @@ function login() {
 
                 <div className="container login-content">
                     <div className="login-header">
-                        <h2>Sign In</h2>
+                        <h1>Sign In</h1>
                     </div>
                     <form className='signin-form'>
                         <label className="email-label" htmlFor="email">Email Address</label>
                         <input ref={input1} type='email' className='form-control' id='email' name='email' placeholder='email address' required></input>
-                        <label className="email-label" htmlFor="email">Password</label>
+                        <label className="email-label" htmlFor="password">Password</label>
                         <input ref={input2} type='password' className='form-control' id='password' name='password' placeholder='Password' required></input>
                         <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {submit}>SIGN IN</button>
                         <div className='forgot-pass'>
@@ -129,7 +128,7 @@ function login() {
                     </form>
                 </div>
                 <footer className="fixed-bottom">
-                    <h6>Baran Energy  2020</h6>
+                    <p>Baran Energy  2020</p>
                 </footer>
 
             </div>
