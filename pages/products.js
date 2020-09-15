@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import useSWR from 'swr';
 
 const productlist =[
     {
@@ -68,20 +69,20 @@ function products() {
 
     const route = useRouter();
 
-    const username = useSelector(state =>{
-        return state.state.username
-    })
+    // const username = useSelector(state =>{
+    //     return state.state.username
+    // })
 
-    console.log(username)
+    // console.log(username)
 
-    useEffect(()=>{
-        if(!username){
-            alert('you are not loggin yet!');
-            // route.replace({
-            //     pathname:'/'
-            // })
-        }
-    },[username]);
+    // useEffect(()=>{
+    //     if(!username){
+    //         alert('you are not loggin yet!');
+    //         // route.replace({
+    //         //     pathname:'/'
+    //         // })
+    //     }
+    // },[username]);
 
     const filterhandler=(e =>{
         onchecked = filterbyon.current.checked;
@@ -261,34 +262,16 @@ function products() {
         });
     }
 
-    // if(sorttype){
-    //     filtered.sort((a,b)=>{
-    //         var statusA = a.status.toLowerCase();
-    //         var statusB = b.status.toLowerCase();
-    //         if(statusA > statusB){
-    //             return -1;
-    //         }
-    //         if(statusA < statusB){
-    //             return 1
-    //         }
-    //         return 0;
-    //     })
-    // }
-    // else{
-    //     filtered.sort((a,b)=>{
-    //         var statusA = a.status.toLowerCase();
-    //         var statusB = b.status.toLowerCase();
-    //         if(statusA > statusB){
-    //             return 1;
-    //         }
-    //         if(statusA < statusB){
-    //             return -1
-    //         }
-    //         return 0;
-    //     })
-    // }
+    if(username){
+        const url = '192.168.5.73/products/'+username;
 
-    //console.log(filtered);
+        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
+        
+        const {data, error} = useSWR(url, fetcher)
+    
+        if(data)console.log(data.top)
+        if(error)console.log(error)
+    }
 
     return (
         <div className="dashboard">
@@ -355,7 +338,7 @@ function products() {
                                             <tbody>
                                                 {filtered.map(product => {
                                                     return (
-                                                        <Link href={'/dashboard'} key={product.serialNumber}>
+                                                        <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
                                                             <tr>
                                                                 <td>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>

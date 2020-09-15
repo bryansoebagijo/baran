@@ -1,19 +1,19 @@
 import React from 'react'
 
-function Navpil() {
+function Navpil({handlerTime, time}) {
     return (
         <div className="row navpil">
             <div className="col-md-9 col-sm-9 col-9 col-navpil">
                 <div className="navpill">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <a className="nav-link" onClick={() => console.log('daily')} href='#'>Daily</a>
+                            <a className={time =='daily'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('daily')}>Daily</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">Weekly</a>
+                            <a className={time =='yesterday'? "nav-link active":"nav-link"} href="#" onClick={()=>handlerTime('yesterday')}>Yesterday</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Monthly</a>
+                            <a className={time =='weekly'? "nav-link active":"nav-link"} href="#" onClick={()=>handlerTime('weekly')}>Weekly</a>
                         </li>
                     </ul>
                 </div>

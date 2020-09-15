@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import Head from '../components/head'
+import Head from '../../components/head'
 import Link from 'next/link'
 import {Doughnut, Line, Bar} from 'react-chartjs-2'
 import { Chart as ChartJS } from 'react-chartjs-2';
 import {useRouter} from 'next/router';
-import Sidebar from '../components/sidebar';
+import Sidebar from '../../components/sidebar';
 import useSWR from 'swr';
 import { useSelector } from 'react-redux';
-import Navpil from '../components/navpil';
+import Navpil from '../../components/navpil';
 
 
 //defaults.global.defaultFontSize = '5px';
@@ -216,13 +216,17 @@ const dataLine = {
     ]
 };
 
-
-const dummy = {
-    name: 'bryan',
-    title:'kambing jantan'
-}
-
 function dashboard(props) {
+
+    const[time, setTime] = useState('daily')
+
+    const handlerTime = (time) =>{
+        setTime(time);
+    };
+
+    useEffect(()=>{
+        console.log(time);
+    },[time]);
 
     const dataDoughnut = {
         labels: [
@@ -249,33 +253,29 @@ function dashboard(props) {
     };
 
     const route = useRouter();
-
-    const username = useSelector(state =>{
-        return state.state.username
-    })
-
-    console.log(username);
+    const {serial} = route.query
 
     useEffect(()=>{
-        if(!username){
-            alert('you are not loggin yet!')
-            route.replace({
-                pathname: '/'
-            })
-        }
-    },[]);
+        console.log(serial);
+    },[])
+
+    // const username = useSelector(state =>{
+    //     return state.state.username
+    // })
+
+    // console.log(username);
 
     // useEffect(()=>{
-    //     if(!sessionStorage.getItem('username')){
-    //         alert('you are not loggin yet!');
+    //     if(!username){
+    //         alert('you are not loggin yet!')
     //         route.replace({
-    //             pathname:'/'
+    //             pathname: '/'
     //         })
     //     }
-    // },[username]);
+    // },[]);
 
-    const icon1 = require('../public/circuit-svgrepo-com.svg');
-    const icon2 = require('../public/hardware-svgrepo-com.svg');
+    const icon1 = require('../../public/circuit-svgrepo-com.svg');
+    const icon2 = require('../../public/hardware-svgrepo-com.svg');
 
     /*const useWidth = () => {
         const [width, setWidth] = useState(0);
@@ -292,6 +292,7 @@ function dashboard(props) {
 
     console.log(props)
     
+    // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
     const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
     const fetcher = (...args) => fetch(...args).then(res=>res.json())
@@ -334,7 +335,7 @@ function dashboard(props) {
                                         <h2>Your Dashboard</h2>
                                     </div>
 
-                                    <Navpil></Navpil>
+                                    <Navpil handlerTime={handlerTime} time={time}></Navpil>
 
                                     <div className="row chart">
                                         <div className="col-lg-4 col-md-4 col-sm-6 col-12 colDoughnut">
@@ -449,7 +450,7 @@ function dashboard(props) {
                                                         </div>
                                                         <div className="d-table-cell">
                                                             <ul className="code">
-                                                                <li>27-BSD-07-IDN-20</li>
+                                                                <li>{serial}</li>
                                                                 <li>176-UV-7283-9IND</li>
                                                                 <li>S71-0207</li>
                                                             </ul>
@@ -565,45 +566,5 @@ function dashboard(props) {
                 </div>
             )
         }
-        // else{
-        //     return (
-        //         <div className='dashboard'>
-        //             <Head></Head>
-        //             <div className="container-fluid wrapper-dashboard">
-        //                 <h2>Loading...</h2>
-        //             </div>
-        //         </div>
-        //     )
-        // }
-//}
-
-// dashboard.getInitialProps= async (ctx)=>{
-//     const cookie = ctx.req.headers.cookie;
-
-//     const res = await fetch('http://192.168.5.73/products/bryan123', {
-//         method: 'GET',
-//         // headers: {
-//         //     cookie: cookie
-//         // },
-//         headers: { 'Content-Type': 'application/json' }
-//     })
-    
-//     if(res.status === 401 && !ctx.req){
-//         route.replace('/');
-//          return {};
-//     }
-
-//     if(res.status === 401 && ctx.req){
-//         ctx.res.writeHead(302,{
-//             Location: 'http://locahost:3000/'
-//         });
-//         ctx.res.end();
-//          return {};
-//     }
-
-//     const data = await res.json()
-
-//     return {data}
-// }
 
 export default dashboard
