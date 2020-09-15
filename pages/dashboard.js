@@ -6,7 +6,7 @@ import { Chart as ChartJS } from 'react-chartjs-2';
 import {useRouter} from 'next/router';
 import Sidebar from '../components/sidebar';
 import useSWR from 'swr';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Navpil from '../components/navpil';
 
 
@@ -250,11 +250,20 @@ function dashboard(props) {
 
     const route = useRouter();
 
-    // const username = useSelector(state =>{
-    //     return state.state.username
-    // })
+    const username = useSelector(state =>{
+        return state.state.username
+    })
 
-    //console.log(username)
+    console.log(username);
+
+    useEffect(()=>{
+        if(!username){
+            alert('you are not loggin yet!')
+            route.replace({
+                pathname: '/'
+            })
+        }
+    },[]);
 
     // useEffect(()=>{
     //     if(!sessionStorage.getItem('username')){
@@ -263,7 +272,7 @@ function dashboard(props) {
     //             pathname:'/'
     //         })
     //     }
-    // },[]);
+    // },[username]);
 
     const icon1 = require('../public/circuit-svgrepo-com.svg');
     const icon2 = require('../public/hardware-svgrepo-com.svg');
@@ -299,14 +308,6 @@ function dashboard(props) {
     if(data)console.log(data.top)
     if(error)console.log(error)
 
-    // useEffect(()=>{
-    //     if(!username){
-    //         alert('you are not loggin yet!')
-    //         route.replace({
-    //             pathname: '/'
-    //         })
-    //     }
-    // },[])
  //       if (username){
             return (
                 <div className="dashboard">

@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-//import { useDispatch} from 'react-redux'
-//import {reset} from './store/actions/basicAction'
+import { useDispatch} from 'react-redux'
+import {reset} from './store/actions/basicAction'
 //import '../static/css/dashboard.scss'
 
 const StyledMenu = withStyles({
@@ -35,10 +32,14 @@ const StyledMenu = withStyles({
   ));
 
   const StyledMenuItem = withStyles((theme) => ({
+    'root':{
+      backgroundColor: 'white',
+      color:'darkgray',
       '&:focus': {
         backgroundColor: 'white',
         color:'darkgray'
-    },
+      }
+    }
   }))(MenuItem);
 
 function sidebar(props) {
@@ -52,10 +53,10 @@ function sidebar(props) {
         setAnchorEl(null);
       };
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const logout =() =>{
         sessionStorage.clear();
-        //dispatch(reset);
+        dispatch(reset);
         alert('you have been logged out');
         location.replace('/');
     }

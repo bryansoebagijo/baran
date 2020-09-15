@@ -3,8 +3,8 @@ import Link from 'next/link'
 //import baran_white from '../static/public/Logo High-White.png'
 import Head from '../components/head'
 import { useRouter, Router } from 'next/router';
-// import {useDispatch} from 'react-redux';
-// import {addUser, delUser} from '../components/store/actions/basicAction'
+ import {useDispatch} from 'react-redux';
+ import {addUser} from '../components/store/actions/basicAction'
 
 
 function login() {
@@ -25,7 +25,7 @@ function login() {
     const input1= useRef();
     const input2 = useRef();
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const submit = async (e) =>{
         e.preventDefault();
@@ -54,7 +54,7 @@ function login() {
             if (resp.ok){
                     const data = await resp.json()
                     console.log(data);
-                    //dispatch(addUser(inputusername.username))
+                    dispatch(addUser(inputusername.username))
                     location.assign(PREFIX+'/products')
                     // sessionStorage.setItem(
                     //     'username', inputusername.username
