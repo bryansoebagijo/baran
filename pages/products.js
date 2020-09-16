@@ -89,7 +89,7 @@ function products() {
     },[username]);
 
     if(username){
-        const url = '192.168.5.73/products/'+username;
+        const url = 'http://192.168.5.73/products/'+username;
 
         const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
         
