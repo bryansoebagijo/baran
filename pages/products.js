@@ -77,6 +77,8 @@ function products() {
         return state.state.username
     })
 
+    console.log(username)
+
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!');
@@ -86,31 +88,26 @@ function products() {
         }
     },[username]);
 
+    if(username){
+        const url = 'http://192.168.5.73/products/'+username;
+
+        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
+        
+        const {data, error} = useSWR(url, fetcher)
+    
+        if(data){
+            console.log(data.products)
+        }
+        if(error)console.log(error)
+    }
+
     const INVENTORY_API_URL ='';
 
     const fetchInventory = () => {
-        if(username){
-            const url = 'http://192.168.5.73/products/'+username;
-    
-            const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
-            
-            const {data, error} = useSWR(url, fetcher)
-        
-            if(data){
-                console.log(data)
-                setDataLoc(data.products)
-            }
-            if(error)console.log(error)
-        }
-        else{
-            console.log("you are not authorised");
-        }
+        fetch(`${INVENTORY_API_URL}`)
+            .then(res => res.json())
+            .then(json => setDataLoc(json));
     }
-
-    useEffect(()=>{
-        fetchInventory();
-        console.log(dataLoc);
-    },[dataLoc]);
 
     const onEdit = ({id, currentLoc}) => {
         console.log('onEdit');
