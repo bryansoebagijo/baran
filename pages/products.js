@@ -95,7 +95,7 @@ function products() {
         
         const {data, error} = useSWR(url, fetcher)
     
-        if(data)console.log(data.top)
+        if(data)console.log(data)
         if(error)console.log(error)
     }
 
