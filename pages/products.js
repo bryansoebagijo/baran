@@ -100,9 +100,9 @@ function products() {
         if(error)console.log(error)
     }
 
-    useEffect(()=>{
-        console.log(dataLoc);
-    },[dataLoc]);
+    // useEffect(()=>{
+    //     console.log(dataLoc);
+    // },[dataLoc]);
 
     const INVENTORY_API_URL ='';
 
