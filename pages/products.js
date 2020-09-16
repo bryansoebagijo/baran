@@ -86,31 +86,31 @@ function products() {
         }
     },[username]);
 
-    if(username){
-        const url = 'http://192.168.5.73/products/'+username;
-
-        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
-        
-        const {data, error} = useSWR(url, fetcher)
-    
-        if(data){
-            console.log(data)
-            setDataLoc(data.products)
-        }
-        if(error)console.log(error)
-    }
-
-    // useEffect(()=>{
-    //     console.log(dataLoc);
-    // },[dataLoc]);
-
     const INVENTORY_API_URL ='';
 
     const fetchInventory = () => {
-        fetch(`${INVENTORY_API_URL}`)
-            .then(res => res.json())
-            .then(json => setDataLoc(json));
+        if(username){
+            const url = 'http://192.168.5.73/products/'+username;
+    
+            const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
+            
+            const {data, error} = useSWR(url, fetcher)
+        
+            if(data){
+                console.log(data)
+                setDataLoc(data.products)
+            }
+            if(error)console.log(error)
+        }
+        else{
+            console.log("you are not authorised");
+        }
     }
+
+    useEffect(()=>{
+        fetchInventory();
+        console.log(dataLoc);
+    },[dataLoc]);
 
     const onEdit = ({id, currentLoc}) => {
         console.log('onEdit');
