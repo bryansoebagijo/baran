@@ -55,7 +55,7 @@ function products() {
     const [sortradio, setsortradio] = useState({serial:false, product:false, location:false})
     const [editloc, seteditloc] = useState('');
     const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
-    const [dataLoc, setDataLoc] = useState([])
+    const [dataLoc, setDataLoc] = useState([{}])
 
     
     const filterbyon = useRef();
@@ -95,9 +95,16 @@ function products() {
         
         const {data, error} = useSWR(url, fetcher)
     
-        if(data)console.log(data)
+        if(data){
+            console.log(data)
+            setDataLoc(data.products)
+        }
         if(error)console.log(error)
     }
+
+    useEffect(()=>{
+        console.log(dataLoc);
+    },[dataLoc]);
 
     const INVENTORY_API_URL ='';
 
@@ -411,7 +418,7 @@ function products() {
                                                                 <td>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
                                                                     <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
-                                                                    {product.serialNumber}
+                                                                        <a>{product.serialNumber}</a>
                                                                     </Link>
                                                                 </td>
                                                                 <td>{product.product}</td>
