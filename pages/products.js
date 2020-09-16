@@ -406,11 +406,14 @@ function products() {
 
                                                 {filtered.map(product => {
                                                     return (
-                                                        // <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
                                                             <tr key={product.serialNumber}>
                                                                 <td>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td>{product.serialNumber}</td>
+                                                                <td>
+                                                                    <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
+                                                                    {product.serialNumber}
+                                                                    </Link>
+                                                                </td>
                                                                 <td>{product.product}</td>
                                                                 <td>
                                                                 {inEditMode.status && inEditMode.rowkey === product.serialNumber ? 
@@ -429,7 +432,6 @@ function products() {
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
                                                                 })()}</td>
                                                             </tr>
-                                                        //</Link>
                                                     )
                                                 })}
                                             </tbody>
