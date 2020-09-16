@@ -53,6 +53,10 @@ function products() {
     const [data, setdata] = useState([])
     const [newcheck, setnewcheck] = useState('')
     const [sortradio, setsortradio] = useState({serial:false, product:false, location:false})
+    const [editloc, seteditloc] = useState('');
+    const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
+    const [dataLoc, setDataLoc] = useState([])
+
     
     const filterbyon = useRef();
     const filterbyoff = useRef();
@@ -69,21 +73,86 @@ function products() {
 
     const route = useRouter();
 
-    // const username = useSelector(state =>{
-    //     return state.state.username
-    // })
+    const username = useSelector(state =>{
+        return state.state.username
+    })
 
-    // console.log(username)
+    console.log(username)
 
-    // useEffect(()=>{
-    //     if(!username){
-    //         alert('you are not loggin yet!');
-    //         // route.replace({
-    //         //     pathname:'/'
-    //         // })
-    //     }
-    // },[username]);
+    useEffect(()=>{
+        if(!username){
+            alert('you are not loggin yet!');
+            route.replace({
+                pathname:'/'
+            })
+        }
+    },[username]);
 
+    if(username){
+        const url = '192.168.5.73/products/'+username;
+
+        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
+        
+        const {data, error} = useSWR(url, fetcher)
+    
+        if(data)console.log(data.top)
+        if(error)console.log(error)
+    }
+
+    const INVENTORY_API_URL ='';
+
+    const fetchInventory = () => {
+        fetch(`${INVENTORY_API_URL}`)
+            .then(res => res.json())
+            .then(json => setDataLoc(json));
+    }
+
+    const onEdit = ({id, currentLoc}) => {
+        console.log('onEdit');
+        setInEditMode({
+            status: true,
+            rowkey: id
+        })
+        seteditloc(currentLoc);
+    }
+
+    const updateInventory = ({id, newLoc}) => {
+        fetch(`${INVENTORY_API_URL}/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                location: newLoc
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                // reset inEditMode and unit price state values
+                onCancel();
+
+                // fetch the updated data
+                fetchInventory();
+            })
+
+        onCancel();
+    }
+
+    const onSave = ({id, newLoc}) => {
+        updateInventory({id, newLoc});
+    }
+
+    const onCancel = () => {
+        // reset the inEditMode state value
+        setInEditMode({
+            status: false,
+            rowKey: null
+        })
+        // reset the unit price state value
+        seteditloc(null);
+    }
+
+    //FILTER HANDLER FUNCTION
     const filterhandler=(e =>{
         onchecked = filterbyon.current.checked;
         offchecked = filterbyoff.current.checked;
@@ -128,6 +197,8 @@ function products() {
 
     })
 
+
+    //SORT HANDLER FUNCTION
     const sorthandler= ()=>{
 
         serialselect = sortbyserial.current.checked;
@@ -185,7 +256,8 @@ function products() {
             setsort(false)
         }
     }
-    
+
+    //JUST A BACKDROP
     const backdrop = () =>{
         return(
             <div className='backdrop' onClick={()=>{
@@ -194,6 +266,8 @@ function products() {
             }}></div>
         )
     }
+
+    //FILTER MODAL JSX
     const filterModal =() =>{
         return(
             <div className='container filtercard'>
@@ -217,6 +291,7 @@ function products() {
         )
     }
 
+    //SORT MODAL JSX
     const sortModal =() =>{
         return(
             <div className='container sortcard'>
@@ -244,6 +319,7 @@ function products() {
         )
     }
 
+    // filter logic
     let filtered; 
 
     useEffect(()=>{
@@ -262,16 +338,7 @@ function products() {
         });
     }
 
-    if(username){
-        const url = '192.168.5.73/products/'+username;
-
-        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
-        
-        const {data, error} = useSWR(url, fetcher)
-    
-        if(data)console.log(data.top)
-        if(error)console.log(error)
-    }
+    //show and close form edit location
 
     return (
         <div className="dashboard">
@@ -336,22 +403,33 @@ function products() {
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 {filtered.map(product => {
                                                     return (
-                                                        <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
-                                                            <tr>
+                                                        // <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
+                                                            <tr key={product.serialNumber}>
                                                                 <td>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>{product.serialNumber}</td>
                                                                 <td>{product.product}</td>
-                                                                <td>{product.location}</td>
+                                                                <td>
+                                                                {inEditMode.status && inEditMode.rowkey === product.serialNumber ? 
+                                                                <form className='edit-location'>
+                                                                    <input placeholder="Edit location" name="location" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
+                                                                    <i class="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialNumber, newLoc: editloc })}></i>
+                                                                    <i class="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
+                                                                </form> 
+                                                                : product.location}
+
+                                                                    {inEditMode.status && inEditMode.rowkey === product.serialNumber?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialNumber, currentLoc:product.location})}></i>}
+                                                                </td>
                                                                 <td>{(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
                                                                     else if (product.condition == 'warning') return <i className="fa fa-exclamation-triangle warning" aria-hidden="true"></i>
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
                                                                 })()}</td>
                                                             </tr>
-                                                        </Link>
+                                                        //</Link>
                                                     )
                                                 })}
                                             </tbody>
