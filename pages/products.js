@@ -99,7 +99,7 @@ function products() {
     const [dataLoc, setDataLoc] = useState([{}])
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(1)
-    const [tempFetchData, setTempFetchData] = ([])
+    const [tempFetchData, setTempFetchData] = useState([])
 
     
     const filterbyon = useRef();
