@@ -141,7 +141,7 @@ function products() {
         const { data, error } = useSWR(url, fetcher, {
             dedupingInterval: 10000,
             onSuccess: (newdata) => {
-                console.log(newdata)
+                console.log(newdata.products)
             },
             onError: (error) => {
                 console.log(error);
