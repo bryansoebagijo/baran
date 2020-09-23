@@ -99,6 +99,7 @@ function products() {
     const [dataLoc, setDataLoc] = useState([{}])
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(1)
+    const [tempFetchData, setTempFetchData] = ([])
 
     
     const filterbyon = useRef();
@@ -142,12 +143,17 @@ function products() {
             dedupingInterval: 10000,
             onSuccess: (newdata) => {
                 console.log(newdata.products)
+                setTempFetchData(newdata.products)
             },
             onError: (error) => {
                 console.log(error);
             }
         })
     }
+
+    useEffect(()=>{
+        console.log(tempFetchData);
+    },[tempFetchData])
 
     const INVENTORY_API_URL ='';
 
