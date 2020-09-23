@@ -1,13 +1,14 @@
-import React, { useRef } from 'react'
-import Head from '../components/head'
-import Link from 'next/link'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import React, { useRef } from 'react';
+import Head from '../components/head';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import Loader from 'react-loader-spinner';
 
 const productlist =[
     {
@@ -413,6 +414,7 @@ function products() {
         setPage(value);
     }
 
+    
     return (
         <div className="dashboard">
             <Head></Head>
@@ -462,7 +464,7 @@ function products() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
+                                                {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialNumber}>
                                                                 <td className='first-sm'>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
@@ -491,7 +493,9 @@ function products() {
                                                                 })()}</td>
                                                             </tr>
                                                     )
-                                                })}
+                                                })
+                                                : <div className='d-flex justify-content-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={80} width={80} /></div>
+                                            }
                                             </tbody>
                                         </table>
                                     </div>
