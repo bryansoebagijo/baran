@@ -199,7 +199,10 @@ html,body{
 
                 .navpil{
                     padding: 0;
-
+                    
+                    .col-navpil{
+                        padding: 0;
+                    }
                     ul{
 
                         li{
@@ -220,6 +223,7 @@ html,body{
                     }
 
                     .online-button{
+                        padding: 0;
                         @include transition(.8s ease-in-out);
                         button{
                             border: 0;
@@ -234,9 +238,82 @@ html,body{
                     }
                 }
 
+                .user-intro{
+                    margin-top: 3%;
+                    height: calc(15vh + 15vw);
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    background: rgba(12, 24, 39, 0.75);
+
+                    .col-user-intro{
+                        height: 100%;
+                        .user-intro-inside{
+                            height: 100%;
+                            .user-section{
+                                height: 100%;
+                                padding:3%;
+                                color: #AFBDD1;
+
+                                h2{
+                                    margin-top: 15%;
+                                    font-size: calc(2vw + 2vh);
+                                    font-weight: bold;
+                                    line-height: 30px;
+                                    /* or 83% */
+                                    letter-spacing: 0.15px;
+                                    /* Dark / White extra */
+                                }
+                                p{
+                                    line-height: 21px;
+                                    font-size: calc(.7vw + .7vh);
+                                    /* or 150% */
+                                    letter-spacing: 0.1px;
+                                    a{
+                                        margin-left: 1%;
+                                        color: #AFBDD1;
+                                        text-decoration: none;
+                                        @include transition(.8s ease-in-out);
+                                        &:hover{
+                                            color: #44AACC;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .powerwall-image-section{
+                                .half-circle{
+                                    position: absolute;
+                                    left: 10%;
+                                    bottom: 0;
+                                    border-top-right-radius: 15vw;
+                                    border-top-left-radius: 15vw;
+                                    width: 30vw;
+                                    height: 15vw;
+                                    background: #44AACC;
+                                }
+                                .powerwall-img{
+                                    position: absolute;
+                                    top: 20%;
+                                    left:20%;
+                                    z-index: 2;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 .chart{
+                    padding: 0;
                     height: 100%;
                     margin-top: 3%;
+
+                    .colDoughnut{
+                        padding-left: 0;
+                    }
+                    
+                    .colUsage{
+                        padding-right: 0;
+                    }
 
                     .chart-state{
                         height: 100%;
@@ -347,192 +424,6 @@ html,body{
                                 margin-top: 5%;
                                 width: 100%;
                                 height: calc(13vw + 13vh);
-                            }
-                        }
-                    }
-                }
-            }
-
-            .power-detail{
-                height: 100%;
-                margin-top: 2%;
-                padding: 0;
-
-                .col-detail{
-                    width: 100%;
-                    .powerwall-detail{
-                        min-width: 25vw;
-                        height: calc(11vw + 11vh);
-                        background:rgba(12, 24, 39, 0.75);
-                        padding: 3%;
-                        color: white;
-                        width: 100%;
-                        .powerwall-header{
-                            width: 100%;
-                            h2{
-                                font-size: calc(1vw + 1.2vh);
-                            }
-                        }
-
-                        .powerwall-info{
-                            padding:0;
-                            width: 100%;
-                            font-size: calc(.6vw + .6vh);
-                            ul{
-                                width: 100%;
-                                padding: 0;
-                                li{
-                                    margin-top: 10%;
-                                    color: #A6ACBE;
-                                    width: 100%;
-                                    display: flex;
-                                    list-style: none;
-                                    span{
-                                        display: flex;
-                                        margin-left: auto;
-                                    }
-                                }
-                            }
-
-                            .code{
-                                width: 100%;
-                                padding: 0;
-                                li{
-                                    width: 100%;
-                                    list-style: none;
-                                    margin-left: 5%;
-                                    color:lightgray;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .col-overall{
-                    //margin-top: calc(-3vw + -3vh );
-                    width: 100%;
-                    padding-right: 0;
-                    min-height: 2em;
-
-                    //min-width: 14em;
-                    .overall{
-                        background:rgba(12, 24, 39, 0.75);
-                        padding: 3%;
-                        //min-width: 10em;
-                        height: 100%;
-                        color: white;
-                        width: 100%;
-                        box-sizing: border-box;
-
-                        .overall-header{
-                            width: 100%;
-                            color: #AFBDD1;
-                            h3{
-                                text-align: center;
-                                font-size: calc(1vw + 1vh);
-                            }
-                        }
-
-                        .bar-chart{
-                            width: 100%;
-                            height: calc(8vw + 8vh);
-                        }
-                    }
-                }
-
-                .col-log{
-                    //margin-top: calc(-3vw + -3vh );
-                    width: 100%;
-                    height: auto;
-                    .system-log{
-                        background:rgba(12, 24, 39, 0.75);
-                        overflow: auto;
-                        padding: 3%;
-                        height: auto;
-                        max-height: calc(11vw + 11vh);
-                        color: white;
-                        width: 100%;
-
-                        &::-webkit-scrollbar {
-                            width: 0px;  /* Remove scrollbar space */
-                            background: transparent;  /* Optional: just make scrollbar invisible */
-                        }
-                        /* Optional: show position indicator in red */
-                        &::-webkit-scrollbar-thumb {
-                            background: #FF0000;
-                        }
-
-                        .log-header{
-                            h3{
-                                text-align: center;
-                                color: #AFBDD1;
-                                font-weight: normal;
-                                font-size: calc(1vw + 1vh);
-                            }
-                        }
-
-                        .d-table{
-                            width: 100%;
-
-                            .d-table-row{
-                                width: 100%;
-
-                                .system-error{
-                                    padding: 0;
-                                    width: 100%;
-                                    padding-top: 5%;
-                                    margin-top: 5%;
-                                    background: rgba(18, 58, 80, 0.35);
-                                    border-radius: 10px;
-
-                                    .row{
-                                        width: 100%;
-
-                                        .icons{
-                                            width: 100%;
-                                            height: 100%;
-                                            .icon{
-                                                padding: 0;
-                                                height: 4vw;
-                                                width: 4vw;
-                                                border-radius: 50%;
-                                                background: rgba(130, 200, 238, 0.25);
-                                                display: flex;
-                                                justify-content: center;
-                                                align-items: center;
-                                                img{
-                                                    width: 3vw;
-                                                    height: 3vw;
-                                                }
-                                            }
-                                        }
-
-                                        .titles{
-                                            padding: 0;
-                                            margin: 0;
-                                            width: 100%;
-                                            h4{
-                                                font-size: 1.5vw;
-                                                font-weight: bold;
-                                            }
-                                            p{
-                                                color: #A6ACBE;
-                                                font-size:1.5vw ;
-                                            }
-                                            span{
-                                                width: auto;
-                                                display: flex;
-                                                float: right;
-                                                color: #56657F;
-                                                font-size:1.2vw ;
-                                                i{
-                                                    color: white;
-                                                    font-size: 1.5vw;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
                             }
                         }
                     }
@@ -711,6 +602,9 @@ html,body{
                 }
 
                 .navpil{
+                    .col-navpil{
+                        padding: 0;
+                    }
                     ul{
                         li{
                             font-size: calc(1vw + 1vh);
@@ -732,6 +626,7 @@ html,body{
 
 
                     .online-button{
+                        padding-right: 0;
                         button{
                             font-size: calc(1vw + 1vh);
                             border: 0;
@@ -868,197 +763,6 @@ html,body{
                     }
                     
                 }
-                .power-detail{
-                    height: 100%;
-                    margin-top: 2%;
-
-                    .col-detail{
-                        width: 100%;
-                        .powerwall-detail{
-                            min-width: 14em;
-                            background:rgba(12, 24, 39, 0.75);
-                            padding: 3%;
-                            height: calc(10.5vw + 10.5vh);
-                            color: white;
-                            width: 100%;
-                            .powerwall-header{
-                                width: 100%;
-                                h2{
-                                    font-size: calc(1vw + 1.2vh);
-                                }
-                            }
-    
-                            .powerwall-info{
-                                padding:0;
-                                width: 100%;
-                                font-size: calc(.6vw + .7vh);
-                                ul{
-                                    width: 100%;
-                                    padding: 0;
-                                    li{
-                                        margin-top: 10%;
-                                        color: #A6ACBE;
-                                        width: 100%;
-                                        display: flex;
-                                        list-style: none;
-                                        span{
-                                            display: flex;
-                                            margin-left: auto;
-                                        }
-                                    }
-                                }
-    
-                                .code{
-                                    width: 100%;
-                                    padding: 0;
-                                    li{
-                                        width: 100%;
-                                        list-style: none;
-                                        margin-left: 5%;
-                                        color:lightgray;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    .col-overall{
-                        width: 100%;
-                        padding-left: 0;
-    
-                        //min-width: 14em;
-                        .overall{
-                            background:rgba(12, 24, 39, 0.75);
-                            padding: 0;
-                            padding-top: 5%;
-                            //min-width: 10em;
-                            height: 100%;
-                            color: white;
-                            width: 100%;
-                            box-sizing: border-box;
-    
-                            .overall-header{
-                                width: 100%;
-                                color: #AFBDD1;
-                                h3{
-                                    text-align: center;
-                                    font-size: calc(1vw + 1vh);
-                                }
-                            }
-    
-                            .bar-chart{
-                                width: 100%;
-                                height: calc(10vw + 5vh);
-                            }
-                        }
-                    }
-    
-                    .col-log{
-                        width: 100%;
-                        height: auto;
-                        padding-left: 0;
-                        .system-log{
-                            background:rgba(12, 24, 39, 0.75);
-                            overflow: auto;
-                            padding: 3%;
-                            //height: auto;
-                            height: calc(10.5vw + 10.5vh);
-                            color: white;
-                            width: 100%;
-    
-                            &::-webkit-scrollbar {
-                                width: 0px;  /* Remove scrollbar space */
-                                background: transparent;  /* Optional: just make scrollbar invisible */
-                            }
-                            /* Optional: show position indicator in red */
-                            &::-webkit-scrollbar-thumb {
-                                background: #FF0000;
-                            }
-    
-                            .log-header{
-                                h3{
-                                    text-align: center;
-                                    color: #AFBDD1;
-                                    font-weight: normal;
-                                    font-size: calc(1vw + 1vh);
-                                }
-                            }
-    
-                            .d-table{
-                                width: 100%;
-                                //height: 100%;
-    
-                                .d-table-row{
-                                    width: 100%;
-    
-                                    .system-error{
-                                        padding: 0;
-                                        width: 100%;
-                                        padding-top: 5%;
-                                        margin-top: 5%;
-                                        background: rgba(18, 58, 80, 0.35);
-                                        border-radius: 10px;
-                                        height: 100%;
-                                        box-sizing: border-box;
-    
-                                        .row{
-                                            width: 105%;
-                                            height: 100%;
-                                            padding: 0;
-    
-                                            .icons{
-
-                                                height: 100%;
-                                                //background: blue;
-                                                .icon{
-                                                    padding: 0;
-                                                    margin-top: 50%;
-                                                    height: 3.5vw;
-                                                    width: 3.5vw;
-                                                    border-radius: 50%;
-                                                    background: rgba(130, 200, 238, 0.25);
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
-    
-                                                    img{
-                                                        width: 2.5vw;
-                                                        height: auto;
-                                                    }
-                                                }
-                                            }
-    
-                                            .titles{
-                                                padding: 0;
-                                                margin: 0;
-                                               // background: blue;
-                                                
-                                                h4{
-                                                    font-size: 1.4vw;
-                                                    font-weight: bold;
-                                                }
-                                                p{
-                                                    color: #A6ACBE;
-                                                    font-size:1.5vw ;
-                                                }
-                                                span{
-                                                    display: flex;
-                                                    float: right;
-                                                    color: #56657F;
-                                                    font-size:1.2vw ;
-                                                    i{
-                                                        color: white;
-                                                        font-size: 1.5vw;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -1066,7 +770,7 @@ html,body{
 
 @media only screen and (max-width:575px){
     .dashboard{
-        height: 100vh;
+        height: 100%;
         width: 100%;
         margin:0;
         display: flex;
@@ -1406,197 +1110,6 @@ html,body{
                         }
                     }
                     
-                }
-                .power-detail{
-                    height: 100%;
-
-                    .col-detail{
-                        margin-top: 5%;
-                        padding: 0;
-                        width: 100%;
-                        .powerwall-detail{
-                            background:rgba(12, 24, 39, 0.75);
-                            padding: 3%;
-                            color: white;
-                            width: 100%;
-                            .powerwall-header{
-                                width: 100%;
-                                h2{
-                                    font-size: calc(1vw + 1.5vh);
-                                }
-                            }
-    
-                            .powerwall-info{
-                                padding:0;
-                                width: 100%;
-                                font-size: calc(.6vw + 1vh);
-                                ul{
-                                    width: 100%;
-                                    padding: 0;
-                                    li{
-                                        margin-top: 10%;
-                                        color: #A6ACBE;
-                                        width: 100%;
-                                        display: flex;
-                                        list-style: none;
-                                        span{
-                                            display: flex;
-                                            margin-left: auto;
-                                        }
-                                    }
-                                }
-    
-                                .code{
-                                    width: 100%;
-                                    padding: 0;
-                                    li{
-                                        width: 100%;
-                                        list-style: none;
-                                        margin-left: 5%;
-                                        color:lightgray;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    .col-overall{
-                        margin-top: 5%;
-                        width: 100%;
-                        padding: 0;
-                        height: 100%;
-    
-                        //min-width: 14em;
-                        .overall{
-                            background:rgba(12, 24, 39, 0.75);
-                            padding: 0;
-                            padding-top: 5%;
-                            //min-width: 10em;
-                            height: 100%;
-                            color: white;
-                            width: 100%;
-                            box-sizing: border-box;
-    
-                            .overall-header{
-                                width: 100%;
-                                color: #AFBDD1;
-                                h3{
-                                    text-align: center;
-                                    font-size: calc(1vw + 1vh);
-                                }
-                            }
-    
-                            .bar-chart{
-                                width: 100%;
-                                height: calc(20vw + 5vh);
-                            }
-                        }
-                    }
-    
-                    .col-log{
-                        margin-top: 5%;
-                        width: 100%;
-                        height: auto;
-                        padding: 0;
-                        .system-log{
-                            background:rgba(12, 24, 39, 0.75);
-                            overflow: auto;
-                            padding: 3%;
-                            height: auto;
-                            max-height: 40vw;
-                            color: white;
-                            width: 100%;
-    
-                            &::-webkit-scrollbar {
-                                width: 0px;  /* Remove scrollbar space */
-                                background: transparent;  /* Optional: just make scrollbar invisible */
-                            }
-                            /* Optional: show position indicator in red */
-                            &::-webkit-scrollbar-thumb {
-                                background: #FF0000;
-                            }
-    
-                            .log-header{
-                                h3{
-                                    text-align: center;
-                                    color: #AFBDD1;
-                                    font-weight: normal;
-                                    font-size: 3vw;
-                                }
-                            }
-    
-                            .d-table{
-                                width: 100%;
-                                //height: 100%;
-    
-                                .d-table-row{
-                                    width: 100%;
-    
-                                    .system-error{
-                                        width: 100%;
-                                        margin-top: 5%;
-                                        background: rgba(18, 58, 80, 0.35);
-                                        border-radius: 10px;
-                                        height: 100%;
-                                        box-sizing: border-box;
-    
-                                        .row{
-                                            height: 100%;
-                                            padding: 0;
-                                            padding-top: 3%;
-                                            //background: blue;
-    
-                                            .icons{
-                                                height: 100%;
-                                                width: 100%;
-                                                //background: blue;
-                                                .icon{
-                                                    padding: 0;
-                                                    height: 10vw;
-                                                    width: 10vw;
-                                                    border-radius: 50%;
-                                                    background: rgba(130, 200, 238, 0.25);
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
-    
-                                                    img{
-                                                        width: 7vw;
-                                                        height:auto;
-                                                    }
-                                                }
-                                            }
-    
-                                            .titles{
-
-                                                margin: 0;
-                                               // background: blue;
-                                                
-                                                h4{
-                                                    font-size: 3vw;
-                                                    font-weight: bold;
-                                                }
-                                                p{
-                                                    color: #A6ACBE;
-                                                    font-size:2vw ;
-                                                }
-                                                span{
-                                                    display: flex;
-                                                    float: right;
-                                                    color: #56657F;
-                                                    font-size:2vw ;
-                                                    i{
-                                                        color: white;
-                                                        font-size: 4vw;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }

@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import Head from '../components/head'
-import Sidebar from '../components/sidebar'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import useSWR from 'swr';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
 
 const productlist =[
     {
@@ -40,10 +41,50 @@ const productlist =[
         product :'Power Wall',
         location : 'Villa Bogor',
         condition : 'okay'
+    },
+    {
+        status:'offline',
+        connection:'off',
+        serialNumber: '31-BSD-07-PW-20',
+        product :'Power Wall',
+        location : 'Villa Bogor',
+        condition : 'okay'
+    },
+    {
+        status:'offline',
+        connection:'off',
+        serialNumber: '32-BSD-07-PW-20',
+        product :'Power Wall',
+        location : 'Villa Bogor',
+        condition : 'warning'
     }
 ]
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        margin:'auto',
+        color: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '& > *': {
+            marginTop: theme.spacing(2),
+        },
+        '& ul': {
+            color: 'white',
+          },
+        '& .MuiPaginationItem-root ': {
+            color: 'white',
+
+        }
+    },
+}));
+
 function products() {
+
+    const classes = useStyles();
+    const rowPerPage = 5;
 
     const [search, setsearch] = useState('')
     const [sorttype, setsort] = useState(false)
@@ -56,6 +97,8 @@ function products() {
     const [editloc, seteditloc] = useState('');
     const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
     const [dataLoc, setDataLoc] = useState([{}])
+    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(1)
 
     
     const filterbyon = useRef();
@@ -82,21 +125,23 @@ function products() {
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!');
-            route.replace({
-                pathname:'/'
-            })
+            // route.replace({
+            //     pathname:'/'
+            // })
         }
     },[username]);
 
     if(username){
-        const url = 'http://192.168.5.73/products/'+username;
+        //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-        const fetcher = (...args) => fetch(...args,{credentials:'include', method:'GET'}).then(res=>res.json())
+        const url = '192.168.5.73/products/' + username;
+
+        const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
-        const {data, error} = useSWR(url, fetcher)
+        const {data, error} = useSWR(url, fetcher, {dedupingInterval:5000})
     
         if(data){
-            console.log(data.products)
+            console.log(data)
         }
         if(error)console.log(error)
     }
@@ -186,6 +231,7 @@ function products() {
             setnewcheck('both')
             console.log(data);
             console.log(data.length);
+            setCount(data.length)
         }
         if(onchecked && offchecked){
             outputfilter = productlist.filter((product)=>{
@@ -340,7 +386,23 @@ function products() {
         });
     }
 
-    //show and close form edit location
+    useEffect(()=>{
+        if(filtered.length > 0){
+            let tempCount = filtered.length
+            //console.log(tempCount);
+            let pageCount = Math.ceil(tempCount /rowPerPage)
+            setCount(pageCount)
+            //console.log(count);
+        }
+        else{
+            setCount(1)
+        }
+    }, [filtered])
+
+    const handlePageChange = (event, value) =>{
+        console.log(value);
+        setPage(value);
+    }
 
     return (
         <div className="dashboard">
@@ -351,21 +413,7 @@ function products() {
                 {sorttype?backdrop():''}
                 {sorttype?sortModal():''}
                 <div className="row table-row">
-                    <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
-                        <Sidebar>
-                            <ul className="navbar-nav navi">
-                                <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-signal" aria-hidden="true"><span>Usage Details</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-tasks" aria-hidden="true"><span>System Logs</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
-                                <hr className="sidebar-divider"></hr>
-
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-cog" aria-hidden="true"><span>Main Setting</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-plus-square" aria-hidden="true"><span>Integrations</span></i></a></Link></li>
-                            </ul>
-                        </Sidebar>
-                    </div>
-                    <div className="col-md-10 col-sm-11 col-11 page-content">
+                    <div className="col-md-12 col-sm-12 col-12 page-content">
                         <div className="container-fluid">
                             <div className="page-header">
                                 <h2>Your Products</h2>
@@ -396,8 +444,8 @@ function products() {
                                         <table className='table table-hover product_list'>
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Connection</th>
+                                                    <th scope="col" className='first-sm'>Status</th>
+                                                    <th scope="col" className='second-sm'>Connection</th>
                                                     <th scope="col">Serial Number</th>
                                                     <th scope="col">Product</th>
                                                     <th scope="col">Location</th>
@@ -405,12 +453,11 @@ function products() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                {filtered.map(product => {
+                                                {filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialNumber}>
-                                                                <td>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td className='first-sm'>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td className='second-sm'>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
                                                                     <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
                                                                         <a>{product.serialNumber}</a>
@@ -440,7 +487,11 @@ function products() {
                                         </table>
                                     </div>
                                 </div>
+                                <div className={classes.root}>
+                                    <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
+                                </div>
                             </div>
+                            <br></br>
                         </div>
                     </div>
                 </div>

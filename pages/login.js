@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 //import baran_white from '../static/public/Logo High-White.png'
 import Head from '../components/head'
-import { useRouter, Router } from 'next/router';
+import { useRouter } from 'next/router';
  import {useDispatch} from 'react-redux';
  import {addUser} from '../components/store/actions/basicAction'
 
@@ -55,7 +55,8 @@ function login() {
                     const data = await resp.json()
                     console.log(data);
                     dispatch(addUser(inputusername.username))
-                    location.assign(PREFIX+'/products');
+                    route.push(PREFIX+'/products')
+                    //location.assign(PREFIX+'/products');
                     // sessionStorage.setItem(
                     //     'username', inputusername.username
                     // )
@@ -65,7 +66,7 @@ function login() {
                     //      pathname:'/dashboard',
                     //      //query:{
                     //     //     username : inputusername.username
-                    //     // }
+                    //     // }.
                     //  })
                 
             }
