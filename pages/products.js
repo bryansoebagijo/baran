@@ -91,7 +91,7 @@ function products() {
     const [filter, setfilter] = useState(false)
     const [checked1, setcheck1]= useState(true)
     const [checked2, setcheck2]= useState(true)
-    const [data, setdata] = useState([])
+    const [dataFilter, setDataFilter] = useState([])
     const [newcheck, setnewcheck] = useState('')
     const [sortradio, setsortradio] = useState({serial:false, product:false, location:false})
     const [editloc, seteditloc] = useState('');
@@ -138,13 +138,13 @@ function products() {
 
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
-        const {data, error} = useSWR(url, fetcher, {dedupingInterval:5000})
-    
-        if(data){
-            console.log(data)
+        const {data, error} = useSWR(url, fetcher, {dedupingInterval:10000, onSuccess:(newdata)=>{
+            console.log(newdata)
+        },
+        onError:(error)=>{
+            console.log(error);
         }
-        if(error)console.log(error)
-    }
+    })
 
     const INVENTORY_API_URL ='';
 
@@ -212,7 +212,7 @@ function products() {
             outputfilter = productlist.filter((product)=>{
                 return product.connection == 'on'
             })
-            setdata(outputfilter)
+            setDataFilter(outputfilter)
         }
         if(offchecked && !onchecked){
             const filteroff = filterbyoff.current.value;
@@ -222,23 +222,23 @@ function products() {
             outputfilter = productlist.filter((product)=>{
                 return product.connection == 'off'
             })
-            setdata(outputfilter)
+            setDataFilter(outputfilter)
         }
         if(!onchecked && !offchecked){
             setfilter(false)
             console.log("2 2 nya mati mas");
-            setdata([])
+            setDataFilter([])
             setnewcheck('both')
-            console.log(data);
-            console.log(data.length);
-            setCount(data.length)
+            console.log(dataFilter);
+            console.log(dataFilter.length);
+            setCount(dataFilter.length)
         }
         if(onchecked && offchecked){
             outputfilter = productlist.filter((product)=>{
                 return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
             })
             setnewcheck('')
-            setdata(outputfilter)
+            setDataFilter(outputfilter)
         }
 
         setfilter(false)
@@ -255,7 +255,7 @@ function products() {
 
         if(serialselect){
             console.log('serial number selected');
-            setdata(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a,b)=>{
                 var statusA = a.serialNumber.toLowerCase();
                 var statusB = b.serialNumber.toLowerCase();
                 if (statusA > statusB) {
@@ -272,7 +272,7 @@ function products() {
         else if(productselect){
             console.log('product selected');
             setsort(false)
-            setdata(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a,b)=>{
                 var statusA = a.product.toLowerCase();
                 var statusB = b.product.toLowerCase();
                 if (statusA > statusB) {
@@ -287,7 +287,7 @@ function products() {
         else if(locationselect){
             console.log('location selected');
             setsort(false)
-            setdata(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a,b)=>{
                 var statusA = a.location.toLowerCase();
                 var statusB = b.location.toLowerCase();
                 if (statusA > statusB) {
@@ -372,9 +372,9 @@ function products() {
 
     useEffect(()=>{
         console.log(filtered);
-    },[data])
+    },[dataFilter])
 
-    data.length > 0? filtered = data.filter((product)=>{
+    dataFilter.length > 0? filtered = dataFilter.filter((product)=>{
         return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     }):filtered = productlist.filter((product)=>{
         return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
