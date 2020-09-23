@@ -138,13 +138,16 @@ function products() {
 
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
-        const {data, error} = useSWR(url, fetcher, {dedupingInterval:10000, onSuccess:(newdata)=>{
-            console.log(newdata)
-        },
-        onError:(error)=>{
-            console.log(error);
-        }
-    })
+        const { data, error } = useSWR(url, fetcher, {
+            dedupingInterval: 10000,
+            onSuccess: (newdata) => {
+                console.log(newdata)
+            },
+            onError: (error) => {
+                console.log(error);
+            }
+        })
+    }
 
     const INVENTORY_API_URL ='';
 
@@ -500,5 +503,6 @@ function products() {
 
     )
 }
+
 
 export default products
