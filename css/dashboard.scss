@@ -238,65 +238,40 @@ html,body{
                     }
                 }
 
-                .user-intro{
-                    margin-top: 3%;
-                    height: calc(15vh + 15vw);
-                    box-sizing: border-box;
-                    border-radius: 4px;
-                    background: rgba(12, 24, 39, 0.75);
-
-                    .col-user-intro{
-                        height: 100%;
-                        .user-intro-inside{
+                .hardware{
+                    margin-top: 2%;
+                    padding: 0;
+                    .col-overall{
+                        //margin-top: calc(-3vw + -3vh );
+                        width: 100%;
+                        padding: 0;
+                        min-height: 2em;
+            
+                        //min-width: 14em;
+                        .overall{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 3%;
+                            //min-width: 10em;
                             height: 100%;
-                            .user-section{
-                                height: 100%;
-                                padding:3%;
+                            color: white;
+                            width: 100%;
+                            box-sizing: border-box;
+            
+                            .overall-header{
+                                width: 100%;
                                 color: #AFBDD1;
-
-                                h2{
-                                    margin-top: 15%;
-                                    font-size: calc(2vw + 2vh);
-                                    font-weight: bold;
-                                    line-height: 30px;
-                                    /* or 83% */
-                                    letter-spacing: 0.15px;
-                                    /* Dark / White extra */
-                                }
-                                p{
-                                    line-height: 21px;
-                                    font-size: calc(.7vw + .7vh);
-                                    /* or 150% */
+                                h3{
+                                    text-align: center;
                                     letter-spacing: 0.1px;
-                                    a{
-                                        margin-left: 1%;
-                                        color: #AFBDD1;
-                                        text-decoration: none;
-                                        @include transition(.8s ease-in-out);
-                                        &:hover{
-                                            color: #44AACC;
-                                        }
-                                    }
+                                    font-weight: bold;
+                                    font-size: calc(2vw + 2vh);
                                 }
                             }
-
-                            .powerwall-image-section{
-                                .half-circle{
-                                    position: absolute;
-                                    left: 10%;
-                                    bottom: 0;
-                                    border-top-right-radius: 15vw;
-                                    border-top-left-radius: 15vw;
-                                    width: 30vw;
-                                    height: 15vw;
-                                    background: #44AACC;
-                                }
-                                .powerwall-img{
-                                    position: absolute;
-                                    top: 20%;
-                                    left:20%;
-                                    z-index: 2;
-                                }
+            
+                            .bar-chart{
+                                width: 100%;
+                                height: calc(15vw + 15vh);
+            
                             }
                         }
                     }
@@ -309,6 +284,7 @@ html,body{
 
                     .colDoughnut{
                         padding-left: 0;
+                        padding-right: 0;
                     }
                     
                     .colUsage{
@@ -640,12 +616,53 @@ html,body{
                     }
                 }
 
+                .hardware{
+                    margin-top: 2%;
+                    padding: 0;
+                    .col-overall{
+                        //margin-top: calc(-3vw + -3vh );
+                        width: 100%;
+                        padding: 0;
+                        min-height: 2em;
+            
+                        //min-width: 14em;
+                        .overall{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 3%;
+                            //min-width: 10em;
+                            height: 100%;
+                            color: white;
+                            width: 100%;
+                            box-sizing: border-box;
+            
+                            .overall-header{
+                                width: 100%;
+                                color: #AFBDD1;
+                                h3{
+                                    text-align: center;
+                                    letter-spacing: 0.1px;
+                                    font-weight: bold;
+                                    font-size: calc(2vw + 2vh);
+                                }
+                            }
+            
+                            .bar-chart{
+                                width: 100%;
+                                height: calc(15vw + 15vh);
+            
+                            }
+                        }
+                    }
+                }
+
                 .chart{
                     height: 100%;
+                    padding: 0;
                     margin-top: 3%;
 
                     .colDoughnut{
-                        margin-top: 5%;
+                        padding-left: 0;
+                        padding-right: 0;
                         .chart-state{
                             width: 100%;
                             height: 100%;
@@ -737,8 +754,7 @@ html,body{
                     }
                     
                     .colUsage{
-                        margin-top: 5%;
-                        padding-left: 0;
+                        padding-right: 0;
                         .total-usage{
                             height: 100%;
                             padding: 2%;
@@ -991,13 +1007,52 @@ html,body{
                     }
                 }
 
+                .hardware{
+                    margin-top: 2%;
+                    padding: 0;
+                    .col-overall{
+                        //margin-top: calc(-3vw + -3vh );
+                        width: 100%;
+                        padding: 0;
+                        min-height: 2em;
+            
+                        //min-width: 14em;
+                        .overall{
+                            background:rgba(12, 24, 39, 0.75);
+                            padding: 3%;
+                            //min-width: 10em;
+                            height: 100%;
+                            color: white;
+                            width: 100%;
+                            box-sizing: border-box;
+            
+                            .overall-header{
+                                width: 100%;
+                                color: #AFBDD1;
+                                h3{
+                                    text-align: center;
+                                    letter-spacing: 0.1px;
+                                    font-weight: bold;
+                                    font-size: calc(2vw + 2vh);
+                                }
+                            }
+            
+                            .bar-chart{
+                                width: 100%;
+                                height: calc(15vw + 15vh);
+            
+                            }
+                        }
+                    }
+                }
+
                 .chart{
                     height: 100%;
                     margin-top: 3%;
 
                     .colDoughnut{
-                        padding: 0;
-                        margin-top: 5%;
+                        padding-left: 0;
+                        padding-right: 0;
                         .chart-state{
                             width: 100%;
                             height: 100%;
@@ -1085,8 +1140,7 @@ html,body{
                     }
                     
                     .colUsage{
-                        margin-top: 5%;
-                        padding-left: 0;
+                        padding-right: 0;
                         padding: 0;
                         .total-usage{
                             height: 100%;
