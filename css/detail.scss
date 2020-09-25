@@ -253,8 +253,8 @@
                     color: #AFBDD1;
 
                     h2{
-                        margin-top: 15%;
-                        font-size: calc(2vw + 2vh);
+                        margin-top: 12%;
+                        font-size: calc(1.5vw + 1.5vh);
                         font-weight: bold;
                         line-height: 30px;
                         /* or 83% */
@@ -474,13 +474,14 @@
             .user-intro-inside{
                 height: 100%;
                 .user-section{
+                    padding-right: 0;
                     height: 100%;
                     padding:3%;
                     color: #AFBDD1;
 
                     h2{
-                        margin-top: 15%;
-                        font-size: calc(2vw + 2vh);
+                        margin-top: 2%;
+                        font-size: calc(1.1vw + 1.1vh);
                         font-weight: bold;
                         line-height: 30px;
                         /* or 83% */
@@ -488,7 +489,7 @@
                         /* Dark / White extra */
                     }
                     p{
-                        line-height: 21px;
+                        line-height:calc(1.2vw + 1.2vh);
                         font-size: calc(.7vw + .7vh);
                         /* or 150% */
                         letter-spacing: 0.1px;
