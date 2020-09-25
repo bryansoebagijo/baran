@@ -342,8 +342,8 @@ function products() {
                 </form>
                 <hr></hr>
                 <div className='buttons'>
-                    <button type='button' className='btn btn-danger cancel' onClick={() => setfilter(false)}>cancel</button>
-                    <button type='button' className='btn btn-primary ok' onClick={filterhandler}>OK</button>
+                    <button type='button' aria-label='cancel' className='btn btn-danger cancel' onClick={() => setfilter(false)}>cancel</button>
+                    <button type='button' aria-label='ok' className='btn btn-primary ok' onClick={filterhandler}>OK</button>
                 </div>
             </div>
         )
@@ -356,16 +356,16 @@ function products() {
                 <h3>Sort products by</h3>
                 <form>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbyserial} name='sort' type='radio' value='serial-number' checked={sortradio.serial?? false} onChange={()=> setsortradio((prevState)=>({serial : !prevState.serial}))}></input>
-                        <label className='form-check-label'>Serial Number</label>
+                        <input className='form-check-input radio' ref={sortbyserial} id='serial' type='radio' value='serial-number' checked={sortradio.serial?? false} onChange={()=> setsortradio((prevState)=>({serial : !prevState.serial}))}></input>
+                        <label className='form-check-label' for='serial'>Serial Number</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbyproduct} name='sort' type='radio' value='product' checked={sortradio.product?? false} onChange={()=> setsortradio((prevState)=>({product : !prevState.product}))}></input>
-                        <label className='form-check-label'>Product</label>
+                        <input className='form-check-input radio' ref={sortbyproduct} id='product' type='radio' value='product' checked={sortradio.product?? false} onChange={()=> setsortradio((prevState)=>({product : !prevState.product}))}></input>
+                        <label className='form-check-label' for='product'>Product</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbylocation} name='sort' type='radio' value='location' checked={sortradio.location?? false} onChange={()=> setsortradio((prevState)=>({location : !prevState.location}))}></input>
-                        <label className='form-check-label'>Location</label>
+                        <input className='form-check-input radio' ref={sortbylocation} id='location' type='radio' value='location' checked={sortradio.location?? false} onChange={()=> setsortradio((prevState)=>({location : !prevState.location}))}></input>
+                        <label className='form-check-label' for='location'>Location</label>
                     </div>
                 </form>
                 <hr></hr>
