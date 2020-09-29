@@ -179,6 +179,7 @@ function products() {
     const updateInventory = ({id, newLoc}) => {
         const res = fetch(`http://192.168.5.73/products/${id}/label`, {
             method: "PATCH",
+            credentials:'include',
             body: JSON.stringify({
                 label: newLoc
             }),
@@ -486,7 +487,7 @@ function products() {
                                                     <th scope="col">Condition</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody className='d-flex justify-content-center align-items-center'>
                                                 {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
@@ -520,7 +521,7 @@ function products() {
                                                             </tr>
                                                     )
                                                 })
-                                                : <div className='d-flex justify-content-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={80} width={80} /></div>
+                                                : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
                                             }
                                             </tbody>
                                         </table>
