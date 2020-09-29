@@ -225,6 +225,7 @@ function products() {
             outputfilter = productlist.filter((product)=>{
                 return product.connection == '1'
             })
+            console.log(outputfilter);
             setDataFilter(outputfilter)
         }
         if(offchecked && !onchecked){
@@ -235,6 +236,7 @@ function products() {
             outputfilter = productlist.filter((product)=>{
                 return product.connection == '0'
             })
+            console.log(outputfilter);
             setDataFilter(outputfilter)
         }
         if(!onchecked && !offchecked){
