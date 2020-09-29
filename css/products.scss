@@ -97,6 +97,7 @@
                         border: 0;
                         background: none;
                         i{
+                            font-size: calc(1vh + 1vw);
                             color: white;
                         }
                     }
@@ -294,6 +295,7 @@
                         border: 0;
                         background: none;
                         i{
+                            font-size: calc(1vh + 1vw);
                             color: white;
                         }
                     }
@@ -492,9 +494,13 @@
                         border: 0;
                     }
                     button{
+                        display: flex;
                         border: 0;
                         background: none;
+                        align-items: center;
+                        justify-content: center;
                         i{
+                            font-size: calc(1vh + 1vw);
                             color: white;
                         }
                     }
@@ -576,8 +582,15 @@
                         width: 100%;
                         tr{
                             width: 100%;
+                            .first-sm{
+                                width: 5%;
+                            }
+                            .second-sm{
+                                width: 5%;
+                            }
+
                             th{
-                                width: 16%;
+                                width: 22%;
                                 text-align: center;
                                 font-size: calc(.8vw + .8vh);
                                 border: 0;
@@ -593,8 +606,14 @@
                                 background:rgba(12, 24, 39, 1);
                                 color: white;
                             }
+                            .first-sm{
+                                width: 5%;
+                            }
+                            .second-sm{
+                                width: 5%;
+                            }
                             td{
-                                width: 16%;
+                                width: 22%;
                                 text-align: center;
                                 font-size: calc(.7vw + .7vh);
 
