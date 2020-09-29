@@ -450,7 +450,6 @@ function dashboard(props) {
     // }
     
     const {data, error} = useSWR(url, fetcher, {refreshInterval:5000})
-
     if(data)console.log(data.top)
     if(error)console.log(error)
 
