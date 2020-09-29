@@ -36,56 +36,57 @@ function products() {
     const classes = useStyles();
     const rowPerPage = 5;
 
-    let productlist =[
-        {
-            status:'online',
-            connection:'off',
-            serialNumber: '27-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'online',
-            connection:'on',
-            serialNumber: '28-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'offline',
-            connection:'on',
-            serialNumber: '29-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'warning'
-        },
-        {
-            status:'online',
-            connection:'on',
-            serialNumber: '30-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'offline',
-            connection:'off',
-            serialNumber: '31-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'offline',
-            connection:'off',
-            serialNumber: '32-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'warning'
-        }
-    ]
+    let productlist;
+    // [
+    //     {
+    //         status:'online',
+    //         connection:'off',
+    //         serialNumber: '27-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'okay'
+    //     },
+    //     {
+    //         status:'online',
+    //         connection:'on',
+    //         serialNumber: '28-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'okay'
+    //     },
+    //     {
+    //         status:'offline',
+    //         connection:'on',
+    //         serialNumber: '29-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'warning'
+    //     },
+    //     {
+    //         status:'online',
+    //         connection:'on',
+    //         serialNumber: '30-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'okay'
+    //     },
+    //     {
+    //         status:'offline',
+    //         connection:'off',
+    //         serialNumber: '31-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'okay'
+    //     },
+    //     {
+    //         status:'offline',
+    //         connection:'off',
+    //         serialNumber: '32-BSD-07-PW-20',
+    //         producttype :'Power Wall',
+    //         label : 'Villa Bogor',
+    //         condition : 'warning'
+    //     }
+    // ]
 
     const [search, setsearch] = useState('')
     const [sorttype, setsort] = useState(false)
@@ -154,8 +155,9 @@ function products() {
 
     useEffect(()=>{
         console.log(tempFetchData);
-        tempFetchData? productlist = tempFetchData : productlist = productlist
     },[tempFetchData])
+
+    tempFetchData? productlist = tempFetchData : productlist = productlist;
 
     const INVENTORY_API_URL ='';
 
