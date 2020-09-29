@@ -41,7 +41,7 @@ function products() {
             status:'online',
             connection:'off',
             serialNumber: '27-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
@@ -49,7 +49,7 @@ function products() {
             status:'online',
             connection:'on',
             serialNumber: '28-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
@@ -57,7 +57,7 @@ function products() {
             status:'offline',
             connection:'on',
             serialNumber: '29-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'warning'
         },
@@ -65,7 +65,7 @@ function products() {
             status:'online',
             connection:'on',
             serialNumber: '30-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
@@ -73,7 +73,7 @@ function products() {
             status:'offline',
             connection:'off',
             serialNumber: '31-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
@@ -81,7 +81,7 @@ function products() {
             status:'offline',
             connection:'off',
             serialNumber: '32-BSD-07-PW-20',
-            product :'Power Wall',
+            producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'warning'
         }
@@ -94,7 +94,7 @@ function products() {
     const [checked2, setcheck2]= useState(true)
     const [dataFilter, setDataFilter] = useState([])
     const [newcheck, setnewcheck] = useState('')
-    const [sortradio, setsortradio] = useState({serial:false, product:false, label:false})
+    const [sortradio, setsortradio] = useState({serial:false, producttype:false, label:false})
     const [editloc, seteditloc] = useState('');
     const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
     const [dataLoc, setDataLoc] = useState([{}])
@@ -106,14 +106,14 @@ function products() {
     const filterbyon = useRef();
     const filterbyoff = useRef();
     const sortbyserial = useRef();
-    const sortbyproduct = useRef();
+    const sortbyproducttype = useRef();
     const sortbylabel = useRef();
 
     let onchecked = true;
     let offchecked = true;
     let outputfilter = [{}];
     let serialselect;
-    let productselect;
+    let producttypeselect;
     let labelselect;
 
     const route = useRouter();
@@ -261,7 +261,7 @@ function products() {
     const sorthandler= ()=>{
 
         serialselect = sortbyserial.current.checked;
-        productselect = sortbyproduct.current.checked;
+        producttypeselect = sortbyproducttype.current.checked;
         labelselect = sortbylabel.current.checked;
 
         if(serialselect){
@@ -280,12 +280,12 @@ function products() {
             setsort(false)
         }
 
-        else if(productselect){
+        else if(producttypeselect){
             console.log('product selected');
             setsort(false)
             setDataFilter(filtered.sort((a,b)=>{
-                var statusA = a.product.toLowerCase();
-                var statusB = b.product.toLowerCase();
+                var statusA = a.producttype.toLowerCase();
+                var statusB = b.producttype.toLowerCase();
                 if (statusA > statusB) {
                     return -1;
                 }
@@ -361,8 +361,8 @@ function products() {
                         <label className='form-check-label' for='serial'>Serial Number</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbyproduct} id='product' type='radio' value='product' checked={sortradio.product?? false} onChange={()=> setsortradio((prevState)=>({product : !prevState.product}))}></input>
-                        <label className='form-check-label' for='product'>Product</label>
+                        <input className='form-check-input radio' ref={sortbyproducttype} id='producttype' type='radio' value='producttype' checked={sortradio.producttype?? false} onChange={()=> setsortradio((prevState)=>({producttype : !prevState.producttype}))}></input>
+                        <label className='form-check-label' for='producttype'>Product type</label>
                     </div>
                     <div className='form-check'>
                         <input className='form-check-input radio' ref={sortbylabel} id='label' type='radio' value='label' checked={sortradio.label?? false} onChange={()=> setsortradio((prevState)=>({label : !prevState.label}))}></input>
@@ -468,14 +468,14 @@ function products() {
                                                 {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialNumber}>
-                                                                <td className='first-sm'>{product.status == 'online' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td className='second-sm'>{product.connection == 'on' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
                                                                     <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
                                                                         <a>{product.serialNumber}</a>
                                                                     </Link>
                                                                 </td>
-                                                                <td>{product.product}</td>
+                                                                <td>{product.producttype}</td>
                                                                 <td>
                                                                 {inEditMode.status && inEditMode.rowkey === product.serialNumber ? 
                                                                 <form className='edit-label'>
@@ -487,11 +487,14 @@ function products() {
 
                                                                     {inEditMode.status && inEditMode.rowkey === product.serialNumber?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialNumber, currentLoc:product.label})}></i>}
                                                                 </td>
-                                                                <td>{(() => {
+                                                                <td>
+                                                                    {/* {(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
                                                                     else if (product.condition == 'warning') return <i className="fa fa-exclamation-triangle warning" aria-hidden="true"></i>
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
-                                                                })()}</td>
+                                                                })()} */}
+                                                                unknown
+                                                                </td>
                                                             </tr>
                                                     )
                                                 })
