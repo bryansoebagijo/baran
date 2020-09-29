@@ -36,57 +36,57 @@ function products() {
     const classes = useStyles();
     const rowPerPage = 5;
 
-    let productlist;
-    // [
-    //     {
-    //         status:'online',
-    //         connection:'off',
-    //         serialNumber: '27-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'okay'
-    //     },
-    //     {
-    //         status:'online',
-    //         connection:'on',
-    //         serialNumber: '28-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'okay'
-    //     },
-    //     {
-    //         status:'offline',
-    //         connection:'on',
-    //         serialNumber: '29-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'warning'
-    //     },
-    //     {
-    //         status:'online',
-    //         connection:'on',
-    //         serialNumber: '30-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'okay'
-    //     },
-    //     {
-    //         status:'offline',
-    //         connection:'off',
-    //         serialNumber: '31-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'okay'
-    //     },
-    //     {
-    //         status:'offline',
-    //         connection:'off',
-    //         serialNumber: '32-BSD-07-PW-20',
-    //         producttype :'Power Wall',
-    //         label : 'Villa Bogor',
-    //         condition : 'warning'
-    //     }
-    // ]
+    let productlist=
+    [
+        {
+            status:'online',
+            connection:'off',
+            serialNumber: '27-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'online',
+            connection:'on',
+            serialNumber: '28-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'on',
+            serialNumber: '29-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'warning'
+        },
+        {
+            status:'online',
+            connection:'on',
+            serialNumber: '30-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'off',
+            serialNumber: '31-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'off',
+            serialNumber: '32-BSD-07-PW-20',
+            producttype :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'warning'
+        }
+    ]
 
     const [search, setsearch] = useState('')
     const [sorttype, setsort] = useState(false)
@@ -360,15 +360,15 @@ function products() {
                 <form>
                     <div className='form-check'>
                         <input className='form-check-input radio' ref={sortbyserial} id='serial' type='radio' value='serial-number' checked={sortradio.serial?? false} onChange={()=> setsortradio((prevState)=>({serial : !prevState.serial}))}></input>
-                        <label className='form-check-label' for='serial'>Serial Number</label>
+                        <label className='form-check-label' htmlFor='serial'>Serial Number</label>
                     </div>
                     <div className='form-check'>
                         <input className='form-check-input radio' ref={sortbyproducttype} id='producttype' type='radio' value='producttype' checked={sortradio.producttype?? false} onChange={()=> setsortradio((prevState)=>({producttype : !prevState.producttype}))}></input>
-                        <label className='form-check-label' for='producttype'>Product type</label>
+                        <label className='form-check-label' htmlFor='producttype'>Product type</label>
                     </div>
                     <div className='form-check'>
                         <input className='form-check-input radio' ref={sortbylabel} id='label' type='radio' value='label' checked={sortradio.label?? false} onChange={()=> setsortradio((prevState)=>({label : !prevState.label}))}></input>
-                        <label className='form-check-label' for='label'>Label</label>
+                        <label className='form-check-label' htmlFor='label'>Label</label>
                     </div>
                 </form>
                 <hr></hr>
