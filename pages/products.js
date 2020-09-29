@@ -10,57 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import Loader from 'react-loader-spinner';
 
-const productlist =[
-    {
-        status:'online',
-        connection:'off',
-        serialNumber: '27-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'okay'
-    },
-    {
-        status:'online',
-        connection:'on',
-        serialNumber: '28-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'okay'
-    },
-    {
-        status:'offline',
-        connection:'on',
-        serialNumber: '29-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'warning'
-    },
-    {
-        status:'online',
-        connection:'on',
-        serialNumber: '30-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'okay'
-    },
-    {
-        status:'offline',
-        connection:'off',
-        serialNumber: '31-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'okay'
-    },
-    {
-        status:'offline',
-        connection:'off',
-        serialNumber: '32-BSD-07-PW-20',
-        product :'Power Wall',
-        location : 'Villa Bogor',
-        condition : 'warning'
-    }
-]
-
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -87,6 +36,57 @@ function products() {
     const classes = useStyles();
     const rowPerPage = 5;
 
+    let productlist =[
+        {
+            status:'online',
+            connection:'off',
+            serialNumber: '27-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'online',
+            connection:'on',
+            serialNumber: '28-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'on',
+            serialNumber: '29-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'warning'
+        },
+        {
+            status:'online',
+            connection:'on',
+            serialNumber: '30-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'off',
+            serialNumber: '31-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'okay'
+        },
+        {
+            status:'offline',
+            connection:'off',
+            serialNumber: '32-BSD-07-PW-20',
+            product :'Power Wall',
+            label : 'Villa Bogor',
+            condition : 'warning'
+        }
+    ]
+
     const [search, setsearch] = useState('')
     const [sorttype, setsort] = useState(false)
     const [filter, setfilter] = useState(false)
@@ -94,7 +94,7 @@ function products() {
     const [checked2, setcheck2]= useState(true)
     const [dataFilter, setDataFilter] = useState([])
     const [newcheck, setnewcheck] = useState('')
-    const [sortradio, setsortradio] = useState({serial:false, product:false, location:false})
+    const [sortradio, setsortradio] = useState({serial:false, product:false, label:false})
     const [editloc, seteditloc] = useState('');
     const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
     const [dataLoc, setDataLoc] = useState([{}])
@@ -107,14 +107,14 @@ function products() {
     const filterbyoff = useRef();
     const sortbyserial = useRef();
     const sortbyproduct = useRef();
-    const sortbylocation = useRef();
+    const sortbylabel = useRef();
 
     let onchecked = true;
     let offchecked = true;
     let outputfilter = [{}];
     let serialselect;
     let productselect;
-    let locationselect;
+    let labelselect;
 
     const route = useRouter();
 
@@ -154,6 +154,7 @@ function products() {
 
     useEffect(()=>{
         console.log(tempFetchData);
+        tempFetchData? productlist = tempFetchData : productlist = productlist
     },[tempFetchData])
 
     const INVENTORY_API_URL ='';
@@ -177,7 +178,7 @@ function products() {
         fetch(`${INVENTORY_API_URL}/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
-                location: newLoc
+                label: newLoc
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -261,7 +262,7 @@ function products() {
 
         serialselect = sortbyserial.current.checked;
         productselect = sortbyproduct.current.checked;
-        locationselect = sortbylocation.current.checked;
+        labelselect = sortbylabel.current.checked;
 
         if(serialselect){
             console.log('serial number selected');
@@ -294,12 +295,12 @@ function products() {
                 return 0;
             }))
         }
-        else if(locationselect){
-            console.log('location selected');
+        else if(labelselect){
+            console.log('label selected');
             setsort(false)
             setDataFilter(filtered.sort((a,b)=>{
-                var statusA = a.location.toLowerCase();
-                var statusB = b.location.toLowerCase();
+                var statusA = a.label.toLowerCase();
+                var statusB = b.label.toLowerCase();
                 if (statusA > statusB) {
                     return -1;
                 }
@@ -364,8 +365,8 @@ function products() {
                         <label className='form-check-label' for='product'>Product</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbylocation} id='location' type='radio' value='location' checked={sortradio.location?? false} onChange={()=> setsortradio((prevState)=>({location : !prevState.location}))}></input>
-                        <label className='form-check-label' for='location'>Location</label>
+                        <input className='form-check-input radio' ref={sortbylabel} id='label' type='radio' value='label' checked={sortradio.label?? false} onChange={()=> setsortradio((prevState)=>({label : !prevState.label}))}></input>
+                        <label className='form-check-label' for='label'>Label</label>
                     </div>
                 </form>
                 <hr></hr>
@@ -459,7 +460,7 @@ function products() {
                                                     <th scope="col" className='second-sm'>Connection</th>
                                                     <th scope="col">Serial Number</th>
                                                     <th scope="col">Product</th>
-                                                    <th scope="col">Location</th>
+                                                    <th scope="col">Label</th>
                                                     <th scope="col">Condition</th>
                                                 </tr>
                                             </thead>
@@ -477,14 +478,14 @@ function products() {
                                                                 <td>{product.product}</td>
                                                                 <td>
                                                                 {inEditMode.status && inEditMode.rowkey === product.serialNumber ? 
-                                                                <form className='edit-location'>
-                                                                    <input placeholder="Edit location" name="location" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
+                                                                <form className='edit-label'>
+                                                                    <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
                                                                     <i class="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialNumber, newLoc: editloc })}></i>
                                                                     <i class="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
                                                                 </form> 
-                                                                : product.location}
+                                                                : product.label}
 
-                                                                    {inEditMode.status && inEditMode.rowkey === product.serialNumber?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialNumber, currentLoc:product.location})}></i>}
+                                                                    {inEditMode.status && inEditMode.rowkey === product.serialNumber?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialNumber, currentLoc:product.label})}></i>}
                                                                 </td>
                                                                 <td>{(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
