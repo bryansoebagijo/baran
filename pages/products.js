@@ -176,7 +176,7 @@ function products() {
         seteditloc(currentLoc);
     }
 
-    const updateInventory = ({id, newLoc}) => {
+    const updateInventory = async ({id, newLoc}) => {
         const res = await fetch(`http://192.168.5.73/products/${id}/label`, {
             method: "PATCH",
             credentials:'include',
