@@ -177,7 +177,7 @@ function products() {
     }
 
     const updateInventory = ({id, newLoc}) => {
-        const res = fetch(`http://192.168.5.73/products/${id}/label`, {
+        const res = await fetch(`http://192.168.5.73/products/${id}/label`, {
             method: "PATCH",
             credentials:'include',
             body: JSON.stringify({
