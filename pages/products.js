@@ -225,8 +225,8 @@ function products() {
             console.log(productlist);
             console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
-                console.log(product.connection);
-                return product.connection == 1
+                console.log( typeof product.connection);
+                return product.connection == "1"
             })
             console.log(outputfilter);
             setDataFilter(outputfilter)
@@ -240,7 +240,7 @@ function products() {
             console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
                 console.log(product.connection);
-                return product.connection == 0
+                return product.connection == "0"
             })
             console.log(outputfilter);
             setDataFilter(outputfilter)
