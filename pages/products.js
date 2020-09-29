@@ -123,7 +123,7 @@ function products() {
         return state.state.username
     })
 
-    console.log(username)
+    //console.log(username)
 
     useEffect(()=>{
         if(!username){
@@ -222,7 +222,9 @@ function products() {
             console.log(filteron);  
             setfilter(false)
             setnewcheck('')
-            outputfilter = tempFetchData.filter((product)=>{
+            console.log(productlist);
+            console.log(tempFetchData);
+            outputfilter = productlist.filter((product)=>{
                 return product.connection == '1'
             })
             console.log(outputfilter);
@@ -233,7 +235,9 @@ function products() {
             console.log(filteroff);
             setfilter(false)
             setnewcheck('')
-            outputfilter = tempFetchData.filter((product)=>{
+            console.log(productlist);
+            console.log(tempFetchData);
+            outputfilter = productlist.filter((product)=>{
                 return product.connection == '0'
             })
             console.log(outputfilter);
