@@ -199,12 +199,15 @@ function products() {
         // onCancel();
 
         if(res.ok){
+            const data = await res.json()
+            console.log(data);
             alert('value changed!')
             onCancel();
         }
     }
 
     const onSave = ({id, newLoc}) => {
+        console.log('onsave bang');
         updateInventory({id, newLoc});
     }
 
