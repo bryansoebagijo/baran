@@ -487,7 +487,7 @@ function products() {
                                                     <th scope="col">Condition</th>
                                                 </tr>
                                             </thead>
-                                            <tbody className='d-flex justify-content-center align-items-center'>
+                                            <tbody>
                                                 {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
