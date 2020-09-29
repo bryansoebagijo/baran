@@ -39,49 +39,49 @@ function products() {
     let productlist=
     [
         {
-            status:'online',
-            connection:'off',
-            serialNumber: '27-BSD-07-PW-20',
+            status:'1',
+            connection:'0',
+            serialnumberid: '27-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
         {
-            status:'online',
-            connection:'on',
-            serialNumber: '28-BSD-07-PW-20',
+            status:'1',
+            connection:'1',
+            serialnumberid: '28-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
         {
-            status:'offline',
-            connection:'on',
-            serialNumber: '29-BSD-07-PW-20',
+            status:'0',
+            connection:'1',
+            serialnumberid: '29-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'warning'
         },
         {
-            status:'online',
-            connection:'on',
-            serialNumber: '30-BSD-07-PW-20',
+            status:'1',
+            connection:'1',
+            serialnumberid: '30-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
         {
-            status:'offline',
-            connection:'off',
-            serialNumber: '31-BSD-07-PW-20',
+            status:'0',
+            connection:'0',
+            serialnumberid: '31-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'okay'
         },
         {
-            status:'offline',
-            connection:'off',
-            serialNumber: '32-BSD-07-PW-20',
+            status:'0',
+            connection:'0',
+            serialnumberid: '32-BSD-07-PW-20',
             producttype :'Power Wall',
             label : 'Villa Bogor',
             condition : 'warning'
@@ -248,7 +248,7 @@ function products() {
         }
         if(onchecked && offchecked){
             outputfilter = productlist.filter((product)=>{
-                return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
             })
             setnewcheck('')
             setDataFilter(outputfilter)
@@ -269,8 +269,8 @@ function products() {
         if(serialselect){
             console.log('serial number selected');
             setDataFilter(filtered.sort((a,b)=>{
-                var statusA = a.serialNumber.toLowerCase();
-                var statusB = b.serialNumber.toLowerCase();
+                var statusA = a.serialnumberid.toLowerCase();
+                var statusB = b.serialnumberid.toLowerCase();
                 if (statusA > statusB) {
                     return 1;
                 }
@@ -388,9 +388,9 @@ function products() {
     },[dataFilter])
 
     dataFilter.length > 0? filtered = dataFilter.filter((product)=>{
-        return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     }):filtered = productlist.filter((product)=>{
-        return product.serialNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
     if(newcheck == 'both'){
@@ -469,25 +469,25 @@ function products() {
                                             <tbody>
                                                 {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
-                                                            <tr key={product.serialNumber}>
+                                                            <tr key={product.serialnumberid}>
                                                                 <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
-                                                                    <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialNumber}`} key={product.serialNumber}>
-                                                                        <a>{product.serialNumber}</a>
+                                                                    <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialnumberid}`} key={product.serialnumberid}>
+                                                                        <a>{product.serialnumberid}</a>
                                                                     </Link>
                                                                 </td>
                                                                 <td>{product.producttype}</td>
                                                                 <td>
-                                                                {inEditMode.status && inEditMode.rowkey === product.serialNumber ? 
+                                                                {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? 
                                                                 <form className='edit-label'>
                                                                     <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
-                                                                    <i class="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialNumber, newLoc: editloc })}></i>
+                                                                    <i class="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
                                                                     <i class="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
                                                                 </form> 
                                                                 : product.label}
 
-                                                                    {inEditMode.status && inEditMode.rowkey === product.serialNumber?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialNumber, currentLoc:product.label})}></i>}
+                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialnumberid, currentLoc:product.label})}></i>}
                                                                 </td>
                                                                 <td>
                                                                     {/* {(() => {
