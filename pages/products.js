@@ -238,6 +238,7 @@ function products() {
             console.log(productlist);
             console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
+                console.log(product.connection);
                 return product.connection == '0'
             })
             console.log(outputfilter);
