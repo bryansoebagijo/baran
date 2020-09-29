@@ -222,32 +222,35 @@ function products() {
             console.log(filteron);  
             setfilter(false)
             setnewcheck('')
-            console.log(productlist);
-            console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
-                if(product.connection == "1"){
-                    console.log("jing");
-                }
                 return product.connection == "1"
             })
-            console.log(outputfilter);
-            setDataFilter(outputfilter)
+            if(outputfilter.length > 0){
+                console.log(outputfilter);
+                setDataFilter(outputfilter)
+            }
+            else{
+                setnewcheck('both')
+                setDataFilter([])
+            }
+
         }
         if(offchecked && !onchecked){
             const filteroff = filterbyoff.current.value;
             console.log(filteroff);
             setfilter(false)
             setnewcheck('')
-            console.log(productlist);
-            console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
-                if(product.connection == "0"){
-                    console.log("jing");
-                }
                 return product.connection == "0"
             })
-            console.log(outputfilter);
-            setDataFilter(outputfilter)
+            if(outputfilter.length > 0){
+                console.log(outputfilter);
+                setDataFilter(outputfilter)
+            }
+            else{
+                setnewcheck('both')
+                setDataFilter([])
+            }
         }
         if(!onchecked && !offchecked){
             setfilter(false)
