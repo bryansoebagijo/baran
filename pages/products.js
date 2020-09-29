@@ -223,7 +223,7 @@ function products() {
             setfilter(false)
             setnewcheck('')
             outputfilter = productlist.filter((product)=>{
-                return product.connection == 'on'
+                return product.connection == '1'
             })
             setDataFilter(outputfilter)
         }
@@ -233,7 +233,7 @@ function products() {
             setfilter(false)
             setnewcheck('')
             outputfilter = productlist.filter((product)=>{
-                return product.connection == 'off'
+                return product.connection == '0'
             })
             setDataFilter(outputfilter)
         }
