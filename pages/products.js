@@ -222,7 +222,7 @@ function products() {
             console.log(filteron);  
             setfilter(false)
             setnewcheck('')
-            outputfilter = productlist.filter((product)=>{
+            outputfilter = tempFetchData.filter((product)=>{
                 return product.connection == '1'
             })
             console.log(outputfilter);
@@ -233,7 +233,7 @@ function products() {
             console.log(filteroff);
             setfilter(false)
             setnewcheck('')
-            outputfilter = productlist.filter((product)=>{
+            outputfilter = tempFetchData.filter((product)=>{
                 return product.connection == '0'
             })
             console.log(outputfilter);
