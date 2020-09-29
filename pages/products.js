@@ -225,7 +225,9 @@ function products() {
             console.log(productlist);
             console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
-                console.log( typeof product.connection);
+                if(product.connection == "1"){
+                    console.log("jing");
+                }
                 return product.connection == "1"
             })
             console.log(outputfilter);
@@ -239,7 +241,9 @@ function products() {
             console.log(productlist);
             console.log(tempFetchData);
             outputfilter = productlist.filter((product)=>{
-                console.log(product.connection);
+                if(product.connection == "0"){
+                    console.log("jing");
+                }
                 return product.connection == "0"
             })
             console.log(outputfilter);
