@@ -177,7 +177,7 @@ function products() {
     }
 
     const updateInventory = ({id, newLoc}) => {
-        fetch(`${INVENTORY_API_URL}/${id}`, {
+        const res = fetch(`http://192.168.5.73/products/${id}/label`, {
             method: "PATCH",
             body: JSON.stringify({
                 label: newLoc
@@ -186,16 +186,21 @@ function products() {
                 "Content-type": "application/json; charset=UTF-8"
             }
         })
-            .then(response => response.json())
-            .then(json => {
-                // reset inEditMode and unit price state values
-                onCancel();
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         // reset inEditMode and unit price state values
+        //         onCancel();
 
-                // fetch the updated data
-                fetchInventory();
-            })
+        //         // fetch the updated data
+        //         fetchInventory();
+        //     })
 
-        onCancel();
+        // onCancel();
+
+        if(res.ok){
+            alert('value changed!')
+            onCancel();
+        }
     }
 
     const onSave = ({id, newLoc}) => {
@@ -497,8 +502,8 @@ function products() {
                                                                 {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? 
                                                                 <form className='edit-label'>
                                                                     <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
-                                                                    <i class="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
-                                                                    <i class="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
+                                                                    <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
+                                                                    <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
                                                                 </form> 
                                                                 : product.label}
 
