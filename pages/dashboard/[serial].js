@@ -307,12 +307,12 @@ function dashboard(props) {
     const handlerTime = (time) =>{
         setTime(time);
         console.log(time);
-        if(time == 'today'){
-            setDataLine([90, 30, 50, 100, 38, 46, 93])
-        }
-        else {
-            setDataLine([47, 31, 98, 67, 28, 86, 13])
-        }
+        // if(time == 'today'){
+        //     setDataLine([90, 30, 50, 100, 38, 46, 93])
+        // }
+        // else {
+        //     setDataLine([47, 31, 98, 67, 28, 86, 13])
+        // }
     };
 
     useEffect(()=>{
@@ -345,21 +345,24 @@ function dashboard(props) {
     
     // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-    if(username){
-        const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
+    if (username) {
+        if (time == 'today') {
+            const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
 
-        const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
-        
-        const {data, error} = useSWR(url, fetcher, {
-            refreshInterval:10000, 
-            dedupingInterval:10000,
-            onSuccess: (newdata) =>{
-                console.log(newdata);
-            },
-            onError: (error) => {
-                console.log(error);
-            }
-        })
+            const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+
+            const { data, error } = useSWR(url, fetcher, {
+                refreshInterval: 10000,
+                dedupingInterval: 10000,
+                onSuccess: (newdata) => {
+                    console.log(newdata.usage);
+                    console.log(newdata.timestamps)
+                },
+                onError: (error) => {
+                    console.log(error);
+                }
+            })
+        }
     }
 
     const dataBar = {
