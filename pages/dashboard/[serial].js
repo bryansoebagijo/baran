@@ -348,7 +348,7 @@ function dashboard(props) {
     if(user){
         const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
 
-        const fetcher = (...args) => fetch(...args,{method:'GET', credentials='include'}).then(res=>res.json())
+        const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
         const {data, error} = useSWR(url, fetcher, {
             refreshInterval:10000, 
