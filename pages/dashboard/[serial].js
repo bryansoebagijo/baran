@@ -355,6 +355,10 @@ function dashboard(props) {
                 },
                 onError: (error) => {
                     console.log(error);
+                    alert('your session is expired!')
+                    route.replace({
+                        pathname: '/'
+                    })
                 }
             })
         }
