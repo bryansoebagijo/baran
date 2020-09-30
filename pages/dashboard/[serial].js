@@ -351,8 +351,6 @@ function dashboard(props) {
                 refreshInterval: 10000,
                 dedupingInterval: 10000,
                 onSuccess: (newdata) => {
-                    console.log(newdata.usage);
-                    console.log(newdata.timestamps)
                     setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
                 },
                 onError: (error) => {
@@ -421,7 +419,7 @@ function dashboard(props) {
     };
 
     let dataLineChart = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: dataLine.timestamps.length > 0 ? dataLine.timestamps: [],
         datasets: [
             {
                 fill: false,
@@ -442,7 +440,7 @@ function dashboard(props) {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 scaleSteps :20,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: dataLine.usage.length > 0 ? dataLine.usage: []
             }
         ]
     };
@@ -573,51 +571,53 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {user?<Line data={dataLineChart} options={
+                                                        {dataLine.usage ? <Line data={dataLineChart} options={
                                                             {
-        
-                                                                responsive:true,
-                                                                maintainAspectRatio:false,
-                                                                legend:{
-                                                                    display:false
+
+                                                                responsive: true,
+                                                                maintainAspectRatio: false,
+                                                                legend: {
+                                                                    display: false
                                                                 },
                                                                 scales: {
-                                                                    yAxes:[{
-                                                                        position:"right",
+                                                                    yAxes: [{
+                                                                        position: "right",
                                                                         scaleLabel: {
                                                                             display: false,
-                                                                            labelString:"Watt Hours"
+                                                                            labelString: "Watt Hours"
                                                                         },
-                                                                        gridLines:{
-                                                                            drawBorder:true,
-                                                                            lineWidth:0.1,
-                                                                            color:"gray",
-                                                                            zeroLineColor:"white"
+                                                                        gridLines: {
+                                                                            drawBorder: true,
+                                                                            lineWidth: 0.1,
+                                                                            color: "gray",
+                                                                            zeroLineColor: "white"
                                                                         },
-                                                                        ticks:{
-                                                                            padding:10,
+                                                                        ticks: {
+                                                                            padding: 10,
                                                                             //labelOffset:-10,
-                                                                            stepSize:10,
-                                                                            callback: function(value,index, values){
+                                                                            stepSize: 10,
+                                                                            callback: function (value, index, values) {
                                                                                 return value + " Wh";
                                                                             }
                                                                         }
                                                                     }],
-                                                                    xAxes:[{
-                                                                        gridLines:{
+                                                                    xAxes: [{
+                                                                        gridLines: {
                                                                             display: false
                                                                         },
                                                                         ticks: {
-                                                                            maxRotation:0,
-                                                                            autoSkip:true,
-                                                                            maxTicksLimit:1
-                                                                            
+                                                                            maxRotation: 0,
+                                                                            autoSkip: true,
+                                                                            maxTicksLimit: 1
+
                                                                         }
                                                                     }]
                                                                 }
                                                             }
-                                                        }></Line>:<div className='d-flex justify-content-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={80} width={80} /></div>}
-                                                    </div>
+                                                        }></Line>
+                                                            : <div className={classes.root}>
+                                                                <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
+                                                            </div>}
                                                 </div>
                                             </div>
                                         </div>
