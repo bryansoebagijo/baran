@@ -419,7 +419,7 @@ function dashboard(props) {
     };
 
     let dataLineChart = {
-        labels: dataLine.timestamps.length > 0 ? dataLine.timestamps: [],
+        labels: dataLine.timestamps? dataLine.timestamps: [],
         datasets: [
             {
                 fill: false,
@@ -440,7 +440,7 @@ function dashboard(props) {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 scaleSteps :20,
-                data: dataLine.usage.length > 0 ? dataLine.usage: []
+                data: dataLine.usage? dataLine.usage: []
             }
         ]
     };
