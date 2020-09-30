@@ -319,10 +319,6 @@ function dashboard(props) {
         console.log(time);
     },[time]);
 
-    useEffect(()=>{
-        console.log(serial);
-    },[])
-
     const username = useSelector(state =>{
         return state.state.username
     })
@@ -365,6 +361,10 @@ function dashboard(props) {
             })
         }
     }
+
+    useEffect(()=>{
+        console.log(dataLine);
+    },[dataLine])
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
