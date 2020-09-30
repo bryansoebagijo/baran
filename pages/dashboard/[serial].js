@@ -615,9 +615,7 @@ function dashboard(props) {
                                                                 }
                                                             }
                                                         }></Line>
-                                                            : <div className={classes.root}>
-                                                                <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
-                                                            </div>}
+                                                            : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
                                                         </div>
                                                 </div>
                                             </div>
