@@ -323,7 +323,7 @@ function dashboard(props) {
         return state.state.username
     })
 
-    console.log(username);
+    //console.log(username);
 
     useEffect(()=>{
         if(!username){
@@ -351,7 +351,8 @@ function dashboard(props) {
                 refreshInterval: 10000,
                 dedupingInterval: 10000,
                 onSuccess: (newdata) => {
-                    setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
+                    console.log(newdata);
+                    //setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
                 },
                 onError: (error) => {
                     console.log(error);
@@ -360,9 +361,9 @@ function dashboard(props) {
         }
     }
 
-    useEffect(()=>{
-        console.log(dataLine);
-    },[dataLine])
+    // useEffect(()=>{
+    //     console.log(dataLine);
+    // },[dataLine])
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
