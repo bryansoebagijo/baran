@@ -299,7 +299,7 @@ function dashboard(props) {
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
-    const[dataLine, setDataLine] = useState([])
+    const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
 
     const route = useRouter();
     const {serial} = route.query;
@@ -357,6 +357,7 @@ function dashboard(props) {
                 onSuccess: (newdata) => {
                     console.log(newdata.usage);
                     console.log(newdata.timestamps)
+                    setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
                 },
                 onError: (error) => {
                     console.log(error);
