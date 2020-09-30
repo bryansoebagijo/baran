@@ -597,7 +597,7 @@ function dashboard(props) {
                                                                             //labelOffset:-10,
                                                                             autoSkip:true,
                                                                             maxTicksLimit:5,
-                                                                            stepSize: 100,
+                                                                            stepSize: 50,
                                                                             callback: function (value, index, values) {
                                                                                 return value + " Wh";
                                                                             }
