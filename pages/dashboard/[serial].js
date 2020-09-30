@@ -345,7 +345,7 @@ function dashboard(props) {
     
     // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-    if(user){
+    if(username){
         const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
 
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
