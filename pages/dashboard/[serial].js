@@ -590,7 +590,7 @@ function dashboard(props) {
                                                                             return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + 'Wh';
                                                                         },
                                                                     }
-                                                                }
+                                                                },
                                                                 scales: {
                                                                     yAxes: [{
                                                                         position: "right",
