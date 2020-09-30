@@ -299,7 +299,7 @@ function dashboard(props) {
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
-    const[dataLine, setDataLine] = useState({usage:[], timestamps : []})
+    const[dataLine, setDataLine] = useState([])
 
     const route = useRouter();
     const {serial} = route.query;
@@ -319,11 +319,15 @@ function dashboard(props) {
         console.log(time);
     },[time]);
 
+    useEffect(()=>{
+        console.log(serial);
+    },[])
+
     const username = useSelector(state =>{
         return state.state.username
     })
 
-    //console.log(username);
+    console.log(username);
 
     useEffect(()=>{
         if(!username){
@@ -351,8 +355,8 @@ function dashboard(props) {
                 refreshInterval: 10000,
                 dedupingInterval: 10000,
                 onSuccess: (newdata) => {
-                    console.log(newdata);
-                    //setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
+                    console.log(newdata.usage);
+                    console.log(newdata.timestamps)
                 },
                 onError: (error) => {
                     console.log(error);
@@ -360,10 +364,6 @@ function dashboard(props) {
             })
         }
     }
-
-    // useEffect(()=>{
-    //     console.log(dataLine);
-    // },[dataLine])
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -441,7 +441,7 @@ function dashboard(props) {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 scaleSteps :20,
-                data: dataLine.length != 0 ?dataLine:[65, 59, 80, 81, 56, 55, 40]
+                data: [65, 59, 80, 81, 56, 55, 40]
             }
         ]
     };
