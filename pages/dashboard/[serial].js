@@ -618,6 +618,7 @@ function dashboard(props) {
                                                             : <div className={classes.root}>
                                                                 <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
                                                             </div>}
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
