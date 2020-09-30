@@ -610,7 +610,7 @@ function dashboard(props) {
                                                                         ticks: {
                                                                             maxRotation: 0,
                                                                             autoSkip: true,
-                                                                            maxTicksLimit: 2
+                                                                            maxTicksLimit: 3
 
                                                                         }
                                                                     }]
