@@ -296,7 +296,7 @@ ChartJS.helpers.extend(ChartJS.controllers.doughnut.prototype, {
 
 function dashboard(props) {
 
-    const[time, setTime] = useState('daily')
+    const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
     const[dataLine, setDataLine] = useState([])
@@ -307,7 +307,7 @@ function dashboard(props) {
     const handlerTime = (time) =>{
         setTime(time);
         console.log(time);
-        if(time == 'daily'){
+        if(time == 'today'){
             setDataLine([90, 30, 50, 100, 38, 46, 93])
         }
         else {
@@ -318,6 +318,49 @@ function dashboard(props) {
     useEffect(()=>{
         console.log(time);
     },[time]);
+
+    useEffect(()=>{
+        console.log(serial);
+    },[])
+
+    const username = useSelector(state =>{
+        return state.state.username
+    })
+
+    console.log(username);
+
+    useEffect(()=>{
+        if(!username){
+            alert('you are not loggin yet!')
+            // route.replace({
+            //     pathname: '/'
+            // })
+        }
+        else{
+            setuser(username)
+        }
+    },[]);
+
+    //console.log(props)
+    
+    // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
+
+    if(user){
+        const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
+
+        const fetcher = (...args) => fetch(...args,{method='GET', credentials='include'}).then(res=>res.json())
+        
+        const {data, error} = useSWR(url, fetcher, {
+            refreshInterval:10000, 
+            dedupingInterval:10000,
+            onSuccess: (newdata) =>{
+                console.log(newdata);
+            },
+            onError: (error) => {
+                console.log(error);
+            }
+        })
+    }
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -400,59 +443,6 @@ function dashboard(props) {
         ]
     };
 
-    useEffect(()=>{
-        console.log(serial);
-    },[])
-
-    const username = useSelector(state =>{
-        return state.state.username
-    })
-
-    console.log(username);
-
-    useEffect(()=>{
-        if(!username){
-            alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
-        }
-        else{
-            setuser(username)
-        }
-    },[]);
-
-    /*const useWidth = () => {
-        const [width, setWidth] = useState(0);
-        const handleResize = () => setWidth(window.innerWidth);
-        useEffect(() => {
-          window.addEventListener('resize', handleResize);
-          return () => window.removeEventListener('resize', handleResize);
-        }, [width]);
-        return width;
-      };
-
-    const windowWidth = useWidth();
-    const fontbar = windowWidth*0.01;*/
-
-    //console.log(props)
-    
-    // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
-    const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
-
-    const fetcher = (...args) => fetch(...args).then(res=>res.json())
-    // const fetcher = ()=>{
-    //     fetch(url,{
-    //         method: 'POST',
-    //         body: JSON.stringify(dummy),
-    //         headers:{'Content-Type':'application/json'}
-    //     }).then((res)=>res.json)
-    // }
-    
-    const {data, error} = useSWR(url, fetcher, {refreshInterval:5000})
-    if(data)console.log(data.top)
-    if(error)console.log(error)
-
  //       if (username){
             return (
                 <div className="dashboard">
@@ -466,9 +456,6 @@ function dashboard(props) {
                                         <li className="nav-items"><Link href="/dashboard/[serial]/detail" as={`/dashboard/${serial}/detail`}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
                                         <li className="nav-items"><Link href="#"><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                         <hr className="sidebar-divider"></hr> 
-
-                                        {/* <li className="nav-items"><Link href="#"><a><i className="fa fa-cog" aria-hidden="true"><span>Main Setting</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href="#"><a><i className="fa fa-plus-square" aria-hidden="true"><span>Integrations</span></i></a></Link></li> */}
                                     </ul>
                                 </Sidebar>
                             </div>

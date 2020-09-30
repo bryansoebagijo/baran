@@ -7,7 +7,7 @@ function Navpil({handlerTime, time}) {
                 <div className="navpill">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <a className={time =='daily'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('daily')}>Daily</a>
+                            <a className={time =='today'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('today')}>today</a>
                         </li>
                         <li className="nav-item">
                             <a className={time =='yesterday'? "nav-link active":"nav-link"} href="#" onClick={()=>handlerTime('yesterday')}>Yesterday</a>
