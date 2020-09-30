@@ -587,7 +587,7 @@ function dashboard(props) {
                                                                         },
                                                                 
                                                                         label: function(tooltipItem, data) {
-                                                                            return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + 'Wh';
+                                                                            return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + ' Wh';
                                                                         },
                                                                     }
                                                                 },
