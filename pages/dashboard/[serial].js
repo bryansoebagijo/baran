@@ -579,6 +579,18 @@ function dashboard(props) {
                                                                 legend: {
                                                                     display: false
                                                                 },
+                                                                tooltips:{
+                                                                    mode:'label',
+                                                                    callbacks:{
+                                                                        title: function(tooltipItem, data) {
+                                                                            return data.labels[tooltipItem[0].index];
+                                                                        },
+                                                                
+                                                                        label: function(tooltipItem, data) {
+                                                                            return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + 'Wh';
+                                                                        },
+                                                                    }
+                                                                }
                                                                 scales: {
                                                                     yAxes: [{
                                                                         position: "right",
@@ -613,7 +625,7 @@ function dashboard(props) {
                                                                             maxTicksLimit: 3
 
                                                                         }
-                                                                    }]
+                                                                    }],
                                                                 }
                                                             }
                                                         }></Line>
