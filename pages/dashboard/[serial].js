@@ -348,8 +348,8 @@ function dashboard(props) {
             const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
             const { data, error } = useSWR(url, fetcher, {
-                refreshInterval: 10000,
-                dedupingInterval: 10000,
+                refreshInterval: 300000,
+                dedupingInterval: 300000,
                 onSuccess: (newdata) => {
                     setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
                 },
@@ -595,7 +595,9 @@ function dashboard(props) {
                                                                         ticks: {
                                                                             padding: 10,
                                                                             //labelOffset:-10,
-                                                                            stepSize: 10,
+                                                                            autoSkip:true,
+                                                                            maxTicksLimit:5,
+                                                                            stepSize: 100,
                                                                             callback: function (value, index, values) {
                                                                                 return value + " Wh";
                                                                             }
@@ -608,7 +610,7 @@ function dashboard(props) {
                                                                         ticks: {
                                                                             maxRotation: 0,
                                                                             autoSkip: true,
-                                                                            maxTicksLimit: 1
+                                                                            maxTicksLimit: 2
 
                                                                         }
                                                                     }]
