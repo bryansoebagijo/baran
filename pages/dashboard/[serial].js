@@ -477,7 +477,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {dataLine.usage == [] ? <Line data={dataLineChart} options={
+                                                        {dataLine.usage != [] ? <Line data={dataLineChart} options={
                                                             {
 
                                                                 responsive: true,
