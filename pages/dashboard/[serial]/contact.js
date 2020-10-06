@@ -44,14 +44,13 @@ function contact() {
         })
     }
 
-    useEffect(()=>{
-        console.log(products);
-    },[products])
-
     const selectHandler = (e) =>{
         setProductSelect(e.target.value)
-        console.log(productSelect);
     }
+
+    useEffect(()=>{
+        console.log(productSelect);
+    },[productSelect])
     return (
         <div className="dashboard">
             <Head props={{ description: "contact us" }}></Head>
