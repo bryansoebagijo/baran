@@ -80,7 +80,7 @@ function contact() {
                                             <p>We are ready to help you solve any problem</p>
                                         </div>
                                         <form className='ticket-form'>
-                                            <select className='form-control' id='product' value={productSelect} onChange={selectHandler} defaultValue='DEFAULT' required>
+                                            <select className='form-control' id='product' value={productSelect} onChange={selectHandler} required>
                                                 <option value='DEFAULT' disabled>Select your product number</option>
                                                 <option value='1'>1</option>
                                                 <option value='2'>2</option>
