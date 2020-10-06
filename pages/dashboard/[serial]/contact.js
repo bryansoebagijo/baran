@@ -10,7 +10,7 @@ function contact() {
     const route = useRouter();
     const {serial} = route.query;
     const [product, setProduct] = useState([])
-    let productList = []
+    const [productSelect, setProductSelect] = useState('DEFAULT')
 
     const username = useSelector(state =>{
         return state.state.username
@@ -48,6 +48,10 @@ function contact() {
         console.log(product);
     },[product])
 
+    const selectHandler = (e) =>{
+        setProductSelect(e.target.value)
+        console.log(productSelect);
+    }
     return (
         <div className="dashboard">
             <Head props={{ description: "contact us" }}></Head>
@@ -76,10 +80,10 @@ function contact() {
                                             <p>We are ready to help you solve any problem</p>
                                         </div>
                                         <form className='ticket-form'>
-                                            <select className='form-control' id='product' name='product' required>
-                                                <option value='' disabled selected>Select your product number</option>
-                                                <option>1</option>
-                                                <option>2</option>
+                                            <select className='form-control' id='product' value={productSelect} onChange={selectHandler} defaultValue='DEFAULT' required>
+                                                <option value='DEFAULT' disabled>Select your product number</option>
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
                                             </select>
                                             <input type='text' className='form-control' id='problem' name='problem' placeholder='State your problem' required></input>
                                             <textarea className='form-control' name='describe' placeholder='Describe your problem here' />
