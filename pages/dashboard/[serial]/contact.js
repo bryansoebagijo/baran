@@ -9,7 +9,7 @@ import useSWR from 'swr';
 function contact() {
     const route = useRouter();
     const {serial} = route.query;
-    const [product, setProduct] = useState([])
+    const [products, setProducts] = useState([])
     const [productSelect, setProductSelect] = useState('DEFAULT')
 
     const username = useSelector(state =>{
@@ -36,7 +36,7 @@ function contact() {
             dedupingInterval: 10000,
             onSuccess: (newdata) => {
                 console.log(newdata.products)
-                setProduct(newdata.products)
+                setProducts(newdata.products)
             },
             onError: (error) => {
                 console.log(error);
@@ -45,8 +45,8 @@ function contact() {
     }
 
     useEffect(()=>{
-        console.log(product);
-    },[product])
+        console.log(products);
+    },[products])
 
     const selectHandler = (e) =>{
         setProductSelect(e.target.value)
@@ -82,8 +82,11 @@ function contact() {
                                         <form className='ticket-form'>
                                             <select className='form-control' id='product' value={productSelect} onChange={selectHandler} required>
                                                 <option value='DEFAULT' disabled>Select your product number</option>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
+                                                {products? products.map((product)=>{
+                                                    return (
+                                                    <option value={product.serialnumberid}>product.serialnumberid</option>
+                                                    )
+                                                })}
                                             </select>
                                             <input type='text' className='form-control' id='problem' name='problem' placeholder='State your problem' required></input>
                                             <textarea className='form-control' name='describe' placeholder='Describe your problem here' />
