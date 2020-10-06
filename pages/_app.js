@@ -11,6 +11,7 @@ import '../css/login.scss';
 import '../css/dashboard.scss';
 import '../css/products.scss';
 import '../css/detail.scss';
+import '../css/contact.scss'
 import 'nprogress/nprogress.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 

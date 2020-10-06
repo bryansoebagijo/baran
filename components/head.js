@@ -10,7 +10,7 @@ const defaultOGImage = '';
 
 const Head = (props) => (
   <React.Fragment>
-    <GoogleFonts href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"/>
+    <GoogleFonts href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
     <NextHead>
       <meta charSet="UTF-8" />
       <title>Baran</title>

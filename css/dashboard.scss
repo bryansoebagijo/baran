@@ -27,7 +27,7 @@ html,body{
 }
 
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 767px) {
     .dashboard{
         height: 100%;
         width: 100%;
@@ -90,12 +90,17 @@ html,body{
     
                             a{
                                 margin-left: 3%;
-                                font-size: calc(1.5vw + .5vh);
-                                color: white;
+                                font-size: calc(1vw + 1vh);
+                                color: #AFBDD1;
+                                line-height: 30px;
+                                /* or 150% */
+                                letter-spacing: 0.15px;
                                 text-decoration: none;
+
                                 i {
                                     margin-left: 3.5vw;
                                     display: inline;
+                                    color: #56657F;
                                     
                                 }
                             }
@@ -139,6 +144,7 @@ html,body{
                                         hyphens: auto;
                                         margin-left: 10%;
                                         color: #44AACC;
+                                        font-family: Roboto;
                                         text-decoration: none;
                                     }
                                 }
@@ -166,6 +172,7 @@ html,body{
                                     color: lightgray;
                                     span{
                                         color:lightgray;
+                                        font-family: Roboto;
                                         margin-left: 10%;
                                         text-decoration: none;
                                     }
@@ -241,14 +248,14 @@ html,body{
                 .hardware{
                     margin-top: 2%;
                     padding: 0;
-                    .col-overall{
+                    .colUsage{
                         //margin-top: calc(-3vw + -3vh );
                         width: 100%;
                         padding: 0;
                         min-height: 2em;
             
                         //min-width: 14em;
-                        .overall{
+                        .total-usage{
                             background:rgba(12, 24, 39, 0.75);
                             padding: 3%;
                             //min-width: 10em;
@@ -257,7 +264,7 @@ html,body{
                             width: 100%;
                             box-sizing: border-box;
             
-                            .overall-header{
+                            .usage-header{
                                 width: 100%;
                                 color: #AFBDD1;
                                 h3{
@@ -268,7 +275,7 @@ html,body{
                                 }
                             }
             
-                            .bar-chart{
+                            .line{
                                 width: 100%;
                                 height: calc(15vw + 15vh);
             
@@ -287,7 +294,7 @@ html,body{
                         padding-right: 0;
                     }
                     
-                    .colUsage{
+                    .col-overall{
                         padding-right: 0;
                     }
 
@@ -313,55 +320,55 @@ html,body{
                             }
 
                             .d-table{
-                                margin-top: 10%;
+                                margin-top: 5%;
                                 width: 100%;
                                 .d-table-row{
                                     width: 100%;
                                     .legend-doughnut{
+                                        width: 100%;
                                         height: 100%;
-                                        margin-left: -0.5vw;
                                         color: white;
                                         font-size: calc(.7vw + .8vh);
-                                        
                                         list-style: none;
+                                        padding-left: calc(.2vh + .2vw);
+                                        
                                         li{
+                                            
                                             margin-top: 3vh;
+                                            
+                                            .green-ball{
+                                                background-color: #9BC53D;
+                                                display: inline-block; 
+                                                width: calc(.5vh + .5vw);
+                                                height: calc(.5vh + .5vw);
+                                                margin-right:calc(.3vh + .3vw);
+                                            }
                                         }
                                         
-                                        .Red{
-                                            &::before{
-                                                content: "\25a0"; 
-                                                font-weight: bold;
+                                        // .Red{
+                                        //     &::before{
+                                        //         content: "\25a0"; 
+                                        //         font-weight: bold;
                                                 
-                                                color: red;
-                                                display: inline-block; 
-                                                width: 1vw;
-                                                margin-left: calc(-1.2vw + -1.2vh);
-                                            }
-                                        }
-                                        .Green{
-                                             &::before{
-                                                content: "\25a0"; 
-                                                font-weight: bold;
-                                                
-                                                color: green;
-                                                display: inline-block; 
-                                                width: 1vw;
-                                                margin-left: calc(-1.2vw + -1.2vh);
-                                            }
-                                        }
+                                        //         color: red;
+                                        //         display: inline-block; 
+                                        //         width: 1vw;
+                                        //         margin-left: calc(-1.2vw + -1.2vh);
+                                        //     }
+                                        // }
+
         
-                                        .Blue{
-                                            &::before{
-                                               content: "\25a0"; 
-                                               font-weight: bold;
+                                        // .Blue{
+                                        //     &::before{
+                                        //        content: "\25a0"; 
+                                        //        font-weight: bold;
                                                
-                                               color: blue;
-                                               display: inline-block; 
-                                               width: 1vw;
-                                               margin-left: calc(-1.2vw + -1.2vh);
-                                           }
-                                       }
+                                        //        color: blue;
+                                        //        display: inline-block; 
+                                        //        width: 1vw;
+                                        //        margin-left: calc(-1.2vw + -1.2vh);
+                                        //    }
+                                       //}
                                     }
     
                                     .percent-doughnut{
@@ -372,9 +379,8 @@ html,body{
                                         list-style: none;
                                         font-size: calc(.7vw + 0.8vh);
                                         margin-right: 0;
-        
+                                        padding-right: calc(.2vh + .2vw);
                                         li{
-    
                                             margin-top: 3vh;
                                         }
                                     }
@@ -383,24 +389,25 @@ html,body{
                         }
                     }
 
-                    .total-usage{
-                        height: auto;
+                    .overall{
                         padding: 2%;
                         width: 100%;
                         background:rgba(12, 24, 39, 0.75);
+                        height: 100%;
 
-                        .usage-header{
+                        .overall-header{
                             width: 100%;
                             color: white;
                             h3{
                                 font-size: calc(1vw + 1.5vh);
                             }
+                        }
 
-                            .line{
-                                margin-top: 5%;
-                                width: 100%;
-                                height: calc(13vw + 13vh);
-                            }
+                        .bar-chart{
+                            margin-top: 5%;
+                            width: 100%;
+                            height: calc(13vw + 13vh);
+                            max-height: fit-content;
                         }
                     }
                 }
@@ -409,7 +416,7 @@ html,body{
     }
 }
 
-@media only screen and (min-width:576px) and (max-width: 767px) {
+@media only screen and (min-width:575px) and (max-width: 768px) {
     .dashboard{
         height: 100%;
         width: 100%;
@@ -436,7 +443,7 @@ html,body{
                 .sidebarCol{
                     padding: 0;
                     height: 100vh;
-                    background: #07052b;
+                    background: #0C1827;
                     display:flex;
                     flex-grow: 1;
                     flex-direction: column;
@@ -472,11 +479,15 @@ html,body{
                             }
                             
                             a{
-                                font-size: 2.5vh;
-                                color: white;
+                                font-size: calc(1.3vw + 1.3vh);
+                                color: #AFBDD1;
+                                line-height: 30px;
+                                /* or 150% */
+                                letter-spacing: 0.15px;
                                 text-decoration: none;
                                 i {
                                     margin-left: 5vw;
+                                    color: #56657F;
                                 }
                             }
     
@@ -489,6 +500,7 @@ html,body{
                         .navi{
                             height: 100%;
                             color: lightgray;
+                            font-family: Roboto;
                             .active{
                                 background-color: rgba(242, 247, 255, 0.3);
                                 border-radius: 4px;
@@ -514,6 +526,7 @@ html,body{
                                     flex-direction: column;
     
                                     span{
+                                        font-family: Roboto;
                                         color: #44AACC;
                                         text-decoration: none;
                                         font-size: x-small;
@@ -547,6 +560,7 @@ html,body{
                                     align-items: center;
                                     color: lightgray;
                                     span{
+                                        font-family: Roboto;
                                         color:lightgray;
                                         text-decoration: none;
                                         font-size: x-small;
@@ -619,14 +633,14 @@ html,body{
                 .hardware{
                     margin-top: 2%;
                     padding: 0;
-                    .col-overall{
+                    .colUsage{
                         //margin-top: calc(-3vw + -3vh );
                         width: 100%;
                         padding: 0;
                         min-height: 2em;
             
                         //min-width: 14em;
-                        .overall{
+                        .total-usage{
                             background:rgba(12, 24, 39, 0.75);
                             padding: 3%;
                             //min-width: 10em;
@@ -635,7 +649,7 @@ html,body{
                             width: 100%;
                             box-sizing: border-box;
             
-                            .overall-header{
+                            .usage-header{
                                 width: 100%;
                                 color: #AFBDD1;
                                 h3{
@@ -646,7 +660,7 @@ html,body{
                                 }
                             }
             
-                            .bar-chart{
+                            .line{
                                 width: 100%;
                                 height: calc(15vw + 15vh);
             
@@ -693,44 +707,18 @@ html,body{
                                             padding: 0;
                                             li{
                                                 margin-top: 10%;
+                                                .green-ball{
+                                                    background-color: #9BC53D;
+                                                    display: inline-block; 
+                                                    width: calc(.5vh + .5vw);
+                                                    height: calc(.5vh + .5vw);
+                                                    margin-right:calc(.3vh + .3vw);
+                                                }
                                             }
                                             color: white;
                                             font-size: calc(.5vw + 1vh);
                                             list-style: none;
-                                            .Red{
-                                                &::before{
-                                                    content: "\25a0"; 
-                                                    font-weight: bold;
-                                                    
-                                                    color: red;
-                                                    display: inline-block; 
-                                                    width: 1em;
-                                                    margin-left: calc(-0.5vw + -0.5vh);
-                                                }
-                                            }
-                                            .Green{
-                                                &::before{
-                                                    content: "\25a0"; 
-                                                    font-weight: bold;
-                                                    
-                                                    color: green;
-                                                    display: inline-block; 
-                                                    width: 1em;
-                                                    margin-left: calc(-0.5vw + -0.5vh);
-                                                }
-                                            }
-        
-                                            .Blue{
-                                                &::before{
-                                                content: "\25a0"; 
-                                                font-weight: bold;
-                                                
-                                                color: blue;
-                                                display: inline-block; 
-                                                width: 1em;
-                                                margin-left: calc(-0.5vw + -0.5vh);
-                                                }
-                                            }
+                                            
                                         }
         
                                         .percent-doughnut{
@@ -753,27 +741,28 @@ html,body{
                         }  
                     }
                     
-                    .colUsage{
+                    .col-overall{
                         padding-right: 0;
-                        .total-usage{
+                        .overall{
                             height: 100%;
                             padding: 2%;
                             width: 100%;
                             min-width: 30vw;
                             background:rgba(12, 24, 39, 0.75);
     
-                            .usage-header{
+                            .overall-header{
                                 width: 100%;
                                 color: white;
                                 h3{
                                     font-size: calc(1vw + 1.5vh);
                                 }
-    
-                                .line{
-                                    margin-top: 5%;
-                                    width: 100%;
-                                    height: calc(15vw + 15vh);
-                                }
+                            }
+                                
+                            .bar-chart{
+                                margin-top: 5%;
+                                width: 100%;
+                                height: calc(15vw + 15vh);
+                                max-height: max-content;
                             }
                         }
                     }
@@ -809,7 +798,7 @@ html,body{
                 .sidebarCol{
                     padding: 0;
                     height: 100%;
-                    background: #07052b;
+                    background: #0C1827;
                     display:flex;
                     flex-grow: 1;
                     flex-direction: column;
@@ -845,12 +834,16 @@ html,body{
                             }
                             
                             a{
-                                font-size: 2vh;
-                                color: white;
+                                font-size: calc(1vw + 1vh);
+                                color: #AFBDD1;
+                                line-height: 30px;
+                                /* or 150% */
+                                letter-spacing: 0.15px;
                                 text-decoration: none;
                                 i {
                                     font-size: 1vh;
                                     margin-left: 5vw;
+                                    color: #56657F;
                                 }
                             }
     
@@ -893,6 +886,7 @@ html,body{
                                     span{
                                         color: #44AACC;
                                         text-decoration: none;
+                                        font-family: Roboto;
                                         font-size: x-small;
                                         display: none;
                                     }
@@ -926,6 +920,7 @@ html,body{
                                     span{
                                         color:lightgray;
                                         text-decoration: none;
+                                        font-family: Roboto;
                                         font-size: x-small;
                                         display: none;
                                     }
@@ -1010,14 +1005,14 @@ html,body{
                 .hardware{
                     margin-top: 2%;
                     padding: 0;
-                    .col-overall{
+                    .colUsage{
                         //margin-top: calc(-3vw + -3vh );
                         width: 100%;
                         padding: 0;
                         min-height: 2em;
             
                         //min-width: 14em;
-                        .overall{
+                        .total-usage{
                             background:rgba(12, 24, 39, 0.75);
                             padding: 3%;
                             //min-width: 10em;
@@ -1026,7 +1021,7 @@ html,body{
                             width: 100%;
                             box-sizing: border-box;
             
-                            .overall-header{
+                            .usage-header{
                                 width: 100%;
                                 color: #AFBDD1;
                                 h3{
@@ -1037,7 +1032,7 @@ html,body{
                                 }
                             }
             
-                            .bar-chart{
+                            .line{
                                 width: 100%;
                                 height: calc(15vw + 15vh);
             
@@ -1079,51 +1074,24 @@ html,body{
                                         width: 100%;
                                         align-items: center;
                                         .legend-doughnut{
-    
+                                            padding-left: calc(.5vh + .5vw);
                                             li{
                                                 margin-top: 10%;
+                                                .green-ball{
+                                                    background-color: #9BC53D;
+                                                    display: inline-block; 
+                                                    width: calc(.5vh + .5vw);
+                                                    height: calc(.5vh + .5vw);
+                                                    margin-right:calc(.3vh + .3vw);
+                                                }
                                             }
                                             color: white;
                                             font-size: calc(.5vw + 1.2vh);
                                             list-style: none;
-                                            .Red{
-                                                &::before{
-                                                    content: "\25a0"; 
-                                                    font-weight: bold;
-                                                    
-                                                    color: red;
-                                                    display: inline-block; 
-                                                    width: 1em;
-                                                    margin-left: calc(-2.2vw + -2.2vh);
-                                                }
-                                            }
-                                            .Green{
-                                                &::before{
-                                                    content: "\25a0"; 
-                                                    font-weight: bold;
-                                                    
-                                                    color: green;
-                                                    display: inline-block; 
-                                                    width: 1em;
-                                                    margin-left: calc(-2.2vw + -2.2vh);
-                                                }
-                                            }
-        
-                                            .Blue{
-                                                &::before{
-                                                content: "\25a0"; 
-                                                font-weight: bold;
-                                                
-                                                color: blue;
-                                                display: inline-block; 
-                                                width: 1em;
-                                                margin-left: calc(-2.2vw + -2.2vh);
-                                                }
-                                            }
                                         }
         
                                         .percent-doughnut{
-    
+                                            padding-right: calc(.5vh + .5vw);
                                             li{
                                                 margin-top: 10%;
                                             }
@@ -1139,28 +1107,27 @@ html,body{
                         }  
                     }
                     
-                    .colUsage{
+                    .col-overall{
                         padding-right: 0;
                         padding: 0;
                         margin-top: 3%;
-                        .total-usage{
+                        .overall{
                             height: 100%;
                             padding: 2%;
                             width: 100%;
                             background:rgba(12, 24, 39, 0.75);
     
-                            .usage-header{
+                            .overall-header{
                                 width: 100%;
                                 color: white;
                                 h3{
                                     font-size: calc(1vw + 1.5vh);
                                 }
-    
-                                .line{
-                                    margin-top: 5%;
-                                    width: 100%;
-                                    height: calc(20vw + 15vh);
-                                }
+                            }
+                            .bar-chart{
+                                margin-top: 5%;
+                                width: 100%;
+                                height: calc(20vw + 15vh);
                             }
                         }
                     }

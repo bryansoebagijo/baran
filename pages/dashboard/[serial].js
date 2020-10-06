@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Head from '../../components/head'
 import Link from 'next/link'
 import {Doughnut, Line} from 'react-chartjs-2'
@@ -300,6 +300,7 @@ function dashboard(props) {
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
     const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
+    const[legend, setLegend] = useState([])
 
     const route = useRouter();
     const {serial} = route.query;
@@ -374,7 +375,7 @@ function dashboard(props) {
             {
                 label:'data 1',
                 barPercentage:0.3,
-                data: [51, 29, 72, 46, 83, 10, 67],
+                data: [51, 29, 72, 46, 83, 30, 67],
                 borderWidth: 0,
                 backgroundColor: '#04ACD4',
                 fill:false,
@@ -382,41 +383,38 @@ function dashboard(props) {
                 pointHoverBackgroundColor: 'rgba(90,192,255,1)',
                 pointHoverBorderColor: 'rgba(220,220,220,1)',
                 pointHoverBorderWidth: 2,
-            },
-            {
-                label:'data 2',
-                barPercentage:0.3,
-                data: [151, 129, 172, 146, 183, 110, 167],
-                borderWidth: 0,
-                backgroundColor: '#F15822',
-                fill:false,
-                pointBackgroundColor:'#F15822',
-                pointHoverBackgroundColor: 'rgba(90,192,255,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
             }
+            // {
+            //     label:'data 2',
+            //     barPercentage:0.3,
+            //     data: [151, 129, 172, 146, 183, 110, 167],
+            //     borderWidth: 0,
+            //     backgroundColor: '#F15822',
+            //     fill:false,
+            //     pointBackgroundColor:'#F15822',
+            //     pointHoverBackgroundColor: 'rgba(90,192,255,1)',
+            //     pointHoverBorderColor: 'rgba(220,220,220,1)',
+            //     pointHoverBorderWidth: 2,
+            // }
         ]
     };
 
     let dataDoughnut = {
         labels: [
-          'Red',
-          'Green',
-          'Yellow'
+            'battery life',
+            'battery consumed'
       ],
       datasets: [{
-        data: dataDough.length != 0? dataDough:[300,500,200],
+        data: dataDough.length != 0? dataDough:[75,25],
         borderWidth: 0,
         radius: 50,
         backgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56'
+            '#9BC53D',
+            '#7155A4'
         ],
         hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56'
+            '#9BC53D',
+            '#7155A4'
         ]
       }],
       text:'75%',
@@ -460,7 +458,7 @@ function dashboard(props) {
                                     <ul className="navbar-nav navi">
                                         <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
                                         <li className="nav-items"><Link href="/dashboard/[serial]/detail" as={`/dashboard/${serial}/detail`}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href="#"><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
+                                        <li className="nav-items"><Link href="/dashboard/[serial]/contact" as={`/dashboard/${serial}/contact`}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                         <hr className="sidebar-divider"></hr> 
                                     </ul>
                                 </Sidebar>
@@ -474,108 +472,12 @@ function dashboard(props) {
                                     <Navpil handlerTime={handlerTime} time={time}></Navpil>
 
                                     <div className='row hardware'>
-                                        <div className='col-12 col-overall'>
-                                            <div className="container-fluid overall">
-                                                <div className="overall-header">
-                                                    <h3>Hardware Performance</h3>
-                                                </div>
-                                                <div className="bar-chart">
-                                                    <Bar data={dataBar} className='bar-font' options={
-                                                        {
-                                                            maintainAspectRatio: false,
-                                                            cornerRadius: 20,
-                                                            responsive: true,
-                                                            legend: {
-                                                                display: true,
-                                                                labels: {
-                                                                    fontColor: "#A6ACBE",
-                                                                    usePointStyle: true,
-                                                                    padding: 20
-                                                                }
-
-                                                            },
-                                                            scales: {
-                                                                yAxes: [{
-                                                                    gridLines: {
-                                                                        display: false
-                                                                    },
-                                                                    ticks: {
-                                                                        display: false
-                                                                    },
-                                                                    stacked: true
-
-                                                                }],
-
-                                                                xAxes: [{
-                                                                    //barPercentage :0.3,
-                                                                    gridLines: {
-                                                                        display: false
-                                                                    },
-                                                                    stacked: true,
-                                                                    ticks: {
-                                                                        //autoSkip: true,
-                                                                        padding: 15,
-                                                                        maxRotation: 10,
-                                                                        //maxTicksLimit: 2,
-                                                                    },
-
-                                                                }]
-                                                            },
-                                                        }
-                                                    }></Bar>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="row chart">
-                                        <div className="col-lg-4 col-md-4 col-sm-6 col-12 colDoughnut">
-                                            <div className="container-fluid chart-state">
-                                                <div className="chart-state-header">
-                                                    <h3>State of Charge</h3>
-                                                    <div className="donut">
-                                                        <Doughnut data={dataDoughnut} width={100} height={100} options={
-                                                            {
-                                                                responsive: true,
-                                                                maintainAspectRatio: false,
-                                                                legend: {
-                                                                    display: false,
-                                                                    position: "bottom",
-                                                                    labels: {
-                                                                        fontColor: "#f7fcff"
-                                                                    }
-                                                                },
-                                                                cutoutPercentage: 90
-                                                            }
-                                                        } />
-                                                    </div>
-                                                    {/*<div className="d-table">
-                                                                                    <div className="d-table-row">
-                                                                                        <div className="d-table-cell">
-                                                                                            <ul className="legend-doughnut">
-                                                                                                <li className="Red">Conventional Grid </li>
-                                                                                                <li className="Green">Energy Consumed </li>
-                                                                                                <li className="Blue">Solar Power</li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                        <div className="d-table-cell">
-                                                                                            <ul className="percent-doughnut">
-                                                                                                    <li className="Red">23 Hrs <span>(23%)</span></li>
-                                                                                                    <li className="Green">45 Hrs <span>(45%)</span></li>
-                                                                                                    <li className="Blue">32 Hrs <span>(32%)</span></li>
-                                                                                                </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    </div>*/}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-8 col-md-8 col-sm-6 col-12 colUsage">
+                                        <div className="col-12 colUsage">
                                             <div className="container-fluid total-usage">
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {dataLine.usage ? <Line data={dataLineChart} options={
+                                                        {dataLine.usage == [] ? <Line data={dataLineChart} options={
                                                             {
 
                                                                 responsive: true,
@@ -635,6 +537,98 @@ function dashboard(props) {
                                                         }></Line>
                                                             : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
                                                         </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="row chart">
+                                        <div className="col-lg-4 col-md-4 col-sm-6 col-12 colDoughnut">
+                                            <div className="container-fluid chart-state">
+                                                <div className="chart-state-header">
+                                                    <h3>State of Charge</h3>
+                                                    <div className="donut">
+                                                        <Doughnut data={dataDoughnut}  width={100} height={100} options={
+                                                            {
+                                                                responsive: true,
+                                                                maintainAspectRatio: false,
+                                                                legend: {
+                                                                    display: false,
+                                                                    position: "bottom",
+                                                                    labels: {
+                                                                        fontColor: "#f7fcff"
+                                                                    }
+                                                                },
+                                                                cutoutPercentage: 90
+                                                            }
+                                                        } />
+                                                    </div>
+                                                    <div className="d-table">
+                                                        <div className="d-table-row">
+                                                            <div className="d-table-cell">
+                                                                <ul className="legend-doughnut">
+                                                                    <li className="Green"><span className="green-ball"/>Conventional Grid </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div className="d-table-cell">
+                                                                <ul className="percent-doughnut">
+                                                                    <li className="Green">45 Hrs <span>(45%)</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='col-lg-8 col-md-8 col-sm-6 col-12 col-overall'>
+                                            <div className="container-fluid overall">
+                                                <div className="overall-header">
+                                                    <h3>Hardware Performance</h3>
+                                                </div>
+                                                <div className="bar-chart">
+                                                    <Bar data={dataBar} className='bar-font' options={
+                                                        {
+                                                            maintainAspectRatio: false,
+                                                            cornerRadius: 10,
+                                                            responsive: true,
+                                                            legend: {
+                                                                display: true,
+                                                                labels: {
+                                                                    fontColor: "#A6ACBE",
+                                                                    usePointStyle: true,
+                                                                    padding: 20
+                                                                }
+
+                                                            },
+                                                            scales: {
+                                                                yAxes: [{
+                                                                    gridLines: {
+                                                                        display: false
+                                                                    },
+                                                                    ticks: {
+                                                                        display: false
+                                                                    },
+                                                                    // stacked: true
+
+                                                                }],
+
+                                                                xAxes: [{
+                                                                    //barPercentage :0.3,
+                                                                    gridLines: {
+                                                                        display: false
+                                                                    },
+                                                                    // stacked: true,
+                                                                    ticks: {
+                                                                        //autoSkip: true,
+                                                                        padding: 15,
+                                                                        maxRotation: 10,
+                                                                        //maxTicksLimit: 2,
+                                                                    },
+
+                                                                }]
+                                                            },
+                                                        }
+                                                    }></Bar>
                                                 </div>
                                             </div>
                                         </div>
