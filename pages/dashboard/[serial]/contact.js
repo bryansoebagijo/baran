@@ -86,7 +86,8 @@ function contact() {
                                                     return (
                                                     <option value={product.serialnumberid}>product.serialnumberid</option>
                                                     )
-                                                })}
+                                                })
+                                            : ''}
                                             </select>
                                             <input type='text' className='form-control' id='problem' name='problem' placeholder='State your problem' required></input>
                                             <textarea className='form-control' name='describe' placeholder='Describe your problem here' />
