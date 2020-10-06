@@ -84,7 +84,7 @@ function contact() {
                                                 <option value='DEFAULT' disabled>Select your product number</option>
                                                 {products? products.map((product)=>{
                                                     return (
-                                                    <option value={product.serialnumberid}>product.serialnumberid</option>
+                                                    <option key={product.serialnumberid} value={product.serialnumberid}>{product.serialnumberid}</option>
                                                     )
                                                 })
                                             : ''}
