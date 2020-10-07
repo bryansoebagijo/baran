@@ -67,9 +67,8 @@ function Navpil({handlerTime, time, serial}) {
                 </div>
             </div>
             <div className="col-6 d-flex online-button">
-                <div className="custom-switch custom-switch-sm">
+                <div className="custom-switch custom-switch-sm" style={togglestate?{"background":"linear-gradient(0deg, #9BC53D, #9BC53D)"}:{"background":"#e00022"}}>
                     <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={togglestate} onChange={toggleHandler} />
-                    
                     <label className="custom-control-label" htmlFor="customSwitch1">{togglestate ? 'On' : 'Off'}</label>
                 </div>
                 <button type="button" className="btn btn-primary online">Online</button>

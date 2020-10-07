@@ -353,9 +353,11 @@ function dashboard(props) {
                 refreshInterval: 300000,
                 dedupingInterval: 300000,
                 onSuccess: (newdata) => {
+                    let dataSoc = parseInt(newdata.soc)
+                    console.log(dataSoc);
                     setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
-                    let socleft = 100 - newdata.soc
-                    setSoc([newdata.soc, socleft])
+                    let socleft = 100 - datasoc
+                    setSoc([dataSoc, socleft])
                 },
                 onError: (error) => {
                     console.log(error);
@@ -409,7 +411,7 @@ function dashboard(props) {
             'battery consumed'
       ],
       datasets: [{
-        data: soc[0] != 0? soc:[75,25],
+        data: soc?soc:[75,25],
         borderWidth: 0,
         radius: 50,
         backgroundColor: [
@@ -421,7 +423,7 @@ function dashboard(props) {
             '#7155A4'
         ]
       }],
-      text:'75%',
+      text: soc?soc[0] +'%':'75%',
     };
 
     let dataLineChart = {
