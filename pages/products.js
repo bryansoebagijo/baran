@@ -527,7 +527,7 @@ function products() {
                                                 })
                                                 : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
                                             }
-                                            </tbody>
+                                            {(tempFetchData && (tempFetchData.length > 0)) ? '</tbody>' : ''}
                                         </table>
                                     </div>
                                 </div>
