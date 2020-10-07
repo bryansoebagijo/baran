@@ -583,7 +583,7 @@ function dashboard(props) {
                                                         : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
                                                         </div>}
                                                     </div>
-                                                    {soc.length>0 ? 
+                                                    {(soc && (soc.length>0))? 
                                                     <div className="d-table">
                                                         <div className="d-table-row">
                                                             <div className="d-table-cell">
