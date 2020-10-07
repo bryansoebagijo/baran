@@ -299,7 +299,7 @@ function dashboard(props) {
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
-    const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
+    const[dataLine, setDataLine] = useState({usage:[0], timestamps:[0]})
     const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
@@ -493,7 +493,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {Object.values(dataLine.timestamps).length > 0 ? <Line data={dataLineChart} options={
+                                                        {(dataLine.timestamps).length > 1 ? <Line data={dataLineChart} options={
                                                             {
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
