@@ -490,9 +490,8 @@ function products() {
                                                     <th scope="col">Condition</th>
                                                 </tr>
                                             </thead>
-                                            {(tempFetchData && (tempFetchData.length >0))? '<tbody>' : ''}
-
-                                                {(tempFetchData && (tempFetchData.length >0))? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
+                                            <tbody>
+                                                {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
                                                                 <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
@@ -527,7 +526,7 @@ function products() {
                                                 })
                                                 : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
                                             }
-                                            {(tempFetchData && (tempFetchData.length > 0)) ? '</tbody>' : ''}
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
