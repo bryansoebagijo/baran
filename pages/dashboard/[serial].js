@@ -565,7 +565,7 @@ function dashboard(props) {
                                                 <div className="chart-state-header">
                                                     <h3>State of Charge</h3>
                                                     <div className="donut">
-                                                        {soc.length>0?
+                                                        {(soc && (soc.length>0))?
                                                         <Doughnut data={dataDoughnut}  width={100} height={100} options={
                                                             {
                                                                 responsive: true,
