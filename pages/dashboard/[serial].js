@@ -587,12 +587,12 @@ function dashboard(props) {
                                                         <div className="d-table-row">
                                                             <div className="d-table-cell">
                                                                 <ul className="legend-doughnut">
-                                                                    <li className="Green"><span className="green-ball"/>Conventional Grid </li>
+                                                                    <li className="Green"><span className="green-ball"/>Your Battery Life</li>
                                                                 </ul>
                                                             </div>
                                                             <div className="d-table-cell">
                                                                 <ul className="percent-doughnut">
-                                                                    <li className="Green">45 Hrs <span>(45%)</span></li>
+                                                                    <li className="Green">{soc[0]} Hrs <span>({soc[0]}%)</span></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
