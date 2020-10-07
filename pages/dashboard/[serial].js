@@ -301,6 +301,7 @@ function dashboard(props) {
     const[dataDough, setDataDough]= useState([])
     const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
     const[legend, setLegend] = useState([])
+    const[soc, setSoc] = useState([0,100])
 
     const route = useRouter();
     const {serial} = route.query;
@@ -353,6 +354,8 @@ function dashboard(props) {
                 dedupingInterval: 300000,
                 onSuccess: (newdata) => {
                     setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
+                    let socleft = 100 - newdata.soc
+                    setSoc([newdata.soc, socleft])
                 },
                 onError: (error) => {
                     console.log(error);
@@ -367,6 +370,7 @@ function dashboard(props) {
 
     useEffect(()=>{
         console.log(dataLine);
+        console.log(soc);
     },[dataLine])
 
     const dataBar = {
@@ -405,7 +409,7 @@ function dashboard(props) {
             'battery consumed'
       ],
       datasets: [{
-        data: dataDough.length != 0? dataDough:[75,25],
+        data: soc[0] != 0? soc:[75,25],
         borderWidth: 0,
         radius: 50,
         backgroundColor: [
@@ -466,10 +470,21 @@ function dashboard(props) {
                             <div className="col-md-10 col-sm-11 col-11 page-content">
                                 <div className="container-fluid">
                                     <div className="page-header">
-                                        <h2>Your Dashboard</h2>
+                                        <div className='row'>
+                                            <div className='col-9 col-dashboard-header'>
+                                                <h2>Your Dashboard</h2>
+                                            </div>
+                                            <div className='col-3 col-product-button'>
+                                                <Link href='/products'>
+                                                    <a>
+                                                        Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <Navpil handlerTime={handlerTime} time={time}></Navpil>
+                                    <Navpil handlerTime={handlerTime} time={time} serial={serial}></Navpil>
 
                                     <div className='row hardware'>
                                         <div className="col-12 colUsage">
@@ -477,9 +492,8 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {dataLine.usage != [] ? <Line data={dataLineChart} options={
+                                                        {(dataLine.timestamps).length > 0 ? <Line data={dataLineChart} options={
                                                             {
-
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
                                                                 legend: {

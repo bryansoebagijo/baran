@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export default function detail() {
 
-    const[time, setTime] = useState('daily')
+    const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
 
     const icon1 = require('../../../public/circuit-svgrepo-com.svg');
@@ -86,9 +86,6 @@ export default function detail() {
                                     <div className="container-fluid powerwall-detail">
                                         <div className="powerwall-header">
                                             <h2>Powerwall Details</h2>
-                                        </div>
-                                        <div className='power-datail-img'>
-                                            <img className='img-fluid detail-img' alt='baran-powerwall' src={''}></img>
                                         </div>
                                         <div className="d-table powerwall-info">
                                             <div className="d-table-row">

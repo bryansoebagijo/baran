@@ -148,10 +148,9 @@ html,body{
                                         text-decoration: none;
                                     }
                                 }
-                                
+                                transition: all .4s ease-in-out;
                                 &:hover{
                                     background-color: rgba(81, 99, 131, 0.5);
-                                    @include transition(.4s ease-in-out);
                                 }
                             }
     
@@ -176,13 +175,13 @@ html,body{
                                         margin-left: 10%;
                                         text-decoration: none;
                                     }
+                                    transition: all .4s ease-in-out;
                                 }
 
                                 &:hover{
                                     background-color: rgba(242, 247, 255, 0.1);
                                     border-radius: 4px;
                                     margin: 0 auto;
-                                    @include transition(.4s ease-in-out);
                                 }
                             }
                         }
@@ -199,8 +198,33 @@ html,body{
                     margin-top: 5%;
                     font-family: raleway black;
                     color: lightgray;
-                    h2{
-                        font-size: calc(2vw + 2vh);
+                    .col-dashboard-header{
+                        padding: 0;
+                        h2{
+                            font-size: calc(2vw + 2vh);
+                        }
+                    }
+                    .col-product-button{
+                        padding-right: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        a{
+                            height: 50%;     
+                            display: flex;  
+                            justify-content: center;
+                            align-items: center;
+                            font-size: calc(.8vh + .8vw);
+                            width: 80%;
+                            background: #0C1827;   
+                            border-radius: 12px;
+                            text-decoration: none;
+                            color: white;
+                            transition: all .4s ease-in-out;
+                            &:hover{
+                                color: #9BC53D;
+                            }
+                        }
                     }
                 }
 
@@ -230,16 +254,37 @@ html,body{
                     }
 
                     .online-button{
-                        padding: 0;
-                        @include transition(.8s ease-in-out);
+                        padding-right: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .custom-switch{
+                            background: linear-gradient(0deg, #9BC53D, #9BC53D);
+                            border-radius: 6px;
+                            margin-right: 3%;
+                            color: white;
+                            width: 25%;
+                            height: 90%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            input{
+                                &:checked{
+                                    background-color: #123A50;
+                                }
+                            }
+                            label{
+                                font-size: calc(.8vh + .8vw);
+                            }
+                        }
                         button{
                             border: 0;
+                            width: 25%;
+                            height: 90%;
                             background:  #2BA2B2;
-                            @include transition(.8s ease-in-out);
-
+                            font-size: calc(.8vh + .8vw);
                             &:hover{
                                 background: #145057;
-                                @include transition(.4s ease-in-out);
                             }
                         }
                     }
@@ -586,8 +631,33 @@ html,body{
                     font-family: raleway black;
                     color: lightgray;
 
-                    h2{
-                        font-size: 4vw;
+                    .col-dashboard-header{
+                        padding: 0;
+                        h2{
+                            font-size: calc(2vw + 2vh);
+                        }
+                    }
+                    .col-product-button{
+                        padding-right: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        a{
+                            height: 50%;     
+                            display: flex;  
+                            justify-content: center;
+                            align-items: center;
+                            font-size: calc(.8vh + .8vw);
+                            width: 100%;
+                            background: #0C1827;   
+                            border-radius: 12px;
+                            text-decoration: none;
+                            color: white;
+                            transition: all .4s ease-in-out;
+                            &:hover{
+                                color: #9BC53D;
+                            }
+                        }
                     }
                 }
 
@@ -617,14 +687,33 @@ html,body{
 
                     .online-button{
                         padding-right: 0;
-                        button{
-                            font-size: calc(1vw + 1vh);
-                            border: 0;
-                            background:  #2BA2B2;
+                        
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .custom-switch{
+                            background: linear-gradient(0deg, #9BC53D, #9BC53D);
+                            border-radius: 6px;
+                            color: white;
+                            width: 30%;
+                            height: 90%;
+                            display: flex;
+                            margin-right: 3%;
 
+                            justify-content: center;
+                            align-items: center;
+                            label{
+                                font-size: calc(1.2vh + 1.2vw);
+                            }
+                        }
+                        button{
+                            border: 0;
+                            width:30%;
+                            height: 90%;
+                            background:  #2BA2B2;
+                            font-size: calc(.8vh + .8vw);
                             &:hover{
                                 background: #145057;
-                                @include transition(.4s ease-in-out);
                             }
                         }
                     }
@@ -945,8 +1034,33 @@ html,body{
                     font-family: raleway black;
                     color: lightgray;
 
-                    h2{
-                        font-size: 4vw;
+                    .col-dashboard-header{
+                        padding: 0;
+                        h2{
+                            font-size: calc(2vw + 2vh);
+                        }
+                    }
+                    .col-product-button{
+                        padding-right: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        a{
+                            height: 50%;     
+                            display: flex;  
+                            justify-content: center;
+                            align-items: center;
+                            font-size: calc(.8vh + .8vw);
+                            width: 100%;
+                            background: #0C1827;   
+                            border-radius: 12px;
+                            text-decoration: none;
+                            color: white;
+                            transition: all .4s ease-in-out;
+                            &:hover{
+                                color: #9BC53D;
+                            }
+                        }
                     }
                 }
 
@@ -987,16 +1101,33 @@ html,body{
 
                     .online-button{
                         padding-right: 0;
-                        height: 100%;
+                        
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .custom-switch{
+                            background: linear-gradient(0deg, #9BC53D, #9BC53D);
+                            border-radius: 6px;
+                            color: white;
+                            width: 40%;
+                            height: 90%;
+                            display: flex;
+                            margin-right: 3%;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            label{
+                                font-size: calc(1.2vh + 1.2vw);
+                            }
+                        }
                         button{
-                            width: 100%;
-                            font-size: calc(.9vw + .9vh);
                             border: 0;
+                            width:40%;
+                            height: 90%;
                             background:  #2BA2B2;
-
+                            font-size: calc(1.2vh + 1.2vw);
                             &:hover{
                                 background: #145057;
-                                @include transition(.4s ease-in-out);
                             }
                         }
                     }
