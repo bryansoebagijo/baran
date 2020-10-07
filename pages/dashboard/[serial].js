@@ -299,8 +299,8 @@ function dashboard(props) {
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
-    const[dataLineUsage, setDataLineUsage] = useState([])
-    const[dataLineTime, setDataLineTime] = useState([])
+    const[dataLineUsage, setDataLineUsage] = useState([0])
+    const[dataLineTime, setDataLineTime] = useState(['test'])
     const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
@@ -372,7 +372,7 @@ function dashboard(props) {
     }
 
     useEffect(()=>{
-        console.log(dataLineTime);
+        console.log(typeof(dataLineTime));
         console.log(soc);
     },[dataLineTime])
 
@@ -495,7 +495,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {dataLineUsage.length > 0 ? <Line data={dataLineChart} options={
+                                                        {dataLineUsage.length > 1? <Line data={dataLineChart} options={
                                                             {
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
