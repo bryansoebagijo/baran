@@ -491,7 +491,7 @@ function products() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
+                                                {(tempFetchData && (tempFetchData.length >0))? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
                                                                 <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>

@@ -56,10 +56,19 @@ export default function detail() {
                     <div className="col-md-10 col-sm-11 col-11 page-content">
                         <div className="container-fluid">
                             <div className="page-header">
-                                <h2>Your Dashboard</h2>
+                                <div className='row'>
+                                    <div className='col-9 col-dashboard-header'>
+                                        <h2>Your Dashboard</h2>
+                                    </div>
+                                    <div className='col-3 col-product-button'>
+                                        <Link href='/products'>
+                                            <a>
+                                                Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                                            </a>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
-
-                            <Navpil handlerTime={handlerTime} time={time}></Navpil>
 
                             <div className='row user-intro'>
                                 <div className="col-12 col-user-intro">

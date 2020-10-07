@@ -40,6 +40,10 @@ function contact() {
             },
             onError: (error) => {
                 console.log(error);
+                alert('your session is expired!')
+                route.replace({
+                    pathname: '/'
+                })
             }
         })
     }
@@ -69,7 +73,18 @@ function contact() {
                     <div className="col-md-10 col-sm-11 col-11 page-content">
                         <div className="container-fluid">
                             <div className="page-header-contact">
-                                <h2>Contact Us</h2>
+                                <div className='row'>
+                                    <div className='col-9 col-dashboard-header'>
+                                        <h2>Your Dashboard</h2>
+                                    </div>
+                                    <div className='col-3 col-product-button'>
+                                        <Link href='/products'>
+                                            <a>
+                                                Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                                            </a>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
                             <div className='row ticket-loc'>
                                 <div className='col-12 col-md-6 col-lg-6 ticket'>
