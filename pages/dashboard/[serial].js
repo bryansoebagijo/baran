@@ -301,7 +301,7 @@ function dashboard(props) {
     const[dataDough, setDataDough]= useState([])
     const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
     const[legend, setLegend] = useState([])
-    const[soc, setSoc] = useState([0,100])
+    const[soc, setSoc] = useState([])
 
     const route = useRouter();
     const {serial} = route.query;
@@ -411,7 +411,7 @@ function dashboard(props) {
             'battery consumed'
       ],
       datasets: [{
-        data: soc?soc:[75,25],
+        data: soc.length>0?soc:[75,25],
         borderWidth: 0,
         radius: 50,
         backgroundColor: [
@@ -423,7 +423,7 @@ function dashboard(props) {
             '#7155A4'
         ]
       }],
-      text: soc?soc[0] +'%':'75%',
+      text: soc.length > 0?soc[0] +'%':'75%',
     };
 
     let dataLineChart = {
@@ -564,6 +564,7 @@ function dashboard(props) {
                                                 <div className="chart-state-header">
                                                     <h3>State of Charge</h3>
                                                     <div className="donut">
+                                                        {soc.length>0?
                                                         <Doughnut data={dataDoughnut}  width={100} height={100} options={
                                                             {
                                                                 responsive: true,
@@ -578,7 +579,10 @@ function dashboard(props) {
                                                                 cutoutPercentage: 90
                                                             }
                                                         } />
+                                                        : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
+                                                        </div>}
                                                     </div>
+                                                    {soc.length>0 ? 
                                                     <div className="d-table">
                                                         <div className="d-table-row">
                                                             <div className="d-table-cell">
@@ -593,6 +597,7 @@ function dashboard(props) {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    : ''}
                                                 </div>
                                             </div>
                                         </div>
