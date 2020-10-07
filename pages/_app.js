@@ -14,7 +14,6 @@ import '../css/detail.scss';
 import '../css/contact.scss'
 import 'nprogress/nprogress.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import "react-bootstrap-toggle/dist/react-bootstrap2-toggle"
 
 Router.events.on('routeChangeStart' , () => {
   // console.log('onRouteChangeStart triggered');
