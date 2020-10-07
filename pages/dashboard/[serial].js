@@ -370,7 +370,8 @@ function dashboard(props) {
     }
 
     useEffect(()=>{
-        console.log((dataLine.timestamps).length);
+        const asu = dataLine.timestamps
+        console.log(asu.length);
         console.log(soc);
     },[dataLine])
 
