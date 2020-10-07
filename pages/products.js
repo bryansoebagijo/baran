@@ -490,7 +490,8 @@ function products() {
                                                     <th scope="col">Condition</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            {(tempFetchData && (tempFetchData.length >0))? '<tbody>' : ''}
+
                                                 {(tempFetchData && (tempFetchData.length >0))? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
