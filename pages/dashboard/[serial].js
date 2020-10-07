@@ -351,7 +351,6 @@ function dashboard(props) {
 
             const { data, error } = useSWR(url, fetcher, {
                 refreshInterval: 300000,
-                dedupingInterval: 300000,
                 onSuccess: (newdata) => {
                     let dataSoc = parseInt(newdata.soc)
                     console.log(dataSoc);
