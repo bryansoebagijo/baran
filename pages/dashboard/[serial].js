@@ -370,7 +370,7 @@ function dashboard(props) {
     }
 
     useEffect(()=>{
-        console.log(dataLine);
+        console.log((dataLine.timestamps).length);
         console.log(soc);
     },[dataLine])
 
@@ -493,7 +493,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {(dataLine.timestamps).length > 1 ? <Line data={dataLineChart} options={
+                                                        {dataLine.timestamps > 1 ? <Line data={dataLineChart} options={
                                                             {
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
