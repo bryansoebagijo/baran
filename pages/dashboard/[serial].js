@@ -299,7 +299,8 @@ function dashboard(props) {
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
     const[dataDough, setDataDough]= useState([])
-    const[dataLine, setDataLine] = useState({usage:[], timestamps:[]})
+    const[dataLineUsage, setDataLineUsage] = useState([])
+    const[dataLineTime, setDataLineTime] = useState([])
     const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
@@ -354,7 +355,8 @@ function dashboard(props) {
                 onSuccess: (newdata) => {
                     let dataSoc = parseInt(newdata.soc)
                     console.log(dataSoc);
-                    setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
+                    setDataLineUsage(newdata.usage)
+                    setDataLineTime(newdata.timestamps)
                     let socleft = 100 - dataSoc
                     setSoc([dataSoc, socleft])
                 },
@@ -370,9 +372,9 @@ function dashboard(props) {
     }
 
     useEffect(()=>{
-        console.log((dataLine.timestamps).length);
+        console.log(dataLineTime);
         console.log(soc);
-    },[dataLine])
+    },[dataLineTime])
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -426,7 +428,7 @@ function dashboard(props) {
     };
 
     let dataLineChart = {
-        labels: dataLine.timestamps? dataLine.timestamps: [],
+        labels: dataLineTime? dataLineTime: [],
         datasets: [
             {
                 fill: false,
@@ -447,7 +449,7 @@ function dashboard(props) {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 scaleSteps :20,
-                data: dataLine.usage? dataLine.usage: []
+                data: dataLineUsage? dataLineUsage: []
             }
         ]
     };
@@ -493,7 +495,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {dataLine.timestamps[0]? <Line data={dataLineChart} options={
+                                                        {dataLineUsage.length > 0 ? <Line data={dataLineChart} options={
                                                             {
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
