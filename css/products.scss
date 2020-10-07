@@ -6,68 +6,69 @@
     transition: $e;
 }
 
-@media only screen and (min-width: 768px) {
-    .backdrop{
+.backdrop{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+}
+
+.filtercard{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background: white;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+    form{
         width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: rgba(0,0,0,0.3);
-        z-index: 100;
+        margin-top: 5%;
+        input{
+            margin-left: auto;
+        }
     }
-
-    .filtercard{
-        position: absolute;
-        top: 10%;
-        left: 25%;
-        width: 50%;
-        height: 50%;
-        background: white;
-        padding: 3%;
+    .buttons{
         display: flex;
-        flex-direction: column;
-        z-index: 200;
-        form{
-            width: 100%;
-            margin-top: 5%;
-            input{
-                margin-left: auto;
-            }
-        }
-        .buttons{
-            display: flex;
-            margin-top: 3%;
+        margin-top: 3%;
 
-            .ok{
-                margin-left: auto;
-            }
+        .ok{
+            margin-left: auto;
         }
     }
-    .sortcard{
-        position: absolute;
-        top: 10%;
-        left: 25%;
-        width: 50%;
-        height: 50%;
-        background: white;
-        padding: 3%;
+}
+.sortcard{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background: white;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+    form{
+        width: 100%;
+        margin-top: 5%;
+    }
+    .buttons{
         display: flex;
-        flex-direction: column;
-        z-index: 200;
-        form{
-            width: 100%;
-            margin-top: 5%;
-        }
-        .buttons{
-            display: flex;
-            margin-top: 3%;
+        margin-top: 3%;
 
-            .ok{
-                margin-left: auto;
-            }
+        .ok{
+            margin-left: auto;
         }
     }
+}
+
+@media only screen and (min-width: 768px) {
     .page-content{
 
         .search_section{
