@@ -72,7 +72,7 @@ function contact() {
                     </div>
                     <div className="col-md-10 col-sm-11 col-11 page-content">
                         <div className="container-fluid">
-                            <div className="page-header-contact">
+                            <div className="page-header">
                                 <div className='row'>
                                     <div className='col-9 col-dashboard-header'>
                                         <h2>Your Dashboard</h2>
