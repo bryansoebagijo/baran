@@ -58,7 +58,7 @@ export default function detail() {
                             <div className="page-header">
                                 <div className='row'>
                                     <div className='col-9 col-dashboard-header'>
-                                        <h2>Your Dashboard</h2>
+                                        <h2>Product Details</h2>
                                     </div>
                                     <div className='col-3 col-product-button'>
                                         <Link href='/products'>
