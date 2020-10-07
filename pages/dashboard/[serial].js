@@ -356,7 +356,7 @@ function dashboard(props) {
                     let dataSoc = parseInt(newdata.soc)
                     console.log(dataSoc);
                     setDataLine({usage:newdata.usage, timestamps:newdata.timestamps})
-                    let socleft = 100 - datasoc
+                    let socleft = 100 - dataSoc
                     setSoc([dataSoc, socleft])
                 },
                 onError: (error) => {
