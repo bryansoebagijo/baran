@@ -63,7 +63,7 @@ function contact() {
                     <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
                         <Sidebar>
                             <ul className="navbar-nav navi">
-                                <li className="nav-items"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
+                                <li className="nav-items"><Link href="/dashboard/[serial]/" as={`/dashboard/${serial}/`}><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
                                 <li className="nav-items"><Link href="/dashboard/[serial]/detail" as={`/dashboard/${serial}/detail`}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
                                 <li className="active"><Link href="#"><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                 <hr className="sidebar-divider"></hr>
