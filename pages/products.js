@@ -142,7 +142,6 @@ function products() {
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
         const { data, error } = useSWR(url, fetcher, {
-            dedupingInterval: 10000,
             onSuccess: (newdata) => {
                 console.log(newdata.products)
                 setTempFetchData(newdata.products)
