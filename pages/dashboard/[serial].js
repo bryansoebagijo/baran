@@ -493,7 +493,7 @@ function dashboard(props) {
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
                                                     <div className="line">
-                                                        {(dataLine.timestamps).length > 0 ? <Line data={dataLineChart} options={
+                                                        {Object.values(dataLine.timestamps).length > 0 ? <Line data={dataLineChart} options={
                                                             {
                                                                 responsive: true,
                                                                 maintainAspectRatio: false,
