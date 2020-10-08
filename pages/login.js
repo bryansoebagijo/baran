@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
  import {useDispatch} from 'react-redux';
  import {addUser} from '../components/store/actions/basicAction'
 
+ const isProd = process.env.NODE_ENV === 'production';
+ const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
 
 function login() {
     const isProd = process.env.NODE_ENV === 'production';
@@ -44,7 +46,7 @@ function login() {
         //         headers:{'Content-Type':'application/json'}
         //     })
 
-            const resp = await fetch('http://192.168.5.73/user/login',{
+            const resp = await fetch(PREFIX + '/user/login',{
                 method :'POST',
                 credentials:'include',
                 body : JSON.stringify(inputusername),

@@ -6,6 +6,9 @@ import {useRouter} from 'next/router'
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 
+const isProd = process.env.NODE_ENV === 'production';
+const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
+
 function contact() {
     const route = useRouter();
     const {serial} = route.query;
@@ -28,7 +31,7 @@ function contact() {
     if(username){
         //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-        const url = 'http://192.168.5.73/products/' + username;
+        const url = PREFIX + '/products/' + username;
 
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         

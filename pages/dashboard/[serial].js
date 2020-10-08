@@ -267,6 +267,9 @@ ChartJS.elements.Rectangle.prototype.draw = function ReDraw() {
   }
 }
 
+const isProd = process.env.NODE_ENV === 'production';
+const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
+
 //defaults.global.defaultFontSize = '5px';
 
 // some of this code is a variation on https://jsfiddle.net/cmyker/u6rr5moq/
@@ -346,7 +349,7 @@ function dashboard(props) {
 
     if (username) {
         if (time == 'today') {
-            const url = `http://192.168.5.73/energies/cdm/${serial}/${time}`;
+            const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
             const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 

@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const isProd = process.env.NODE_ENV === 'production';
+const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
+
 function products() {
 
     const classes = useStyles();
@@ -137,7 +140,7 @@ function products() {
     if(username){
         //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-        const url = 'http://192.168.5.73/products/' + username;
+        const url = PREFIX + '/products/' + username;
 
         const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
         
@@ -160,12 +163,6 @@ function products() {
 
     const INVENTORY_API_URL ='';
 
-    const fetchInventory = () => {
-        fetch(`${INVENTORY_API_URL}`)
-            .then(res => res.json())
-            .then(json => setDataLoc(json));
-    }
-
     const onEdit = ({id, currentLoc}) => {
         console.log('onEdit');
         setInEditMode({
@@ -176,7 +173,7 @@ function products() {
     }
 
     const updateInventory = async ({id, newLoc}) => {
-        const res = await fetch(`http://192.168.5.73/products/${id}/label`, {
+        const res = await fetch(PREFIX + `/products/${id}/label`, {
             method: "PATCH",
             credentials:'include',
             body: JSON.stringify({
