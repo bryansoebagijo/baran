@@ -28,6 +28,9 @@ jobs:
     - run: npm run build
       env:
         NEXT_PUBLIC_BASE_PATH: /baran
+    - run: npm run export
+      env:
+        NEXT_PUBLIC_BASE_PATH: /baran
     - run: touch ./out/.nojekyll
 
 
