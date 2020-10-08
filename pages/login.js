@@ -6,15 +6,13 @@ import { useRouter } from 'next/router';
  import {useDispatch} from 'react-redux';
  import {addUser} from '../components/store/actions/basicAction'
 
- const isProd = process.env.NODE_ENV === 'production';
- const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
-
 function login() {
     const isProd = process.env.NODE_ENV === 'production';
 
     const next_public = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_BASE_PATH:'';
     const PREFIX = isProd? next_public : '';
-
+  
+    const PREFIX2 = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73';
 
     const baran_white = require("../public/logo-baran.png");
     const route = useRouter();
@@ -46,7 +44,7 @@ function login() {
         //         headers:{'Content-Type':'application/json'}
         //     })
 
-            const resp = await fetch(PREFIX + '/user/login',{
+            const resp = await fetch(PREFIX2 + '/user/login',{
                 method :'POST',
                 credentials:'include',
                 body : JSON.stringify(inputusername),
