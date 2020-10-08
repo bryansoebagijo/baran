@@ -128,7 +128,7 @@ html,body{
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
-                                margin: 0 auto;
+                                transition: all .2s ease-in-out;
                                 i{
                                     margin-top: 3%;
                                     width: 100%;
@@ -162,8 +162,7 @@ html,body{
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
-                                margin: 0 auto;
-                                
+                                transition: all .2s ease-in-out;
                                 i{
                                     width: 100%;
                                     margin-top: 5%;
@@ -237,6 +236,7 @@ html,body{
                     ul{
 
                         li{
+                            transition: all .2s ease-in-out;
                             .nav-link.active{
                                 background: #0D2031;
                             }
@@ -244,10 +244,10 @@ html,body{
                             .nav-link{
                                 color: #AFBDD1;
                                 background: rgba(13, 32, 49, 0.5);
+                                transition: all .4s ease-in-out;
 
                                 &:hover{
                                     background: rgba(13, 32, 49, 0.8);
-                                    @include transition(.8s ease-in-out);
                                 }
                             }
                         }
@@ -258,6 +258,7 @@ html,body{
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
+                        transition: all .2s ease-in-out;
                         .custom-switch{
                             border-radius: 6px;
                             margin-right: 3%;
@@ -275,6 +276,8 @@ html,body{
                             }
                             label{
                                 font-size: calc(.8vh + .8vw);
+                                line-height:calc(1vw + 2vh);
+
                             }
                         }
                         button{
@@ -487,7 +490,6 @@ html,body{
         
                 .sidebarCol{
                     padding: 0;
-                    height: 100vh;
                     background: #0C1827;
                     display:flex;
                     flex-grow: 1;
@@ -511,7 +513,6 @@ html,body{
                             height: auto;
                             display: flex;
                             flex-direction: column;
-                            
     
                             .profile{
                                 margin-top: 20px;
@@ -550,19 +551,14 @@ html,body{
                                 background-color: rgba(242, 247, 255, 0.3);
                                 border-radius: 4px;
                                 width: 100%;
-                                height: 7%;
-                                margin: 0 auto;
-                                margin-top: 10%;
-                                padding-top: 10%;
-                                padding-bottom: 10%;
+                                height: calc(6vh + 6vw);
                                 display: flex;
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
-                                
+                                transition: all .4s ease-in-out;
                                 i{
                                     font-size: calc(2.5vw + 1vh);
-
                                     width: 100%;
                                     color: #44AACC;
                                     padding: 0;
@@ -582,16 +578,13 @@ html,body{
     
                             .nav-items{
                                 width: 100%;
-                                height: 7%;
-                                margin-top: 10%;
-                                margin: 0 auto;
+                                height: calc(6vh + 6vw);
                                 border-radius: 4px;
-                                padding-top: 10%;
-                                padding-bottom: 10%;
                                 display: flex;
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
+                                transition: all .4s ease-in-out;
                                 a{
                                     text-decoration: none;
                                 }
@@ -614,7 +607,6 @@ html,body{
                                 }
                                 &:hover{
                                     background-color: rgba(81, 99, 131, 0.5);
-                                    @include transition(.4s ease-in-out);
                                 }
                             }
                         }
@@ -668,6 +660,7 @@ html,body{
                     ul{
                         li{
                             font-size: calc(1vw + 1vh);
+                            transition: all .2s ease-in-out;
                             .nav-link.active{
                                 background: #0D2031;
                             }
@@ -687,10 +680,10 @@ html,body{
 
                     .online-button{
                         padding-right: 0;
-                        
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
+                        transition: all .2s ease-in-out;
                         .custom-switch{
                             background: linear-gradient(0deg, #9BC53D, #9BC53D);
                             border-radius: 6px;
@@ -699,11 +692,11 @@ html,body{
                             height: 90%;
                             display: flex;
                             margin-right: 3%;
-
                             justify-content: center;
                             align-items: center;
                             label{
                                 font-size: calc(1.2vh + 1.2vw);
+                                line-height:calc(1.5vw + 3vh);
                             }
                         }
                         button{
@@ -949,16 +942,12 @@ html,body{
                                 background-color: rgba(242, 247, 255, 0.3);
                                 border-radius: 4px;
                                 width: 100%;
-                                height: 7%;
-                                margin: 0 auto;
-                                margin-top: 10%;
-                                padding-top: 10%;
-                                padding-bottom: 10%;
+                                height: calc(6vh + 6vw);
                                 display: flex;
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
-                                
+                                transition: all .4s ease-in-out;
                                 a{
                                     text-decoration: none;
                                 }
@@ -984,16 +973,13 @@ html,body{
     
                             .nav-items{
                                 width: 100%;
-                                height: 7%;
-                                margin-top: 10%;
-                                margin: 0 auto;
+                                height: calc(6vh + 6vw);
                                 border-radius: 4px;
-                                padding-top: 10%;
-                                padding-bottom: 10%;
                                 display: flex;
                                 flex-direction: column;
                                 align-content: center;
                                 justify-content: center;
+                                transition: all .4s ease-in-out;
                                 a{
                                     text-decoration: none;
                                 }
@@ -1072,23 +1058,23 @@ html,body{
                             display: flex;
                             li{
                                 padding: 0;
-                                width: 33%;
-                                min-width: 60px;
+                                width: 32%;
                                 font-size: calc(.9vw + .9vh);
-                                align-items: center;
-                                justify-content: center;
+                                transition: all .2s ease-in-out;
                                 .nav-link.active{
-                                    width: 100%;
                                     text-align: center;
+                                    width: 100%;
                                     background: #0D2031;
                                 }
     
                                 .nav-link{
+                                    display: flex;
                                     width: 100%;
                                     color: #AFBDD1;
+                                    align-items: center;
+                                    justify-content: center;
                                     text-align: center;
                                     background: rgba(13, 32, 49, 0.5);
-    
                                     &:hover{
                                         background: rgba(13, 32, 49, 0.8);
                                         @include transition(.8s ease-in-out);
@@ -1101,15 +1087,16 @@ html,body{
 
                     .online-button{
                         padding-right: 0;
-                        
+                        padding-left: 0;
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
+                        transition: all .2s ease-in-out;
                         .custom-switch{
                             background: linear-gradient(0deg, #9BC53D, #9BC53D);
                             border-radius: 6px;
                             color: white;
-                            width: 40%;
+                            width: 100%;
                             height: 90%;
                             display: flex;
                             margin-right: 3%;
@@ -1117,15 +1104,17 @@ html,body{
                             justify-content: center;
                             align-items: center;
                             label{
-                                font-size: calc(1.2vh + 1.2vw);
+                                font-size: calc(.9vw + .9vh);
+                                line-height:calc(1.5vw + 3vh);
+                                margin-bottom: 10%;
                             }
                         }
                         button{
                             border: 0;
-                            width:40%;
+                            width:100%;
                             height: 90%;
                             background:  #2BA2B2;
-                            font-size: calc(1.2vh + 1.2vw);
+                            font-size: calc(.9vw + .9vh);
                             &:hover{
                                 background: #145057;
                             }

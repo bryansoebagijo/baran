@@ -97,7 +97,9 @@ html, body{
             }
         }
 
-        .fixed-bottom{
+        .footer-bottom{
+            position: absolute;
+            bottom: 1%;
             width: 100%;
             color: #A6ACBE;
             font-size: 2vh;
@@ -132,7 +134,7 @@ html, body{
         .login-content{
             width: 50%;
             margin-top: 7%;
-
+            margin-bottom: 20vh;
             .login-header{
                 color: white;
                 h1{
@@ -193,7 +195,9 @@ html, body{
             }
         }
 
-        .fixed-bottom{
+        .footer-bottom{
+            position: absolute;
+            bottom: 1%;
             width: 100%;
             color: #A6ACBE;
             font-size: 2vh;

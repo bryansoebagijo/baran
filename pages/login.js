@@ -128,7 +128,7 @@ function login() {
                         </div>
                     </form>
                 </div>
-                <footer className="fixed-bottom">
+                <footer className="footer-bottom">
                     <p>Baran Energy  2020</p>
                 </footer>
 

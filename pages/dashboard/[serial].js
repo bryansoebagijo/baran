@@ -474,10 +474,10 @@ function dashboard(props) {
                                 <div className="container-fluid">
                                     <div className="page-header">
                                         <div className='row'>
-                                            <div className='col-9 col-dashboard-header'>
+                                            <div className='col-8 col-dashboard-header'>
                                                 <h2>Your Dashboard</h2>
                                             </div>
-                                            <div className='col-3 col-product-button'>
+                                            <div className='col-4 col-product-button'>
                                                 <Link href='/products'>
                                                     <a>
                                                         Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
