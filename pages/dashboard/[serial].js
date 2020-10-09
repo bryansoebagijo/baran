@@ -687,3 +687,7 @@ export async function getStaticPaths(){
         paths, fallback:false
     }
 }
+
+export async function getStaticProps({params}){
+    return{props:''}
+}
