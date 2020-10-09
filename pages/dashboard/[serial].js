@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect} from 'react'
 import Head from '../../components/head'
 import Link from 'next/link'
 import {Doughnut, Line} from 'react-chartjs-2'
@@ -310,6 +310,12 @@ function dashboard(props) {
 
     const route = useRouter();
     const {serial} = route.query;
+
+    if(route.isFallback){
+        return(
+            <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
+        )
+    }
 
     const handlerTime = (time) =>{
         setTime(time);
@@ -678,7 +684,6 @@ export async function getStaticPaths(){
     const resp = await fetch(url,{
         method :'GET',
         credentials:'include',
-        body : JSON.stringify(inputusername),
         headers:{'Content-Type':'application/json'}
     })
 
