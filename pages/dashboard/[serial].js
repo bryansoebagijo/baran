@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import Navpil from '../../components/navpil';
 import Loader from 'react-loader-spinner'
 import {Bar} from 'react-chartjs-2';
+import fetch from 'isomorphic-unfetch'
 
 ChartJS.elements.Rectangle.prototype.draw = function ReDraw() {
     const { ctx } = this._chart;
@@ -268,7 +269,7 @@ ChartJS.elements.Rectangle.prototype.draw = function ReDraw() {
 }
 
 const isProd = process.env.NODE_ENV === 'production';
-const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
+const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
 //defaults.global.defaultFontSize = '5px';
 
@@ -667,4 +668,22 @@ function dashboard(props) {
             )
         }
 
-export default dashboard
+export default dashboard;
+
+export async function getStaticPaths(){
+    const url = PREFIX + '/products/' + username;
+    const resp = await fetch(url,{
+        method :'GET',
+        credentials:'include',
+        body : JSON.stringify(inputusername),
+        headers:{'Content-Type':'application/json'}
+    })
+
+    const datas = await resp.json()
+    const paths = (datas.products).map((data)=>({
+        params:{data}
+    }))
+    return{
+        paths, fallback:false
+    }
+}

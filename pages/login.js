@@ -12,7 +12,7 @@ function login() {
     const next_public = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_BASE_PATH:'';
     const PREFIX = isProd? next_public : '';
   
-    const PREFIX2 = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73';
+    const PREFIX2 = isProd?'https://test.vincentreynard.com' : 'http://192.168.5.73';
 
     const baran_white = require("../public/logo-baran.png");
     const route = useRouter();

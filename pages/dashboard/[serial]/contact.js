@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 
 const isProd = process.env.NODE_ENV === 'production';
-const PREFIX = isProd?'http://test.vincentreynard.com' : 'http://192.168.5.73'
+const PREFIX = isProd?'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
 function contact() {
     const route = useRouter();
