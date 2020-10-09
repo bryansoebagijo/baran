@@ -671,7 +671,10 @@ function dashboard(props) {
 export default dashboard;
 
 export async function getStaticPaths(){
-    const url = PREFIX + '/products/' + username;
+    const isProd = process.env.NODE_ENV === 'production';
+    const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
+
+    const url = PREFIX + '/products/bryan123';
     const resp = await fetch(url,{
         method :'GET',
         credentials:'include',
@@ -684,7 +687,7 @@ export async function getStaticPaths(){
         params:{serial:data}
     }))
     return{
-        paths, fallback:false
+        paths, fallback:true
     }
 }
 
