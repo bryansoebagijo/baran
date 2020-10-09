@@ -681,7 +681,7 @@ export async function getStaticPaths(){
 
     const datas = await resp.json()
     const paths = (datas.products).map((data)=>({
-        params:{data}
+        params:{serial:data}
     }))
     return{
         paths, fallback:false
