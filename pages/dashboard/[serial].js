@@ -677,22 +677,22 @@ function dashboard(props) {
 export default dashboard;
 
 export async function getStaticPaths(){
-    const isProd = process.env.NODE_ENV === 'production';
-    const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
+    // const isProd = process.env.NODE_ENV === 'production';
+    // const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
-    const url = PREFIX + '/products/bryan123';
-    const resp = await fetch(url,{
-        method :'GET',
-        credentials:'include',
-        headers:{'Content-Type':'application/json'}
-    })
+    // const url = PREFIX + '/products/bryan123';
+    // const resp = await fetch(url,{
+    //     method :'GET',
+    //     credentials:'include',
+    //     headers:{'Content-Type':'application/json'}
+    // })
 
-    const datas = await resp.json()
-    const paths = (datas.products).map((data)=>({
-        params:{serial:data}
-    }))
+    // const datas = await resp.json()
+    // const paths = (datas.products).map((data)=>({
+    //     params:{serial:data}
+    // }))
     return{
-        paths, fallback:true
+        params:{serial:'1092-PW'}, fallback:true
     }
 }
 
