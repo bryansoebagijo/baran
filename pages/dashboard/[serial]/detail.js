@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Head from '../../../components/head';
 import Sidebar from '../../../components/sidebar';
-import Navpil from '../../../components/navpil';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useSelector } from 'react-redux';

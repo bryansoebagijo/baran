@@ -44,10 +44,10 @@ function Navpil({handlerTime, time, serial}) {
         }
     },[togglestate])
 
-    useEffect(()=>{
-        console.log(togglestate);
-        console.log(serial);
-    },[togglestate])
+    // useEffect(()=>{
+    //     console.log(togglestate);
+    //     console.log(serial);
+    // },[togglestate])
 
     return (
         <div className="row navpil">

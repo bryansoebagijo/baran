@@ -7,8 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useDispatch} from 'react-redux'
-import {reset} from './store/actions/basicAction'
+//import { useDispatch} from 'react-redux'
+//import {reset} from './store/actions/basicAction'
 //import '../static/css/dashboard.scss'
 
 const StyledMenu = withStyles({
@@ -53,10 +53,10 @@ function sidebar(props) {
         setAnchorEl(null);
       };
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const logout =() =>{
         sessionStorage.clear();
-        dispatch(reset);
+        //dispatch(reset);
         alert('you have been logged out');
         location.replace('/');
     }
