@@ -313,8 +313,7 @@ function dashboard(props) {
 
     if(route.isFallback){
         return(
-            // <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
-            <div>LOADING ......</div>
+            <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
         )
     }
 
@@ -692,11 +691,13 @@ export async function getStaticPaths(){
     // const paths = (datas.products).map((data)=>({
     //     params:{serial:data}
     // }))
+
     return{
         paths:[{params:{serial:'1092-PW'}}], fallback:true
     }
 }
 
 export async function getStaticProps({params}){
+    await new Promise(res=> setTimeout(res, 3000))
     return{props:{}, revalidate:5}
 }
