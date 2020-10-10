@@ -339,54 +339,54 @@ function dashboard({test}) {
         console.log(time);
     },[time]);
 
-    const username = useSelector(state =>{
-        return state.state.username
-    })
+    // const username = useSelector(state =>{
+    //     return state.state.username
+    // })
 
-    console.log(username);
+    // console.log(username);
 
-    useEffect(()=>{
-        if(!username){
-            alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
-        }
-        else{
-            setuser(username)
-        }
-    },[]);
+    // useEffect(()=>{
+    //     if(!username){
+    //         alert('you are not loggin yet!')
+    //         // route.replace({
+    //         //     pathname: '/'
+    //         // })
+    //     }
+    //     else{
+    //         setuser(username)
+    //     }
+    // },[]);
 
-    //console.log(props)
+    // //console.log(props)
     
-    // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
+    // // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-    if (username) {
-        if (time == 'today') {
-            const url = PREFIX + `/energies/cdm/${serial}/${time}`;
+    // if (username) {
+    //     if (time == 'today') {
+    //         const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
-            const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+    //         const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
-            const { data, error } = useSWR(url, fetcher, {
-                refreshInterval: 300000,
-                onSuccess: (newdata) => {
-                    let dataSoc = parseInt(newdata.soc)
-                    console.log(dataSoc);
-                    setDataLineUsage(newdata.usage)
-                    setDataLineTime(newdata.timestamps)
-                    let socleft = 100 - dataSoc
-                    setSoc([dataSoc, socleft])
-                },
-                onError: (error) => {
-                    console.log(error);
-                    alert('your session is expired!')
-                    route.replace({
-                        pathname: '/'
-                    })
-                }
-            })
-        }
-    }
+    //         const { data, error } = useSWR(url, fetcher, {
+    //             refreshInterval: 300000,
+    //             onSuccess: (newdata) => {
+    //                 let dataSoc = parseInt(newdata.soc)
+    //                 console.log(dataSoc);
+    //                 setDataLineUsage(newdata.usage)
+    //                 setDataLineTime(newdata.timestamps)
+    //                 let socleft = 100 - dataSoc
+    //                 setSoc([dataSoc, socleft])
+    //             },
+    //             onError: (error) => {
+    //                 console.log(error);
+    //                 alert('your session is expired!')
+    //                 route.replace({
+    //                     pathname: '/'
+    //                 })
+    //             }
+    //         })
+    //     }
+    // }
 
     useEffect(()=>{
         console.log(typeof(dataLineTime));
