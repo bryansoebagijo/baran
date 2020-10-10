@@ -311,10 +311,13 @@ function dashboard({test}) {
     const route = useRouter();
     const {serial} = route.query;
 
-    if(route.isFallback){
-        return(
+    const [isSSGFallbackInitialBuild] = useState(isEmpty(pageProps) && route?.isFallback === true);
+
+    // Display a loader (we could use a skeleton too) when this happens, so that the user doesn't face a white page until the page is generated and displayed
+    if (isSSGFallbackInitialBuild && router.isFallback) { // When router.isFallback becomes "false", then it'll mean the page has been generated and rendered and we can display it, instead of the loader
+        return (
             <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
-        )
+        );
     }
 
     const handlerTime = (time) =>{
