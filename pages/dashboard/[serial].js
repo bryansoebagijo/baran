@@ -332,6 +332,8 @@ function dashboard(props) {
         console.log(time);
     },[time]);
 
+    const username = ''
+
     // const username = useSelector(state =>{
     //     return state.state.username
     // })
