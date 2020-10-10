@@ -332,23 +332,23 @@ function dashboard(props) {
         console.log(time);
     },[time]);
 
-    const username = useSelector(state =>{
-        return state.state.username
-    })
+    // const username = useSelector(state =>{
+    //     return state.state.username
+    // })
 
-    console.log(username);
+    // console.log(username);
 
-    useEffect(()=>{
-        if(!username){
-            alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
-        }
-        else{
-            setuser(username)
-        }
-    },[]);
+    // useEffect(()=>{
+    //     if(!username){
+    //         alert('you are not loggin yet!')
+    //         // route.replace({
+    //         //     pathname: '/'
+    //         // })
+    //     }
+    //     else{
+    //         setuser(username)
+    //     }
+    // },[]);
 
     //console.log(props)
     
@@ -698,6 +698,6 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({params}){
-    await new Promise(res=> setTimeout(res, 3000))
+    await new Promise(res=> setTimeout(res, 5000))
     return{props:{}, revalidate:5}
 }
