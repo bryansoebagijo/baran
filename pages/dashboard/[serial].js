@@ -298,7 +298,7 @@ ChartJS.helpers.extend(ChartJS.controllers.doughnut.prototype, {
   }
 });
 
-function dashboard(props) {
+function dashboard({test}) {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
@@ -699,5 +699,5 @@ export async function getStaticPaths(){
 
 export async function getStaticProps({params}){
     //await new Promise(res=> setTimeout(res, 5000))
-    return{props:{}, revalidate:5}
+    return{props:{test:'test'}, revalidate:5}
 }
