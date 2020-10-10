@@ -700,7 +700,7 @@ export async function getStaticPaths(){
     // }))
 
     return{
-        paths:[{params:{serial:'1092-PW'}}], fallback:true
+        paths:[{params:{serial:'1019-PP-001'}}], fallback:true
     }
 }
 
