@@ -298,6 +298,10 @@ ChartJS.helpers.extend(ChartJS.controllers.doughnut.prototype, {
   }
 });
 
+function isEmpty(val){
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+}
+
 function dashboard({test}) {
 
     const[time, setTime] = useState('today')
@@ -311,7 +315,7 @@ function dashboard({test}) {
     const route = useRouter();
     const {serial} = route.query;
 
-    const [isSSGFallbackInitialBuild] = useState(isEmpty(pageProps) && route?.isFallback === true);
+    const [isSSGFallbackInitialBuild] = useState(isEmpty(test) && route?.isFallback === true);
 
     // Display a loader (we could use a skeleton too) when this happens, so that the user doesn't face a white page until the page is generated and displayed
     if (isSSGFallbackInitialBuild && router.isFallback) { // When router.isFallback becomes "false", then it'll mean the page has been generated and rendered and we can display it, instead of the loader
