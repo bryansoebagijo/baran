@@ -482,8 +482,8 @@ function dashboard() {
                                 <Sidebar>
                                     <ul className="navbar-nav navi">
                                         <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href={{pathname:"/dashboard/detail", query:{serial:serial} }}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href={{pathname:"/dashboard/contact", query:{serial:serial} }}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
+                                        <li className="nav-items"><Link href={{pathname:"/dashboard/detail", query:{serial:serial} }} passHref><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
+                                        <li className="nav-items"><Link href={{pathname:"/dashboard/contact", query:{serial:serial} }} passHref><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                         <hr className="sidebar-divider"></hr> 
                                     </ul>
                                 </Sidebar>

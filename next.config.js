@@ -4,22 +4,22 @@ const next_public = process.env.NEXT_PUBLIC_BASE_PATH? process.env.NEXT_PUBLIC_B
 // next.config.js
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
-const withPWA = require('next-pwa');
+//const withPWA = require('next-pwa');
 //const withCSS = require('@zeit/next-css');
 
-const pwa = withPWA({
-  pwa:{
-    disable: process.env.NODE_ENV === 'development',
-    register : true,
-    dest:'public',
-    scope:'/app', 
-    subdomainPrefix: isProd?next_public:''
-  }
-})
+// const pwa = withPWA({
+//   pwa:{
+//     disable: process.env.NODE_ENV === 'development',
+//     register : true,
+//     dest:'public',
+//     scope:'/app', 
+//     subdomainPrefix: isProd?next_public:''
+//   }
+// })
 
 module.exports = 
   withPlugins([
-    [withImages,pwa]
+    [withImages]
   ],
   {
     exportPathMap: async function(defaultPathMap, {dev, dir,outDir, distDir, buildId })
