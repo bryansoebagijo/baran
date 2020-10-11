@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import Head from '../../../components/head';
-import Sidebar from '../../../components/sidebar';
+import Head from '../../components/head';
+import Sidebar from '../../components/sidebar';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useSelector } from 'react-redux';
 
-export default function detail() {
+export default function detail({serial}) {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
 
-    const icon1 = require('../../../public/circuit-svgrepo-com.svg');
-    const icon2 = require('../../../public/hardware-svgrepo-com.svg');
+    const icon1 = require('../../public/circuit-svgrepo-com.svg');
+    const icon2 = require('../../public/hardware-svgrepo-com.svg');
 
     const username = useSelector(state =>{
         return state.state.username
@@ -34,8 +34,8 @@ export default function detail() {
         console.log(time);
     };
 
-    const route = useRouter();
-    const {serial} = route.query;
+    // const route = useRouter();
+    // const {serial} = route.query;
 
     return (
         <div className="dashboard">
@@ -45,9 +45,9 @@ export default function detail() {
                     <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
                         <Sidebar>
                             <ul className="navbar-nav navi">
-                                <li className="nav-items"><Link href="/dashboard/[serial]/" as={`/dashboard/${serial}/`}><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{pathname:"/dashboard", query:{serial:serial} }}><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
                                 <li className="active"><Link href="#"><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="/dashboard/[serial]/contact" as={`/dashboard/${serial}/contact`}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{pathname:"/dashboard/contact", query:{serial:serial} }}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                 <hr className="sidebar-divider"></hr>
                             </ul>
                         </Sidebar>
@@ -181,4 +181,10 @@ export default function detail() {
         </div>
 
     )
+}
+
+detail.getInitialProps = async ({query}) =>{
+    const {serial} = query
+
+    return {serial}
 }

@@ -493,7 +493,7 @@ function products() {
                                                                 <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
-                                                                    <Link href="/dashboard/[serial]" as={`/dashboard/${product.serialnumberid}`} key={product.serialnumberid}>
+                                                                    <Link href={{pathname:"/dashboard", query:{serial: product.serialnumberid} }} key={product.serialnumberid}>
                                                                         <a>{product.serialnumberid}</a>
                                                                     </Link>
                                                                 </td>

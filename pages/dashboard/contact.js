@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Head from '../../../components/head';
-import Sidebar from '../../../components/sidebar';
+import Head from '../../components/head';
+import Sidebar from '../../components/sidebar';
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import { useSelector } from 'react-redux';
@@ -9,9 +9,9 @@ import useSWR from 'swr';
 const isProd = process.env.NODE_ENV === 'production';
 const PREFIX = isProd?'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
-function contact() {
-    const route = useRouter();
-    const {serial} = route.query;
+function contact({serial}) {
+    // const route = useRouter();
+    // const {serial} = route.query;
     const [products, setProducts] = useState([])
     const [productSelect, setProductSelect] = useState('DEFAULT')
 
@@ -56,6 +56,7 @@ function contact() {
 
     useEffect(()=>{
         console.log(productSelect);
+        console.log(serial);
     },[productSelect])
     return (
         <div className="dashboard">
@@ -65,8 +66,8 @@ function contact() {
                     <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
                         <Sidebar>
                             <ul className="navbar-nav navi">
-                                <li className="nav-items"><Link href="/dashboard/[serial]/" as={`/dashboard/${serial}/`}><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
-                                <li className="nav-items"><Link href="/dashboard/[serial]/detail" as={`/dashboard/${serial}/detail`}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{pathname:"/dashboard/", query:{serial:serial} }}><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{pathname:"/dashboard/detail", query:{serial:serial} }}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
                                 <li className="active"><Link href="#"><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                 <hr className="sidebar-divider"></hr>
                             </ul>
@@ -164,3 +165,9 @@ function contact() {
 }
 
 export default contact
+
+contact.getInitialProps = async ({query}) =>{
+    const {serial} = query
+
+    return {serial}
+}

@@ -302,7 +302,7 @@ function isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
 
-function dashboard({test}) {
+function dashboard({serial}) {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
@@ -312,8 +312,8 @@ function dashboard({test}) {
     const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
-    const route = useRouter();
-    const {serial} = route.query;
+    // const route = useRouter();
+    // const {serial} = route.query;
 
     // const [isSSGFallbackInitialBuild] = useState(isEmpty(test) && route?.isFallback === true);
 
@@ -337,6 +337,7 @@ function dashboard({test}) {
 
     useEffect(()=>{
         console.log(time);
+        console.log(serial);
     },[time]);
 
     const username = useSelector(state =>{
@@ -481,8 +482,8 @@ function dashboard({test}) {
                                 <Sidebar>
                                     <ul className="navbar-nav navi">
                                         <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href="/dashboard/[serial]/detail" as={`/dashboard/${serial}/detail`}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
-                                        <li className="nav-items"><Link href="/dashboard/[serial]/contact" as={`/dashboard/${serial}/contact`}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
+                                        <li className="nav-items"><Link href={{pathname:"/dashboard/detail", query:{serial:serial} }}><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
+                                        <li className="nav-items"><Link href={{pathname:"/dashboard/contact", query:{serial:serial} }}><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
                                         <hr className="sidebar-divider"></hr> 
                                     </ul>
                                 </Sidebar>
@@ -683,29 +684,35 @@ function dashboard({test}) {
 
 export default dashboard;
 
-export function getStaticPaths(ctx){
+dashboard.getInitialProps = async ({query}) =>{
+    const {serial} = query
+
+    return {serial}
+}
+
+// export function getStaticPaths(ctx){
     
-    // const isProd = process.env.NODE_ENV === 'production';
-    // const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
+//     // const isProd = process.env.NODE_ENV === 'production';
+//     // const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
-    // const url = PREFIX + '/products/bryan123';
-    // const resp = await fetch(url,{
-    //     method :'GET',
-    //     credentials:'include',
-    //     headers:{'Content-Type':'application/json'}
-    // })
+//     // const url = PREFIX + '/products/bryan123';
+//     // const resp = await fetch(url,{
+//     //     method :'GET',
+//     //     credentials:'include',
+//     //     headers:{'Content-Type':'application/json'}
+//     // })
 
-    // const datas = await resp.json()
-    // const paths = (datas.products).map((data)=>({
-    //     params:{serial:data}
-    // }))
+//     // const datas = await resp.json()
+//     // const paths = (datas.products).map((data)=>({
+//     //     params:{serial:data}
+//     // }))
 
-    return{
-        paths:[{params:{serial:'1019-PP-001'}}], fallback:false
-    }
-}
+//     return{
+//         paths:[{params:{serial:'1019-PP-001'}}], fallback:false
+//     }
+// }
 
-export function getStaticProps({params}){
-    //await new Promise(res=> setTimeout(res, 5000))
-    return{props:{test:'test'}, revalidate:5}
-}
+// export function getStaticProps({params}){
+//     //await new Promise(res=> setTimeout(res, 5000))
+//     return{props:{test:'test'}, revalidate:5}
+// }
