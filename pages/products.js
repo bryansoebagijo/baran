@@ -494,7 +494,7 @@ function products() {
                                                                 <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
                                                                 <td>
                                                                     {/* <Link href={{pathname:"/dashboard", query:{serial: product.serialnumberid} }} key={product.serialnumberid}> */}
-                                                                        <a href={`/dashboard?serial=${product.serialnumberid}`}>{product.serialnumberid}</a>
+                                                                        <a onClick={()=>location.assign(`/dashboard?serial=${product.serialnumberid}`)}>{product.serialnumberid}</a>
                                                                     {/* </Link> */}
                                                                 </td>
                                                                 <td>{product.producttype}</td>
