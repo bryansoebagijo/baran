@@ -27,7 +27,7 @@ module.exports =
       return{
         '/': {page :'/'},
         '/products':{page: '/products'},
-        '/dashboard':{page:'/dashboard/index'},
+        '/dashboard':{page:'/dashboard'},
         '/dashboard/contact' :{page:'/dashboard/contact'},
         '/dashboard/detail' :{page:'dashboard/detail'}
       }
