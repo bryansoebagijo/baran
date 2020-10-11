@@ -302,7 +302,7 @@ function isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
 
-function dashboard({serial}) {
+function dashboard() {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
@@ -684,11 +684,11 @@ function dashboard({serial}) {
 
 export default dashboard;
 
-dashboard.getInitialProps = async ({query}) =>{
-    const {serial} = query
+// dashboard.getInitialProps = async ({query}) =>{
+//     const {serial} = query
 
-    return {serial}
-}
+//     return {serial}
+// }
 
 // export function getStaticPaths(ctx){
     
