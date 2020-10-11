@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useSelector } from 'react-redux';
 
-export default function detail({serial}) {
+export default function detail() {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
@@ -34,8 +34,8 @@ export default function detail({serial}) {
         console.log(time);
     };
 
-    // const route = useRouter();
-    // const {serial} = route.query;
+    const route = useRouter();
+    const {serial} = route.query;
 
     return (
         <div className="dashboard">
@@ -183,8 +183,8 @@ export default function detail({serial}) {
     )
 }
 
-detail.getInitialProps = async ({query}) =>{
-    const {serial} = query
+// detail.getInitialProps = async ({query}) =>{
+//     const {serial} = query
 
-    return {serial}
-}
+//     return {serial}
+// }

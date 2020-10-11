@@ -302,7 +302,7 @@ function isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
 
-function dashboard({serial}) {
+function dashboard() {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
@@ -312,8 +312,8 @@ function dashboard({serial}) {
     const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
-    // const route = useRouter();
-    // const {serial} = route.query;
+    const route = useRouter();
+    const {serial} = route.query;
 
     // const [isSSGFallbackInitialBuild] = useState(isEmpty(test) && route?.isFallback === true);
 
@@ -684,11 +684,11 @@ function dashboard({serial}) {
 
 export default dashboard;
 
-dashboard.getInitialProps = async ({query}) =>{
-    const {serial} = query
+// dashboard.getInitialProps = async ({query}) =>{
+//     const {serial} = query
 
-    return {serial}
-}
+//     return {serial}
+// }
 
 // export function getStaticPaths(ctx){
     

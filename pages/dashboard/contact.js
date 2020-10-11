@@ -9,9 +9,9 @@ import useSWR from 'swr';
 const isProd = process.env.NODE_ENV === 'production';
 const PREFIX = isProd?'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
-function contact({serial}) {
-    // const route = useRouter();
-    // const {serial} = route.query;
+function contact() {
+    const route = useRouter();
+    const {serial} = route.query;
     const [products, setProducts] = useState([])
     const [productSelect, setProductSelect] = useState('DEFAULT')
 
@@ -166,8 +166,8 @@ function contact({serial}) {
 
 export default contact
 
-contact.getInitialProps = async ({query}) =>{
-    const {serial} = query
+// contact.getInitialProps = async ({query}) =>{
+//     const {serial} = query
 
-    return {serial}
-}
+//     return {serial}
+// }
