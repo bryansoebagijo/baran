@@ -371,6 +371,9 @@ function dashboard() {
             const { data, error } = useSWR(url, fetcher, {
                 refreshInterval: 300000,
                 onSuccess: (newdata) => {
+                    if(newdata.status === 404){
+                        console.log(('data is not available now'));
+                    }
                     let dataSoc = parseInt(newdata.soc)
                     console.log(dataSoc);
                     setDataLineUsage(newdata.usage)
