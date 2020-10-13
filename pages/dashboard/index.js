@@ -306,7 +306,7 @@ function dashboard() {
 
     const[time, setTime] = useState('today')
     const[user, setuser] = useState('')
-    const[dataDough, setDataDough]= useState([])
+    const[available, setAvailable]= useState(true)
     const[dataLineUsage, setDataLineUsage] = useState([])
     const[dataLineTime, setDataLineTime] = useState([])
     const[legend, setLegend] = useState([])
@@ -373,7 +373,14 @@ function dashboard() {
                 onSuccess: (newdata) => {
                     if(newdata.status === 404){
                         console.log(('data is not available now'));
+                        setAvailable(false)
                     }
+                    if(newdata.status === 401){
+                        alert('your session has expired!')
+                        sessionStorage.clear();
+                        route.prefetch('/');
+                    }
+                    setAvailable(true)
                     let dataSoc = parseInt(newdata.soc)
                     console.log(dataSoc);
                     setDataLineUsage(newdata.usage)
@@ -515,6 +522,7 @@ function dashboard() {
                                             <div className="container-fluid total-usage">
                                                 <div className="usage-header">
                                                     <h3>Total usage</h3>
+                                                    {available?
                                                     <div className="line">
                                                         {(dataLineUsage && (dataLineUsage.length > 0)) ? <Line data={dataLineChart} options={
                                                             {
@@ -575,7 +583,8 @@ function dashboard() {
                                                         }></Line>
                                                             : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
                                                         </div>
-                                                </div>
+                                                    : <div className='d-flex mt-3 justify-content-center align-items-center' style={{"width":"100%", "height":"100%"}}>No data available</div> }
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -585,6 +594,7 @@ function dashboard() {
                                             <div className="container-fluid chart-state">
                                                 <div className="chart-state-header">
                                                     <h3>State of Charge</h3>
+                                                    {available?
                                                     <div className="donut">
                                                         {(soc && (soc.length>0))?
                                                         <Doughnut data={dataDoughnut}  width={100} height={100} options={
@@ -604,6 +614,7 @@ function dashboard() {
                                                         : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
                                                         </div>}
                                                     </div>
+                                                    : <div className='d-flex mt-3 justify-content-center align-items-center' style={{"width":"100%", "height":"100%"}}></div>}
                                                     {(soc && (soc.length>0))? 
                                                     <div className="d-table">
                                                         <div className="d-table-row">
