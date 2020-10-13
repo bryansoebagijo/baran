@@ -375,18 +375,20 @@ function dashboard() {
                         console.log(('data is not available now'));
                         setAvailable(false)
                     }
-                    if(newdata.status === 401){
+                    else if(newdata.status === 401){
                         alert('your session has expired!')
                         sessionStorage.clear();
                         route.prefetch('/');
                     }
-                    setAvailable(true)
-                    let dataSoc = parseInt(newdata.soc)
-                    console.log(dataSoc);
-                    setDataLineUsage(newdata.usage)
-                    setDataLineTime(newdata.timestamps)
-                    let socleft = 100 - dataSoc
-                    setSoc([dataSoc, socleft])
+                    else{
+                        setAvailable(true)
+                        let dataSoc = parseInt(newdata.soc)
+                        console.log(dataSoc);
+                        setDataLineUsage(newdata.usage)
+                        setDataLineTime(newdata.timestamps)
+                        let socleft = 100 - dataSoc
+                        setSoc([dataSoc, socleft])
+                    }
                 },
                 onError: (error) => {
                     console.log(error);
