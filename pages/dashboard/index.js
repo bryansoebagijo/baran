@@ -305,7 +305,6 @@ function dashboard() {
     const[available, setAvailable]= useState(true)
     const[dataLineUsage, setDataLineUsage] = useState([])
     const[dataLineTime, setDataLineTime] = useState([])
-    const[legend, setLegend] = useState([])
     const[soc, setSoc] = useState([])
 
     const route = useRouter();
@@ -397,16 +396,79 @@ function dashboard() {
         }
         else if(time == 'yesterday'){
             console.log('this is yesterday');
+            const url = PREFIX + `/energies/cdm/${serial}/today`;
+
+            const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+
+            const { data, error } = useSWR(url, fetcher, {
+                refreshInterval: 300000,
+                onSuccess: (newdata) => {
+                    if(newdata.status === 404){
+                        console.log(('data is not available now'));
+                        setAvailable(false)
+                    }
+                    else if(newdata.status === 401){
+                        alert('your session has expired!')
+                        sessionStorage.clear();
+                        route.replace('/');
+                    }
+                    else{
+                        setAvailable(true)
+                        let dataSoc = parseInt(newdata.soc)
+                        console.log(dataSoc);
+                        setDataLineUsage(newdata.usage)
+                        setDataLineTime(newdata.timestamps)
+                        let socleft = 100 - dataSoc
+                        setSoc([dataSoc, socleft])
+                    }
+                },
+                onError: (error) => {
+                    console.log(error);
+                    alert('your session is expired!')
+                    route.replace({
+                        pathname: '/'
+                    })
+                }
+            })
         }
         else if(time == 'weekly'){
             console.log('this is weekly');
+            const url = PREFIX + `/energies/cdm/${serial}/today`;
+
+            const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+
+            const { data, error } = useSWR(url, fetcher, {
+                refreshInterval: 300000,
+                onSuccess: (newdata) => {
+                    if(newdata.status === 404){
+                        console.log(('data is not available now'));
+                        setAvailable(false)
+                    }
+                    else if(newdata.status === 401){
+                        alert('your session has expired!')
+                        sessionStorage.clear();
+                        route.replace('/');
+                    }
+                    else{
+                        setAvailable(true)
+                        let dataSoc = parseInt(newdata.soc)
+                        console.log(dataSoc);
+                        setDataLineUsage(newdata.usage)
+                        setDataLineTime(newdata.timestamps)
+                        let socleft = 100 - dataSoc
+                        setSoc([dataSoc, socleft])
+                    }
+                },
+                onError: (error) => {
+                    console.log(error);
+                    alert('your session is expired!')
+                    route.replace({
+                        pathname: '/'
+                    })
+                }
+            })
         }
     }
-
-    useEffect(()=>{
-        console.log(typeof(dataLineTime));
-        console.log(soc);
-    },[dataLineTime])
 
     const dataBar = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
