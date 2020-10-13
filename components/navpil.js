@@ -58,13 +58,13 @@ function Navpil({handlerTime, time, serial}) {
                 <div className="navpill">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <a className={time =='today'? "nav-link active":"nav-link"} href='' onClick={()=>handlerTime('today')}>today</a>
+                            <a className={time =='today'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('today')}>today</a>
                         </li>
                         <li className="nav-item">
-                            <a className={time =='yesterday'? "nav-link active":"nav-link"} href='' onClick={()=>handlerTime('yesterday')}>Yesterday</a>
+                            <a className={time =='yesterday'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('yesterday')}>Yesterday</a>
                         </li>
                         <li className="nav-item">
-                            <a className={time =='weekly'? "nav-link active":"nav-link"} href='' onClick={()=>handlerTime('weekly')}>Weekly</a>
+                            <a className={time =='weekly'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('weekly')}>Weekly</a>
                         </li>
                     </ul>
                 </div>
