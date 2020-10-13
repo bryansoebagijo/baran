@@ -31,7 +31,7 @@ function Navpil({handlerTime, time, serial}) {
         }
         else{
             try{
-                const resp = await fetch('http://192.168.5.73/commands/shutdown',{
+                const resp = await fetch(PREFIX + '/commands/shutdown',{
                     method :'POST',
                     credentials:'include',
                     body : JSON.stringify({'serialnumberid' : serial}),
