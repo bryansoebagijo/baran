@@ -339,8 +339,6 @@ function dashboard() {
         return state.state.username
     })
 
-    console.log(username);
-
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!')
