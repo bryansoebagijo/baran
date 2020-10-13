@@ -636,7 +636,7 @@ function dashboard() {
                                                                             display: false
                                                                         },
                                                                         ticks: {
-                                                                            maxRotation: 0,
+                                                                            maxRotation: 45,
                                                                             autoSkip: true,
                                                                             maxTicksLimit: 3
 
