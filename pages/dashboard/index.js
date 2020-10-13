@@ -345,9 +345,9 @@ function dashboard() {
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
+            route.replace({
+                pathname: '/'
+            })
         }
         else{
             setuser(username)
@@ -374,7 +374,7 @@ function dashboard() {
                     else if(newdata.status === 401){
                         alert('your session has expired!')
                         sessionStorage.clear();
-                        route.prefetch('/');
+                        route.replace('/');
                     }
                     else{
                         setAvailable(true)
@@ -394,6 +394,12 @@ function dashboard() {
                     })
                 }
             })
+        }
+        else if(time == 'yesterday'){
+            console.log('this is yesterday');
+        }
+        else if(time == 'weekly'){
+            console.log('this is weekly');
         }
     }
 

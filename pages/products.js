@@ -149,7 +149,7 @@ function products() {
                 if(newdata.status === 401){
                     alert('your session has expired!')
                     sessionStorage.clear();
-                    route.prefetch('/')
+                    route.replace('/')
                 }
                 console.log(newdata.products)
                 setTempFetchData(newdata.products)

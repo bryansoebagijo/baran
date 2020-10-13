@@ -22,9 +22,9 @@ function contact() {
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
+            route.replace({
+                pathname: '/'
+            })
         }
     },[]);
 
@@ -37,6 +37,10 @@ function contact() {
         
         const { data, error } = useSWR(url, fetcher, {
             onSuccess: (newdata) => {
+                if(newdata.status === 401){
+                    alert('your session has expired!')
+                    route.replace('/')
+                }
                 console.log(newdata.products)
                 setProducts(newdata.products)
             },
