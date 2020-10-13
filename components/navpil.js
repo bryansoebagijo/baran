@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import useSWR from 'swr';
 import useDidMountEffect from './useDidMountEffect';
 
+const isProd = process.env.NODE_ENV === 'production';
+const PREFIX = isProd? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
+
 function Navpil({handlerTime, time, serial}) {
     const [togglestate, setToggleState] = useState(true)
 
@@ -12,7 +15,7 @@ function Navpil({handlerTime, time, serial}) {
     useDidMountEffect(async ()=>{
         if(togglestate){
             try{
-                const resp = await fetch('http://192.168.5.73/commands/activate',{
+                const resp = await fetch(PREFIX + '/commands/activate',{
                     method :'POST',
                     credentials:'include',
                     body : JSON.stringify({'serialnumberid' : serial}),

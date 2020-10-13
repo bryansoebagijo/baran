@@ -298,10 +298,6 @@ ChartJS.helpers.extend(ChartJS.controllers.doughnut.prototype, {
   }
 });
 
-function isEmpty(val){
-    return (val === undefined || val == null || val.length <= 0) ? true : false;
-}
-
 function dashboard() {
 
     const[time, setTime] = useState('today')
