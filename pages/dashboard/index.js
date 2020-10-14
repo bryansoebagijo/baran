@@ -392,7 +392,9 @@ function dashboard() {
                             setSoc([dataSoc, socleft])
                         }
                     },
-
+                    onError:(error)=>{
+                        console.log("hadehhh");
+                    }
                 })
             }
             catch(error){
