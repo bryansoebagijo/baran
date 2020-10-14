@@ -6,6 +6,7 @@ const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withPWA = require('next-pwa');
 //const withCSS = require('@zeit/next-css');
+const runtimeCaching = require('next-pwa/cache')
 
 const pwa = withPWA({
   pwa:{
@@ -13,7 +14,7 @@ const pwa = withPWA({
     register : true,
     dest:'public',
     scope:'/', 
-    subdomainPrefix: isProd?next_public:''
+    runtimeCaching,
   }
 })
 

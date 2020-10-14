@@ -444,7 +444,7 @@ function products() {
     
     return (
         <div className="dashboard">
-            <Head></Head>
+            <Head props={{description:"product"}}></Head>
             <div className="container-fluid wrapper-dashboard">
                 {filter?backdrop():''}
                 {filter?filterModal():''}
