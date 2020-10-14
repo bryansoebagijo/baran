@@ -2,7 +2,7 @@
     "theme_color": "#44AACC",
     "background_color": "#123A50",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/app",
     "start_url": "/",
     "app_name": "Baran-PowerWall",
     "short_name": "BPW",
