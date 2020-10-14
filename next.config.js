@@ -13,7 +13,7 @@ const pwa = withPWA({
     register : true,
     dest:'public',
     scope:'/', 
-    subdomainPrefix: isProd?next_public:''
+    subdomainPrefix: ''
   }
 })
 
