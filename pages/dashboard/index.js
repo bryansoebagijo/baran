@@ -358,8 +358,15 @@ function dashboard() {
     if (username) {
         if (time == 'today') {
             try {
-                const url = PREFIX + `/energies/cdm/${serial}/${time}`;
+                // const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
+                // const res = await fetch(url, {
+                //     method='GET',
+                //     credentials='include',
+                // })
+                // if(res.status === 401){
+                //     console.log("kandassss");
+                // }
                 const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
                 const { data, error } = useSWR(url, fetcher, {
@@ -369,7 +376,7 @@ function dashboard() {
                             console.log(('data is not available now'));
                             setAvailable(false)
                         }
-                        else if (newdata.status == 401) {
+                        else if (newdata.status === 401) {
                             console.log("session mu abis bang");
                             alert('your session has expired!')
                             sessionStorage.clear();
@@ -396,6 +403,7 @@ function dashboard() {
             }
             catch(error){
                 console.log(error);
+                console.log("tesetstetset");
                 alert('your session has expired!')
                 sessionStorage.clear();
                 route.replace('/');
