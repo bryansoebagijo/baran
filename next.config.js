@@ -23,6 +23,16 @@ module.exports =
     [withImages,pwa]
   ],
   {
+    exportPathMap: async function(defaultPathMap, {dev, dir,outDir, distDir, buildId })
+    {
+      return{
+        '/': {page :'/'},
+        '/products':{page: '/products'},
+        '/dashboard':{page:'/dashboard'},
+        '/dashboard/contact' :{page:'/dashboard/contact'},
+        '/dashboard/detail' :{page:'dashboard/detail'}
+      }
+    },
     basePath : isProd? next_public :'',
     assetPrefix : isProd? next_public: '',
     trailingSlash : false
