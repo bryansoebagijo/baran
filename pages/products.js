@@ -479,6 +479,7 @@ function products() {
                             <div className="row products">
                                 <div className='col-12 table_product'>
                                     <div className='table-responsive-sm'>
+                                        {tempFetchData ?
                                         <table className='table table-hover product_list'>
                                             <thead>
                                                 <tr>
@@ -491,7 +492,7 @@ function products() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {tempFetchData? filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
+                                                {tempFetchData && filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
                                                     return (
                                                             <tr key={product.serialnumberid}>
                                                                 <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
@@ -524,10 +525,10 @@ function products() {
                                                             </tr>
                                                     )
                                                 })
-                                                : <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
                                             }
                                             </tbody>
                                         </table>
+                                        :<div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
                                     </div>
                                 </div>
                                 <div className={classes.root}>

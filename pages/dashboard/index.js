@@ -310,24 +310,9 @@ function dashboard() {
     const route = useRouter();
     const {serial} = route.query;
 
-    // const [isSSGFallbackInitialBuild] = useState(isEmpty(test) && route?.isFallback === true);
-
-    // // Display a loader (we could use a skeleton too) when this happens, so that the user doesn't face a white page until the page is generated and displayed
-    // if (isSSGFallbackInitialBuild && route.isFallback) { // When router.isFallback becomes "false", then it'll mean the page has been generated and rendered and we can display it, instead of the loader
-    //     return (
-    //         <div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>
-    //     );
-    // }
-
     const handlerTime = (time) =>{
         setTime(time);
         console.log(time);
-        // if(time == 'today'){
-        //     setDataLine([90, 30, 50, 100, 38, 46, 93])
-        // }
-        // else {
-        //     setDataLine([47, 31, 98, 67, 28, 86, 13])
-        // }
     };
 
     useEffect(()=>{
@@ -352,20 +337,11 @@ function dashboard() {
     },[]);
 
     //console.log(props)
-    
-    // const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
     if (username) {
         if (time == 'today') {
             const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
-            // const res = await fetch(url, {
-            //     method='GET',
-            //     credentials='include',
-            // })
-            // if(res.status === 401){
-            //     console.log("kandassss");
-            // }
             const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
             const { data, error } = useSWR(url, fetcher, {
@@ -395,10 +371,6 @@ function dashboard() {
                     console.log("hadehhh");
                 }
             })
-
-            if (data) console.log(data);
-            if (error) console.log(error);
-
         }
         else if(time == 'yesterday'){
             console.log('this is yesterday');
