@@ -396,6 +396,9 @@ function dashboard() {
                         console.log("hadehhh");
                     }
                 })
+
+                if(data) console.log(data);
+                if(error) console.log(error);
             }
             catch(error){
                 console.log(error);
