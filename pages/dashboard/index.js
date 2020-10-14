@@ -357,56 +357,48 @@ function dashboard() {
 
     if (username) {
         if (time == 'today') {
-            try {
-                const url = PREFIX + `/energies/cdm/${serial}/${time}`;
+            const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
-                // const res = await fetch(url, {
-                //     method='GET',
-                //     credentials='include',
-                // })
-                // if(res.status === 401){
-                //     console.log("kandassss");
-                // }
-                const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+            // const res = await fetch(url, {
+            //     method='GET',
+            //     credentials='include',
+            // })
+            // if(res.status === 401){
+            //     console.log("kandassss");
+            // }
+            const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
-                const { data, error } = useSWR(url, fetcher, {
-                    refreshInterval: 5000,
-                    onSuccess: (newdata) => {
-                        if (newdata.status === 404) {
-                            console.log(('data is not available now'));
-                            setAvailable(false)
-                        }
-                        else if (newdata.status === 401) {
-                            console.log("session mu abis bang");
-                            alert('your session has expired!')
-                            sessionStorage.clear();
-                            route.replace('/');
-                        }
-                        else {
-                            setAvailable(true)
-                            let dataSoc = parseInt(newdata.soc)
-                            console.log(dataSoc);
-                            setDataLineUsage(newdata.usage)
-                            setDataLineTime(newdata.timestamps)
-                            let socleft = 100 - dataSoc
-                            setSoc([dataSoc, socleft])
-                        }
-                    },
-                    onError:(error)=>{
-                        console.log("hadehhh");
+            const { data, error } = useSWR(url, fetcher, {
+                refreshInterval: 5000,
+                onSuccess: (newdata) => {
+                    if (newdata.status === 404) {
+                        console.log(('data is not available now'));
+                        setAvailable(false)
                     }
-                })
+                    else if (newdata.status === 401) {
+                        console.log("session mu abis bang");
+                        alert('your session has expired!')
+                        sessionStorage.clear();
+                        route.replace('/');
+                    }
+                    else {
+                        setAvailable(true)
+                        let dataSoc = parseInt(newdata.soc)
+                        console.log(dataSoc);
+                        setDataLineUsage(newdata.usage)
+                        setDataLineTime(newdata.timestamps)
+                        let socleft = 100 - dataSoc
+                        setSoc([dataSoc, socleft])
+                    }
+                },
+                onError: (error) => {
+                    console.log("hadehhh");
+                }
+            })
 
-                if(data) console.log(data);
-                if(error) console.log(error);
-            }
-            catch(error){
-                console.log(error);
-                console.log("tesetstetset");
-                alert('your session has expired!')
-                sessionStorage.clear();
-                route.replace('/');
-            }
+            if (data) console.log(data);
+            if (error) console.log(error);
+
         }
         else if(time == 'yesterday'){
             console.log('this is yesterday');
