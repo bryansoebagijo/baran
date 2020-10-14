@@ -363,7 +363,7 @@ function dashboard() {
                 const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
                 const { data, error } = useSWR(url, fetcher, {
-                    refreshInterval: 300000,
+                    refreshInterval: 5000,
                     onSuccess: (newdata) => {
                         if (newdata.status === 404) {
                             console.log(('data is not available now'));
