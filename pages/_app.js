@@ -34,7 +34,6 @@ Router.events.on('routeChangeError',() => {
 function MyApp({Component, pageProps}) {
     return (
       <>
-        <Head></Head>
         <Component {...pageProps}></Component>
       </>
     )
