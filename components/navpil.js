@@ -74,7 +74,7 @@ function Navpil({handlerTime, time, serial}) {
                     <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={togglestate} onChange={toggleHandler} />
                     <label className="custom-control-label" htmlFor="customSwitch1">{togglestate ? 'On' : 'Off'}</label>
                 </div>
-                <button type="button" className="btn btn-primary online">Online</button>
+                <span className="online">Online</span>
             </div>
         </div>
     )
