@@ -369,7 +369,7 @@ function dashboard() {
                             console.log(('data is not available now'));
                             setAvailable(false)
                         }
-                        else if (newdata.status === 401) {
+                        else if (newdata.status == 401) {
                             console.log("session mu abis bang");
                             alert('your session has expired!')
                             sessionStorage.clear();
