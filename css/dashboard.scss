@@ -475,9 +475,9 @@ html,body{
         background:#07052b ;
 
         .wrapper-dashboard{
-            min-height: 100%;
             width: 100%;
             display: flex;
+            height: auto;
             flex-grow: 1;
             background: #07052b;
         

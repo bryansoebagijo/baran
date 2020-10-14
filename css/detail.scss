@@ -13,12 +13,13 @@
         margin-top: 3%;
         box-sizing: border-box;
         border-radius: 4px;
+        height: 100%;
         background: rgba(12, 24, 39, 0.75);
 
         .col-user-intro{
             .user-intro-inside{
+                height: 100%;
                 .user-section{
-                    height: 100%;
                     padding:3%;
                     color: #AFBDD1;
 
@@ -36,15 +37,6 @@
                         font-size: calc(.7vw + .7vh);
                         /* or 150% */
                         letter-spacing: 0.1px;
-                        a{
-                            margin-left: 1%;
-                            color: #AFBDD1;
-                            text-decoration: none;
-                            @include transition(.8s ease-in-out);
-                            &:hover{
-                                color: #44AACC;
-                            }
-                        }
                     }
                 }
 
@@ -61,8 +53,10 @@
                     }
                     .powerwall-img{
                         position: absolute;
-                        top: 20%;
-                        left:20%;
+                        bottom: 5%;
+                        left:37%;
+                        width: calc(5vh + 5vw);
+                        height: auto;
                         z-index: 2;
                     }
                 }
@@ -285,9 +279,10 @@
                         background: #44AACC;
                     }
                     .powerwall-img{
+                        bottom: 5%;
+                        left:32%;
+                        width: calc(5.5vh + 5.5vw);
                         position: absolute;
-                        top: 20%;
-                        left:20%;
                         z-index: 2;
                     }
                 }
@@ -510,8 +505,9 @@
                     }
                     .powerwall-img{
                         position: absolute;
-                        top: 20%;
-                        left:20%;
+                        bottom: 5%;
+                        left:30%;
+                        width: calc(5.5vh + 5.5vw);
                         z-index: 2;
                     }
                 }

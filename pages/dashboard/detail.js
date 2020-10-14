@@ -13,6 +13,8 @@ export default function detail() {
     const icon1 = require('../../public/circuit-svgrepo-com.svg');
     const icon2 = require('../../public/hardware-svgrepo-com.svg');
 
+    const baranPW = require('../../public/BaranPW.png')
+
     const username = useSelector(state =>{
         return state.state.username
     })
@@ -20,9 +22,9 @@ export default function detail() {
     useEffect(()=>{
         if(!username){
             alert('you are not loggin yet!')
-            route.replace({
-                pathname: '/'
-            })
+            // route.replace({
+            //     pathname: '/'
+            // })
         }
         else{
             setuser(username)
@@ -75,14 +77,11 @@ export default function detail() {
                                         <div className='col-6 user-section'>
                                             <h2>Hello {user},</h2>
                                             <p>Your powerwall has emmited bekelmmsodmv sindvimsmdvklskd nsimvsodimdnn sdimvso sidimvspsmd somvsokmdo jsksjfkjadkja lskakjsld ksdiaj askdakd kjasdkja akmsdlak jasdajn aokmsdkam asjkdak maksdaaksdlalkmasdlkml.
-                                                    <Link href=''>
-                                                    <a>Product details <i className="fa fa-chevron-right" aria-hidden="true"></i></a>
-                                                </Link>
                                             </p>
                                         </div>
                                         <div className='col-6 powerwall-image-section'>
                                             <div className='container-fluid half-circle' />
-                                            <img src={''} alt="powerwall" className='img-fluid powerwall-img' />
+                                            <img src={baranPW} alt="powerwall" className='img-fluid powerwall-img' />
                                         </div>
                                     </div>
                                 </div>
