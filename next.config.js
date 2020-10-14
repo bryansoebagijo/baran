@@ -13,7 +13,8 @@ const pwa = withPWA({
     register : true,
     dest:'public',
     scope:'https://www.vincentreynard.com/', 
-    start_url:'https://www.vincentreynard.com/'
+    start_url:'https://www.vincentreynard.com/',
+    
   }
 })
 
