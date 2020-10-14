@@ -13,8 +13,6 @@ const pwa = withPWA({
     register : true,
     dest:'public',
     scope:'/', 
-    start_url:'/',
-
   }
 })
 
