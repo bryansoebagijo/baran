@@ -2,7 +2,7 @@
     "theme_color": "#44AACC",
     "background_color": "#123A50",
     "display": "standalone",
-    "start_url": "https://www.vincentreynard.com/",
+    "start_url": "./",
     "app_name": "Baran-PowerWall",
     "short_name": "BPW",
     "Name" : "Baran-Powerwall",
