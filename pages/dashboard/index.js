@@ -358,7 +358,7 @@ function dashboard() {
     if (username) {
         if (time == 'today') {
             try {
-                // const url = PREFIX + `/energies/cdm/${serial}/${time}`;
+                const url = PREFIX + `/energies/cdm/${serial}/${time}`;
 
                 // const res = await fetch(url, {
                 //     method='GET',
@@ -392,13 +392,7 @@ function dashboard() {
                             setSoc([dataSoc, socleft])
                         }
                     },
-                    onError: (error) => {
-                        console.log(error);
-                        alert('your session is expired!')
-                        route.replace({
-                            pathname: '/'
-                        })
-                    }
+
                 })
             }
             catch(error){
