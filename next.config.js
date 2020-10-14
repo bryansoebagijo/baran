@@ -12,9 +12,9 @@ const pwa = withPWA({
     disable: process.env.NODE_ENV === 'development',
     register : true,
     dest:'public',
-    scope:'https://www.vincentreynard.com/', 
-    start_url:'https://www.vincentreynard.com/',
-    
+    scope:'/', 
+    start_url:'/',
+
   }
 })
 
