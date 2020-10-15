@@ -446,7 +446,7 @@ function products() {
                 <div className="row table-row">
                     <div className="col-md-12 col-sm-12 col-12 page-content">
                         <div className="container-fluid">
-                            <div className="page-header">
+                            <div className="page-header-product">
                                 <h2>Your Products</h2>
                             </div>
                             <div className="row search_section">
