@@ -315,10 +315,10 @@ function dashboard() {
         console.log(time);
     };
 
-    useEffect(() => {
-        console.log(time);
-        console.log(serial);
-    }, [time]);
+    // useEffect(() => {
+    //     console.log(time);
+    //     console.log(serial);
+    // }, [time]);
 
     const username = useSelector(state => {
         return state.state.username

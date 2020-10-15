@@ -407,10 +407,6 @@ function products() {
     // filter logic
     let filtered;
 
-    useEffect(() => {
-        console.log(filtered);
-    }, [dataFilter])
-
     dataFilter.length > 0 ? filtered = dataFilter.filter((product) => {
         return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     }) : filtered = productlist.filter((product) => {
@@ -479,56 +475,55 @@ function products() {
                                 <div className="row products">
                                     <div className='col-12 table_product'>
                                         <div className='table-responsive-sm'>
-                                            {(tempFetchData && (tempFetchData.length > 0)) ?
-                                                <table className='table table-hover product_list'>
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col" className='first-sm'>Status</th>
-                                                            <th scope="col" className='second-sm'>Connection</th>
-                                                            <th scope="col">Serial Number</th>
-                                                            <th scope="col">Product</th>
-                                                            <th scope="col">Label</th>
-                                                            <th scope="col">Condition</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {tempFetchData && filtered.slice((page - 1) * rowPerPage, (page - 1) * rowPerPage + rowPerPage).map(product => {
-                                                            return (
-                                                                <tr key={product.serialnumberid}>
-                                                                    <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                    <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                    <td>
-                                                                        <Link href={{ pathname: "/dashboard", query: { serial: product.serialnumberid } }} key={product.serialnumberid} passHref>
-                                                                            <a>{product.serialnumberid}</a>
-                                                                        </Link>
-                                                                    </td>
-                                                                    <td>{product.producttype}</td>
-                                                                    <td>
-                                                                        {inEditMode.status && inEditMode.rowkey === product.serialnumberid ?
-                                                                            <form className='edit-label'>
-                                                                                <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
-                                                                                <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
-                                                                                <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
-                                                                            </form>
-                                                                            : product.label}
+                                            <table className='table table-hover product_list'>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" className='first-sm'>Status</th>
+                                                        <th scope="col" className='second-sm'>Connection</th>
+                                                        <th scope="col">Serial Number</th>
+                                                        <th scope="col">Product</th>
+                                                        <th scope="col">Label</th>
+                                                        <th scope="col">Condition</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {(tempFetchData && (tempFetchData.length > 0)) ? filtered.slice((page - 1) * rowPerPage, (page - 1) * rowPerPage + rowPerPage).map(product => {
+                                                        return (
+                                                            <tr key={product.serialnumberid}>
+                                                                <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                <td>
+                                                                    <Link href={{ pathname: "/dashboard", query: { serial: product.serialnumberid } }} key={product.serialnumberid} passHref>
+                                                                        <a>{product.serialnumberid}</a>
+                                                                    </Link>
+                                                                </td>
+                                                                <td>{product.producttype}</td>
+                                                                <td>
+                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid ?
+                                                                        <form className='edit-label'>
+                                                                            <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
+                                                                            <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
+                                                                            <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
+                                                                        </form>
+                                                                        : product.label}
 
-                                                                        {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? '' : <i className="fa fa-pencil edit-icon" onClick={() => onEdit({ id: product.serialnumberid, currentLoc: product.label })}></i>}
-                                                                    </td>
-                                                                    <td>
-                                                                        {/* {(() => {
+                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? '' : <i className="fa fa-pencil edit-icon" onClick={() => onEdit({ id: product.serialnumberid, currentLoc: product.label })}></i>}
+                                                                </td>
+                                                                <td>
+                                                                    {/* {(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
                                                                     else if (product.condition == 'warning') return <i className="fa fa-exclamation-triangle warning" aria-hidden="true"></i>
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
                                                                 })()} */}
                                                                 unknown
                                                                 </td>
-                                                                </tr>
-                                                            )
-                                                        })
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                                : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>}
+                                                            </tr>
+                                                        )
+                                                    })
+                                                        : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                     <div className={classes.root}>
@@ -545,9 +540,9 @@ function products() {
     }
     else {
         return (
-            <div className='container-fluid' style={{"height":"30vh"}}>
-                <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily":"Raleway"}}>
-                    <h2 style={{"color":"#fafafa"}}>Loading....</h2>
+            <div className='container-fluid' style={{ "height": "30vh" }}>
+                <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily": "Raleway" }}>
+                    <h2 style={{ "color": "#fafafa" }}>Loading....</h2>
                     <Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
                 </div>
             </div>

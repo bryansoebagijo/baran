@@ -36,7 +36,6 @@ function login() {
 
         console.log(inputusername);
 
-
         try{
         //     const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
         //         method:"POST",
