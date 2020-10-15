@@ -745,7 +745,6 @@ function dashboard() {
         return (
             <div className='container-fluid' style={{"height":"30vh"}}>
                 <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily":"Raleway"}}>
-                    <h3 style={{"color":"#fafafa"}}>Loading....</h3>
                     <Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
                 </div>
             </div>
