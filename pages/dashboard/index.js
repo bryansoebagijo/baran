@@ -660,7 +660,7 @@ function dashboard() {
                                                             : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
                                                             </div>}
                                                     </div>
-                                                    : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div>}
+                                                    : <><div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div><br/></>}
                                                 {(soc && (soc.length > 0)) ?
                                                     <div className="d-table">
                                                         <div className="d-table-row">
