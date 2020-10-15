@@ -352,7 +352,6 @@ function dashboard() {
                         setAvailable(false)
                     }
                     else if (newdata.status === 401) {
-                        console.log("session mu abis bang");
                         alert('your session has expired!')
                         sessionStorage.clear();
                         route.replace('/');
