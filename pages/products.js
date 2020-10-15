@@ -517,7 +517,14 @@ function products() {
                                                         </tr>
                                                     )
                                                 })
-                                                    :''
+                                                    :<tr>
+                                                        <td>loading...</td>
+                                                        <td>loading...</td>
+                                                        <td>loading...</td>
+                                                        <td>loading...</td>
+                                                        <td>loading...</td>
+                                                        <td>loading...</td>
+                                                    </tr>
                                                 }
                                             </tbody>
                                         </table>
