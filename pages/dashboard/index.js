@@ -528,228 +528,218 @@ function dashboard() {
         ]
     };
 
-    if (username) {
-        return (
-            <div className="dashboard">
-                <Head props={{ description: "dashboard" }}></Head>
-                <div className="container-fluid wrapper-dashboard">
-                    <div className="row table-row">
-                        <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
-                            <Sidebar>
-                                <ul className="navbar-nav navi">
-                                    <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
-                                    <li className="nav-items"><Link href={{ pathname: "/dashboard/detail", query: { serial: serial } }} passHref><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
-                                    <li className="nav-items"><Link href={{ pathname: "/dashboard/contact", query: { serial: serial } }} passHref><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
-                                    <hr className="sidebar-divider"></hr>
-                                </ul>
-                            </Sidebar>
-                        </div>
-                        <div className="col-md-10 col-sm-11 col-11 page-content">
-                            <div className="container-fluid">
-                                <div className="page-header">
-                                    <div className='row'>
-                                        <div className='col-8 col-dashboard-header'>
-                                            <h2>Your Dashboard</h2>
-                                        </div>
-                                        <div className='col-4 col-product-button'>
-                                            <Link href='/products'>
-                                                <a>
-                                                    Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
+    return (
+        <div className="dashboard">
+            <Head props={{ description: "dashboard" }}></Head>
+            <div className="container-fluid wrapper-dashboard">
+                <div className="row table-row">
+                    <div className="col-md-2 col-sm-1 col-1 sidebarCol" id="test">
+                        <Sidebar>
+                            <ul className="navbar-nav navi">
+                                <li className="active"><Link href="#"><a><i className="fa fa-tachometer" aria-hidden="true"><span>Dashboard</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{ pathname: "/dashboard/detail", query: { serial: serial } }} passHref><a><i className="fa fa-users" aria-hidden="true"><span>Product Details</span></i></a></Link></li>
+                                <li className="nav-items"><Link href={{ pathname: "/dashboard/contact", query: { serial: serial } }} passHref><a><i className="fa fa-list-alt" aria-hidden="true"><span>Contact us</span></i></a></Link></li>
+                                <hr className="sidebar-divider"></hr>
+                            </ul>
+                        </Sidebar>
+                    </div>
+                    <div className="col-md-10 col-sm-11 col-11 page-content">
+                        <div className="container-fluid">
+                            <div className="page-header">
+                                <div className='row'>
+                                    <div className='col-8 col-dashboard-header'>
+                                        <h2>Your Dashboard</h2>
+                                    </div>
+                                    <div className='col-4 col-product-button'>
+                                        <Link href='/products'>
+                                            <a>
+                                                Your Product <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                                            </a>
+                                        </Link>
                                     </div>
                                 </div>
+                            </div>
 
-                                <Navpil handlerTime={handlerTime} time={time} serial={serial}></Navpil>
+                            <Navpil handlerTime={handlerTime} time={time} serial={serial}></Navpil>
 
-                                <div className='row hardware'>
-                                    <div className="col-12 colUsage">
-                                        <div className="container-fluid total-usage">
-                                            <div className="usage-header">
-                                                <h3>Total usage</h3>
-                                                {available ?
-                                                    <div className="line">
-                                                        {(dataLineUsage && (dataLineUsage.length > 0)) ? <Line data={dataLineChart} options={
-                                                            {
-                                                                responsive: true,
-                                                                maintainAspectRatio: false,
-                                                                legend: {
-                                                                    display: false
-                                                                },
-                                                                tooltips: {
-                                                                    mode: 'label',
-                                                                    callbacks: {
-                                                                        title: function (tooltipItem, data) {
-                                                                            return data.labels[tooltipItem[0].index];
-                                                                        },
-
-                                                                        label: function (tooltipItem, data) {
-                                                                            return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + ' Wh';
-                                                                        },
-                                                                    }
-                                                                },
-                                                                scales: {
-                                                                    yAxes: [{
-                                                                        position: "right",
-                                                                        scaleLabel: {
-                                                                            display: false,
-                                                                            labelString: "Watt Hours"
-                                                                        },
-                                                                        gridLines: {
-                                                                            drawBorder: true,
-                                                                            lineWidth: 0.1,
-                                                                            color: "gray",
-                                                                            zeroLineColor: "white"
-                                                                        },
-                                                                        ticks: {
-                                                                            padding: 10,
-                                                                            //labelOffset:-10,
-                                                                            autoSkip: true,
-                                                                            maxTicksLimit: 5,
-                                                                            stepSize: 50,
-                                                                            callback: function (value, index, values) {
-                                                                                return value + " Wh";
-                                                                            }
-                                                                        }
-                                                                    }],
-                                                                    xAxes: [{
-                                                                        gridLines: {
-                                                                            display: false
-                                                                        },
-                                                                        ticks: {
-                                                                            maxRotation: 45,
-                                                                            autoSkip: true,
-                                                                            maxTicksLimit: 3
-
-                                                                        }
-                                                                    }],
-                                                                }
-                                                            }
-                                                        }></Line>
-                                                            : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
-                                                    </div>
-                                                    : <div className='d-flex mt-3 justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div>}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row chart">
-                                    <div className="col-lg-4 col-md-4 col-sm-6 col-12 colDoughnut">
-                                        <div className="container-fluid chart-state">
-                                            <div className="chart-state-header">
-                                                <h3>State of Charge</h3>
-                                                {available ?
-                                                    <div className="donut">
-                                                        {(soc && (soc.length > 0)) ?
-                                                            <Doughnut data={dataDoughnut} width={100} height={100} options={
-                                                                {
-                                                                    responsive: true,
-                                                                    maintainAspectRatio: false,
-                                                                    legend: {
-                                                                        display: false,
-                                                                        position: "bottom",
-                                                                        labels: {
-                                                                            fontColor: "#f7fcff"
-                                                                        }
+                            <div className='row hardware'>
+                                <div className="col-12 colUsage">
+                                    <div className="container-fluid total-usage">
+                                        <div className="usage-header">
+                                            <h3>Total usage</h3>
+                                            {available ?
+                                                <div className="line">
+                                                    {(dataLineUsage && (dataLineUsage.length > 0)) ? <Line data={dataLineChart} options={
+                                                        {
+                                                            responsive: true,
+                                                            maintainAspectRatio: false,
+                                                            legend: {
+                                                                display: false
+                                                            },
+                                                            tooltips: {
+                                                                mode: 'label',
+                                                                callbacks: {
+                                                                    title: function (tooltipItem, data) {
+                                                                        return data.labels[tooltipItem[0].index];
                                                                     },
-                                                                    cutoutPercentage: 90
+
+                                                                    label: function (tooltipItem, data) {
+                                                                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + ' Wh';
+                                                                    },
                                                                 }
-                                                            } />
-                                                            : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
-                                                            </div>}
-                                                    </div>
-                                                    : <><div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div><br/></>}
-                                                {(soc && (soc.length > 0)) ?
-                                                    <div className="d-table">
-                                                        <div className="d-table-row">
-                                                            <div className="d-table-cell">
-                                                                <ul className="legend-doughnut">
-                                                                    <li className="Green"><span className="green-ball" />Your Battery Life</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div className="d-table-cell">
-                                                                <ul className="percent-doughnut">
-                                                                    <li className="Green">{soc[0]} Hrs <span>({soc[0]}%)</span></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    : ''}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-8 col-md-8 col-sm-6 col-12 col-overall'>
-                                        <div className="container-fluid overall">
-                                            <div className="overall-header">
-                                                <h3>Hardware Performance</h3>
-                                            </div>
-                                            <div className="bar-chart">
-                                                <Bar data={dataBar} className='bar-font' options={
-                                                    {
-                                                        maintainAspectRatio: false,
-                                                        cornerRadius: 10,
-                                                        responsive: true,
-                                                        legend: {
-                                                            display: true,
-                                                            labels: {
-                                                                fontColor: "#A6ACBE",
-                                                                usePointStyle: true,
-                                                                padding: 20
+                                                            },
+                                                            scales: {
+                                                                yAxes: [{
+                                                                    position: "right",
+                                                                    scaleLabel: {
+                                                                        display: false,
+                                                                        labelString: "Watt Hours"
+                                                                    },
+                                                                    gridLines: {
+                                                                        drawBorder: true,
+                                                                        lineWidth: 0.1,
+                                                                        color: "gray",
+                                                                        zeroLineColor: "white"
+                                                                    },
+                                                                    ticks: {
+                                                                        padding: 10,
+                                                                        //labelOffset:-10,
+                                                                        autoSkip: true,
+                                                                        maxTicksLimit: 5,
+                                                                        stepSize: 50,
+                                                                        callback: function (value, index, values) {
+                                                                            return value + " Wh";
+                                                                        }
+                                                                    }
+                                                                }],
+                                                                xAxes: [{
+                                                                    gridLines: {
+                                                                        display: false
+                                                                    },
+                                                                    ticks: {
+                                                                        maxRotation: 45,
+                                                                        autoSkip: true,
+                                                                        maxTicksLimit: 3
+
+                                                                    }
+                                                                }],
                                                             }
-
-                                                        },
-                                                        scales: {
-                                                            yAxes: [{
-                                                                gridLines: {
-                                                                    display: false
-                                                                },
-                                                                ticks: {
-                                                                    display: false
-                                                                },
-                                                                // stacked: true
-
-                                                            }],
-
-                                                            xAxes: [{
-                                                                //barPercentage :0.3,
-                                                                gridLines: {
-                                                                    display: false
-                                                                },
-                                                                // stacked: true,
-                                                                ticks: {
-                                                                    //autoSkip: true,
-                                                                    padding: 15,
-                                                                    maxRotation: 10,
-                                                                    //maxTicksLimit: 2,
-                                                                },
-
-                                                            }]
-                                                        },
-                                                    }
-                                                }></Bar>
-                                            </div>
+                                                        }
+                                                    }></Line>
+                                                        : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
+                                                </div>
+                                                : <div className='d-flex mt-3 justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div>}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr></hr>
+
+                            <div className="row chart">
+                                <div className="col-lg-4 col-md-4 col-sm-6 col-12 colDoughnut">
+                                    <div className="container-fluid chart-state">
+                                        <div className="chart-state-header">
+                                            <h3>State of Charge</h3>
+                                            {available ?
+                                                <div className="donut">
+                                                    {(soc && (soc.length > 0)) ?
+                                                        <Doughnut data={dataDoughnut} width={100} height={100} options={
+                                                            {
+                                                                responsive: true,
+                                                                maintainAspectRatio: false,
+                                                                legend: {
+                                                                    display: false,
+                                                                    position: "bottom",
+                                                                    labels: {
+                                                                        fontColor: "#f7fcff"
+                                                                    }
+                                                                },
+                                                                cutoutPercentage: 90
+                                                            }
+                                                        } />
+                                                        : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
+                                                        </div>}
+                                                </div>
+                                                : <><div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "height": "100%" }}>No data available</div><br /></>}
+                                            {(soc && (soc.length > 0)) ?
+                                                <div className="d-table">
+                                                    <div className="d-table-row">
+                                                        <div className="d-table-cell">
+                                                            <ul className="legend-doughnut">
+                                                                <li className="Green"><span className="green-ball" />Your Battery Life</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="d-table-cell">
+                                                            <ul className="percent-doughnut">
+                                                                <li className="Green">{soc[0]} Hrs <span>({soc[0]}%)</span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-lg-8 col-md-8 col-sm-6 col-12 col-overall'>
+                                    <div className="container-fluid overall">
+                                        <div className="overall-header">
+                                            <h3>Hardware Performance</h3>
+                                        </div>
+                                        <div className="bar-chart">
+                                            <Bar data={dataBar} className='bar-font' options={
+                                                {
+                                                    maintainAspectRatio: false,
+                                                    cornerRadius: 10,
+                                                    responsive: true,
+                                                    legend: {
+                                                        display: true,
+                                                        labels: {
+                                                            fontColor: "#A6ACBE",
+                                                            usePointStyle: true,
+                                                            padding: 20
+                                                        }
+
+                                                    },
+                                                    scales: {
+                                                        yAxes: [{
+                                                            gridLines: {
+                                                                display: false
+                                                            },
+                                                            ticks: {
+                                                                display: false
+                                                            },
+                                                            // stacked: true
+
+                                                        }],
+
+                                                        xAxes: [{
+                                                            //barPercentage :0.3,
+                                                            gridLines: {
+                                                                display: false
+                                                            },
+                                                            // stacked: true,
+                                                            ticks: {
+                                                                //autoSkip: true,
+                                                                padding: 15,
+                                                                maxRotation: 10,
+                                                                //maxTicksLimit: 2,
+                                                            },
+
+                                                        }]
+                                                    },
+                                                }
+                                            }></Bar>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <hr></hr>
                     </div>
                 </div>
             </div>
-        )
-    }
-    else {
-        return (
-            <div className='container-fluid' style={{"height":"30vh"}}>
-                <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily":"Raleway"}}>
-                    <Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
-                </div>
-            </div>
-        )
-    }
+        </div>
+    )
+
 }
 
 
