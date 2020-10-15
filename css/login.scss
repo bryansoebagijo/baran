@@ -45,11 +45,14 @@ html, body{
                 }
             }
 
+            .error{
+                font-size : calc(.8vw + .8vh)
+            }
+
             .signin-form{
                 margin-top:4vh;
                 
                 label{
-
                     color: white;
                 }
                 .form-control{
@@ -146,6 +149,10 @@ html, body{
                     font-size: calc(2vw + 2vh);
                     letter-spacing: 0.15px;
                 }
+            }
+
+            .error{
+                font-size : calc(1.2vw + 1.2vh)
             }
 
             .signin-form{
