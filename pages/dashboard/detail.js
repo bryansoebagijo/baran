@@ -24,19 +24,14 @@ export default function detail() {
     useEffect(() => {
         if (!username) {
             alert('you are not loggin yet!')
-            // route.replace({
-            //     pathname: '/'
-            // })
+            route.replace({
+                pathname: '/'
+            })
         }
         else {
             setuser(username)
         }
     }, []);
-
-    const handlerTime = (time) => {
-        setTime(time);
-        console.log(time);
-    };
 
     const route = useRouter();
     const { serial } = route.query;

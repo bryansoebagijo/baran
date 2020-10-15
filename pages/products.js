@@ -137,28 +137,26 @@ function products() {
         }
     }, [username]);
 
-    if (username) {
-        //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
+    //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
-        const url = PREFIX + '/products/' + username;
+    const url = PREFIX + '/products/' + username;
 
-        const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+    const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
 
-        const { data, error } = useSWR(url, fetcher, {
-            onSuccess: (newdata) => {
-                if (newdata.status === 401) {
-                    alert('your session has expired!')
-                    sessionStorage.clear();
-                    route.replace('/')
-                }
-                console.log(newdata.products)
-                setTempFetchData(newdata.products)
-            },
-            onError: (error) => {
-                console.log(error);
+    const { data, error } = useSWR(url, fetcher, {
+        onSuccess: (newdata) => {
+            if (newdata.status === 401) {
+                alert('your session has expired!')
+                sessionStorage.clear();
+                route.replace('/')
             }
-        })
-    }
+            console.log(newdata.products)
+            setTempFetchData(newdata.products)
+        },
+        onError: (error) => {
+            console.log(error);
+        }
+    })
 
     useEffect(() => {
         console.log(tempFetchData);
