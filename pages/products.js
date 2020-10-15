@@ -444,9 +444,9 @@ function products() {
                 {sorttype ? backdrop() : ''}
                 {sorttype ? sortModal() : ''}
                 <div className="row table-row">
-                    <div className="col-md-12 col-sm-12 col-12 page-content">
+                    <div className="col-md-12 col-sm-12 col-12 page-content-product">
                         <div className="container-fluid">
-                            <div className="page-header-product">
+                            <div className="page-header">
                                 <h2>Your Products</h2>
                             </div>
                             <div className="row search_section">
