@@ -108,7 +108,7 @@ function login() {
                     <div className="login-header">
                         <h1>Sign In</h1>
                     </div>
-                    {error?<div className='d-flex justify-content-center align-items-center mt-3' style={{ "width": "100%", "background" : "#ff6e6b" ,"color":"#cf0a06", "borderRadius": "10px", "boxShadow" : "5px 10px 20px rgba(0, 0, 0, 0.25)", "font-size" : "calc(1.8vw + 1.8vh);"}}>{error}</div>:''}
+                    {error?<div className='d-flex justify-content-center align-items-center mt-3' style={{ "width": "100%", "background" : "#ff6e6b" ,"color":"#cf0a06", "borderRadius": "10px", "boxShadow" : "5px 10px 20px rgba(0, 0, 0, 0.25)", "font-size" : "calc(1.8vw + 1.8vh)"}}>{error}</div>:''}
                     <form className='signin-form'>
                         <label className="email-label" htmlFor="email">Email Address</label>
                         <input ref={input1} type='email' className='form-control' id='email' name='email' placeholder='email address' required></input>
