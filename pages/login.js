@@ -49,8 +49,6 @@ function login() {
                     setError('wrong username or password')
                 }
                 else{
-                    const data = await resp.json()
-                    console.log(data);
                     dispatch(addUser(inputusername.username))
                     //location.assign(PREFIX+'/products')
                     route.push(PREFIX+'/products')
