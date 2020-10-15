@@ -22,7 +22,7 @@ function Navpil({handlerTime, time, serial}) {
                     headers:{'Content-Type':'application/json'}
                 })
                 if (resp.ok){
-                    alert("your device is online");
+                    alert("your device is turned on");
                 }
             }
             catch(error){
@@ -38,7 +38,7 @@ function Navpil({handlerTime, time, serial}) {
                     headers:{'Content-Type':'application/json'}
                 })
                 if (resp.ok){
-                    alert("your device is offline");
+                    alert("your device is turned off");
                 }
             }
             catch(error){
@@ -63,9 +63,9 @@ function Navpil({handlerTime, time, serial}) {
                         <li className="nav-item">
                             <a className={time =='yesterday'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('yesterday')}>Yesterday</a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className={time =='weekly'? "nav-link active":"nav-link"} href='#' onClick={()=>handlerTime('weekly')}>Weekly</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

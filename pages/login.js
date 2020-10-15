@@ -101,7 +101,7 @@ function login() {
                 <Head props={{description:"login"}}></Head>
                 <nav className="navbar">
                     <img src={baran_white} alt="Baran logo" className="navbar-brand"></img>
-                    <i className="fa fa-map icon-pajangan" aria-hidden="true"></i>
+                    {/* <i className="fa fa-map icon-pajangan" aria-hidden="true"></i> */}
                 </nav>
 
                 <div className="container login-content">
