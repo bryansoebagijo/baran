@@ -616,9 +616,9 @@ function dashboard() {
                                                                         display: false
                                                                     },
                                                                     ticks: {
-                                                                        maxRotation: 30,
+                                                                        maxRotation: 0,
                                                                         autoSkip: true,
-                                                                        maxTicksLimit: 2
+                                                                        maxTicksLimit: 1
 
                                                                     }
                                                                 }],
