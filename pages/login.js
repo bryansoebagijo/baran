@@ -17,10 +17,7 @@ function login() {
     const baran_white = require("../public/logo-baran.png");
     const route = useRouter();
 
-    const [response, setResponse] = useState({
-        type: '',
-        message: ''
-      });
+    const [error, setError] = useState('')
 
     const input1= useRef();
     const input2 = useRef();
@@ -33,8 +30,6 @@ function login() {
             username: input1.current.value,
             password : input2.current.value 
         }
-
-        console.log(inputusername);
 
         try{
         //     const resp = await fetch('https://jsonplaceholder.typicode.com/posts',{
@@ -49,7 +44,11 @@ function login() {
                 body : JSON.stringify(inputusername),
                 headers:{'Content-Type':'application/json'}
             })
-            
+            .then(res=>{
+                if(res.status !== 200){
+                    setError('wrong username or password')
+                }
+            })
             if (resp.ok){
                     const data = await resp.json()
                     console.log(data);
@@ -92,10 +91,6 @@ function login() {
         }
         catch (error){
             console.log('An error occured', error);
-            setResponse({
-                type:'error',
-                message:'An error occured while submitting the form'
-            });
         }
     }
 
@@ -115,6 +110,7 @@ function login() {
                     <div className="login-header">
                         <h1>Sign In</h1>
                     </div>
+                    {error?<div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "color":"#cf0a06"}}/>:''}
                     <form className='signin-form'>
                         <label className="email-label" htmlFor="email">Email Address</label>
                         <input ref={input1} type='email' className='form-control' id='email' name='email' placeholder='email address' required></input>

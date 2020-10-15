@@ -132,7 +132,7 @@ function products() {
         if (!username) {
             alert('you are not loggin yet!');
             route.replace({
-                pathname:'/'
+                pathname: '/'
             })
         }
     }, [username]);
@@ -435,117 +435,105 @@ function products() {
         setPage(value);
     }
 
-    if (username) {
-        return (
-            <div className="dashboard">
-                <Head props={{ description: "product" }}></Head>
-                <div className="container-fluid wrapper-dashboard">
-                    {filter ? backdrop() : ''}
-                    {filter ? filterModal() : ''}
-                    {sorttype ? backdrop() : ''}
-                    {sorttype ? sortModal() : ''}
-                    <div className="row table-row">
-                        <div className="col-md-12 col-sm-12 col-12 page-content">
-                            <div className="container-fluid">
-                                <div className="page-header">
-                                    <h2>Your Products</h2>
-                                </div>
-                                <div className="row search_section">
-                                    <div className='col-lg-8 col-md-8 col-sm-6 col-6 searchbar'>
-                                        <div className='container-fluid'>
-                                            <input type='text' onChange={(e) => setsearch(e.target.value)} value={search} placeholder='Search Product...'></input>
-                                            <button type='button'><i className="fa fa-search" aria-hidden="true"></i></button>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-2 col-md-2 col-sm-3 col-3 sort'>
-                                        <button type='button' onClick={() => setsort(!sorttype)}>
-                                            <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
-                                            <span>Sort</span>
-                                        </button>
-                                    </div>
-                                    <div className='col-lg-2 col-md-2 col-sm-3 col-3 filter'>
-                                        <button type='button' onClick={() => setfilter(true)}>
-                                            <i className="fa fa-filter" aria-hidden="true"></i>
-                                            <span>Filter</span>
-                                        </button>
+    return (
+        <div className="dashboard">
+            <Head props={{ description: "product" }}></Head>
+            <div className="container-fluid wrapper-dashboard">
+                {filter ? backdrop() : ''}
+                {filter ? filterModal() : ''}
+                {sorttype ? backdrop() : ''}
+                {sorttype ? sortModal() : ''}
+                <div className="row table-row">
+                    <div className="col-md-12 col-sm-12 col-12 page-content">
+                        <div className="container-fluid">
+                            <div className="page-header">
+                                <h2>Your Products</h2>
+                            </div>
+                            <div className="row search_section">
+                                <div className='col-lg-8 col-md-8 col-sm-6 col-6 searchbar'>
+                                    <div className='container-fluid'>
+                                        <input type='text' onChange={(e) => setsearch(e.target.value)} value={search} placeholder='Search Product...'></input>
+                                        <button type='button'><i className="fa fa-search" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
-                                <div className="row products">
-                                    <div className='col-12 table_product'>
-                                        <div className='table-responsive-sm'>
-                                            <table className='table table-hover product_list'>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" className='first-sm'>Status</th>
-                                                        <th scope="col" className='second-sm'>Connection</th>
-                                                        <th scope="col">Serial Number</th>
-                                                        <th scope="col">Product</th>
-                                                        <th scope="col">Label</th>
-                                                        <th scope="col">Condition</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {(tempFetchData && (tempFetchData.length > 0)) ? filtered.slice((page - 1) * rowPerPage, (page - 1) * rowPerPage + rowPerPage).map(product => {
-                                                        return (
-                                                            <tr key={product.serialnumberid}>
-                                                                <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td>
-                                                                    <Link href={{ pathname: "/dashboard", query: { serial: product.serialnumberid } }} key={product.serialnumberid} passHref>
-                                                                        <a>{product.serialnumberid}</a>
-                                                                    </Link>
-                                                                </td>
-                                                                <td>{product.producttype}</td>
-                                                                <td>
-                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid ?
-                                                                        <form className='edit-label'>
-                                                                            <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
-                                                                            <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
-                                                                            <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
-                                                                        </form>
-                                                                        : product.label}
+                                <div className='col-lg-2 col-md-2 col-sm-3 col-3 sort'>
+                                    <button type='button' onClick={() => setsort(!sorttype)}>
+                                        <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                                        <span>Sort</span>
+                                    </button>
+                                </div>
+                                <div className='col-lg-2 col-md-2 col-sm-3 col-3 filter'>
+                                    <button type='button' onClick={() => setfilter(true)}>
+                                        <i className="fa fa-filter" aria-hidden="true"></i>
+                                        <span>Filter</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="row products">
+                                <div className='col-12 table_product'>
+                                    <div className='table-responsive-sm'>
+                                        <table className='table table-hover product_list'>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" className='first-sm'>Status</th>
+                                                    <th scope="col" className='second-sm'>Connection</th>
+                                                    <th scope="col">Serial Number</th>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Label</th>
+                                                    <th scope="col">Condition</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {(tempFetchData && (tempFetchData.length > 0)) ? filtered.slice((page - 1) * rowPerPage, (page - 1) * rowPerPage + rowPerPage).map(product => {
+                                                    return (
+                                                        <tr key={product.serialnumberid}>
+                                                            <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                            <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                            <td>
+                                                                <Link href={{ pathname: "/dashboard", query: { serial: product.serialnumberid } }} key={product.serialnumberid} passHref>
+                                                                    <a>{product.serialnumberid}</a>
+                                                                </Link>
+                                                            </td>
+                                                            <td>{product.producttype}</td>
+                                                            <td>
+                                                                {inEditMode.status && inEditMode.rowkey === product.serialnumberid ?
+                                                                    <form className='edit-label'>
+                                                                        <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
+                                                                        <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
+                                                                        <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
+                                                                    </form>
+                                                                    : product.label}
 
-                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? '' : <i className="fa fa-pencil edit-icon" onClick={() => onEdit({ id: product.serialnumberid, currentLoc: product.label })}></i>}
-                                                                </td>
-                                                                <td>
-                                                                    {/* {(() => {
+                                                                {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? '' : <i className="fa fa-pencil edit-icon" onClick={() => onEdit({ id: product.serialnumberid, currentLoc: product.label })}></i>}
+                                                            </td>
+                                                            <td>
+                                                                {/* {(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
                                                                     else if (product.condition == 'warning') return <i className="fa fa-exclamation-triangle warning" aria-hidden="true"></i>
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
                                                                 })()} */}
                                                                 unknown
                                                                 </td>
-                                                            </tr>
-                                                        )
-                                                    })
-                                                        : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>
-                                                    }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div className={classes.root}>
-                                        <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
+                                                        </tr>
+                                                    )
+                                                })
+                                                    : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <br></br>
+                                <div className={classes.root}>
+                                    <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
+                                </div>
                             </div>
+                            <br></br>
                         </div>
                     </div>
                 </div>
             </div>
-        )
-    }
-    else {
-        return (
-            <div className='container-fluid' style={{ "height": "30vh" }}>
-                <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily": "Raleway" }}>
-                    <h3 style={{ "color": "#fafafa" }}>Loading....</h3>
-                    <Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
-                </div>
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 
