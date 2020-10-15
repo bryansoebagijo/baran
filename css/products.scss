@@ -521,7 +521,9 @@
     }
 
     .page-content{
-        
+        .container-fluid{
+            padding: 0;
+        }
         .search_section{
             width: 100%;
             margin: 0;

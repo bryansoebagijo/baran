@@ -619,7 +619,6 @@ function dashboard() {
                                                                         maxRotation: 0,
                                                                         autoSkip: true,
                                                                         maxTicksLimit: 1
-
                                                                     }
                                                                 }],
                                                             }
