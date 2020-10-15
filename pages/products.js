@@ -13,7 +13,7 @@ import Loader from 'react-loader-spinner';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
-        margin:'auto',
+        margin: 'auto',
         color: 'white',
         display: 'flex',
         alignItems: 'center',
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         },
         '& ul': {
             color: 'white',
-          },
+        },
         '& .MuiPaginationItem-root ': {
             color: 'white',
 
@@ -32,81 +32,81 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const isProd = process.env.NODE_ENV === 'production';
-const PREFIX = isProd?'https://test.vincentreynard.com' : 'http://192.168.5.73'
+const PREFIX = isProd ? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
 
 function products() {
 
     const classes = useStyles();
     const rowPerPage = 5;
 
-    let productlist=
-    [
-        {
-            status:'1',
-            connection:'0',
-            serialnumberid: '27-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'1',
-            connection:'1',
-            serialnumberid: '28-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'0',
-            connection:'1',
-            serialnumberid: '29-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'warning'
-        },
-        {
-            status:'1',
-            connection:'1',
-            serialnumberid: '30-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'0',
-            connection:'0',
-            serialnumberid: '31-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'okay'
-        },
-        {
-            status:'0',
-            connection:'0',
-            serialnumberid: '32-BSD-07-PW-20',
-            producttype :'Power Wall',
-            label : 'Villa Bogor',
-            condition : 'warning'
-        }
-    ]
+    let productlist =
+        [
+            {
+                status: '1',
+                connection: '0',
+                serialnumberid: '27-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'okay'
+            },
+            {
+                status: '1',
+                connection: '1',
+                serialnumberid: '28-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'okay'
+            },
+            {
+                status: '0',
+                connection: '1',
+                serialnumberid: '29-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'warning'
+            },
+            {
+                status: '1',
+                connection: '1',
+                serialnumberid: '30-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'okay'
+            },
+            {
+                status: '0',
+                connection: '0',
+                serialnumberid: '31-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'okay'
+            },
+            {
+                status: '0',
+                connection: '0',
+                serialnumberid: '32-BSD-07-PW-20',
+                producttype: 'Power Wall',
+                label: 'Villa Bogor',
+                condition: 'warning'
+            }
+        ]
 
     const [search, setsearch] = useState('')
     const [sorttype, setsort] = useState(false)
     const [filter, setfilter] = useState(false)
-    const [checked1, setcheck1]= useState(true)
-    const [checked2, setcheck2]= useState(true)
+    const [checked1, setcheck1] = useState(true)
+    const [checked2, setcheck2] = useState(true)
     const [dataFilter, setDataFilter] = useState([])
     const [newcheck, setnewcheck] = useState('')
-    const [sortradio, setsortradio] = useState({serial:false, producttype:false, label:false})
+    const [sortradio, setsortradio] = useState({ serial: false, producttype: false, label: false })
     const [editloc, seteditloc] = useState('');
-    const [inEditMode, setInEditMode] = useState({status:false, rowkey:null})
+    const [inEditMode, setInEditMode] = useState({ status: false, rowkey: null })
     const [dataLoc, setDataLoc] = useState([{}])
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(1)
     const [tempFetchData, setTempFetchData] = useState([])
 
-    
+
     const filterbyon = useRef();
     const filterbyoff = useRef();
     const sortbyserial = useRef();
@@ -122,31 +122,31 @@ function products() {
 
     const route = useRouter();
 
-    const username = useSelector(state =>{
+    const username = useSelector(state => {
         return state.state.username
     })
 
     //console.log(username)
 
-    useEffect(()=>{
-        if(!username){
+    useEffect(() => {
+        if (!username) {
             alert('you are not loggin yet!');
-            route.replace({
-                pathname:'/'
-            })
+            // route.replace({
+            //     pathname:'/'
+            // })
         }
-    },[username]);
+    }, [username]);
 
-    if(username){
+    if (username) {
         //const url = 'https://api.jikan.moe/v3/top/anime/1/airing';
 
         const url = PREFIX + '/products/' + username;
 
-        const fetcher = (...args) => fetch(...args,{method:'GET', credentials:'include'}).then(res=>res.json())
-        
+        const fetcher = (...args) => fetch(...args, { method: 'GET', credentials: 'include' }).then(res => res.json())
+
         const { data, error } = useSWR(url, fetcher, {
             onSuccess: (newdata) => {
-                if(newdata.status === 401){
+                if (newdata.status === 401) {
                     alert('your session has expired!')
                     sessionStorage.clear();
                     route.replace('/')
@@ -160,15 +160,15 @@ function products() {
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(tempFetchData);
-    },[tempFetchData])
+    }, [tempFetchData])
 
-    tempFetchData? productlist = tempFetchData : productlist = productlist;
+    tempFetchData ? productlist = tempFetchData : productlist = productlist;
 
-    const INVENTORY_API_URL ='';
+    const INVENTORY_API_URL = '';
 
-    const onEdit = ({id, currentLoc}) => {
+    const onEdit = ({ id, currentLoc }) => {
         console.log('onEdit');
         setInEditMode({
             status: true,
@@ -177,10 +177,10 @@ function products() {
         seteditloc(currentLoc);
     }
 
-    const updateInventory = async ({id, newLoc}) => {
+    const updateInventory = async ({ id, newLoc }) => {
         const res = await fetch(PREFIX + `/products/${id}/label`, {
             method: "PATCH",
-            credentials:'include',
+            credentials: 'include',
             body: JSON.stringify({
                 label: newLoc
             }),
@@ -199,7 +199,7 @@ function products() {
 
         // onCancel();
 
-        if(res.ok){
+        if (res.ok) {
             const data = await res.json()
             console.log(data);
             alert('value changed!')
@@ -207,8 +207,8 @@ function products() {
         }
     }
 
-    const onSave = ({id, newLoc}) => {
-        updateInventory({id, newLoc});
+    const onSave = ({ id, newLoc }) => {
+        updateInventory({ id, newLoc });
     }
 
     const onCancel = () => {
@@ -222,46 +222,46 @@ function products() {
     }
 
     //FILTER HANDLER FUNCTION
-    const filterhandler=(e =>{
+    const filterhandler = (e => {
         onchecked = filterbyon.current.checked;
         offchecked = filterbyoff.current.checked;
         if (onchecked && !offchecked) {
 
             const filteron = filterbyon.current.value;
-            console.log(filteron);  
+            console.log(filteron);
             setfilter(false)
             setnewcheck('')
-            outputfilter = productlist.filter((product)=>{
+            outputfilter = productlist.filter((product) => {
                 return product.connection == "1"
             })
-            if(outputfilter.length > 0){
+            if (outputfilter.length > 0) {
                 console.log(outputfilter);
                 setDataFilter(outputfilter)
             }
-            else{
+            else {
                 setnewcheck('both')
                 setDataFilter([])
             }
 
         }
-        if(offchecked && !onchecked){
+        if (offchecked && !onchecked) {
             const filteroff = filterbyoff.current.value;
             console.log(filteroff);
             setfilter(false)
             setnewcheck('')
-            outputfilter = productlist.filter((product)=>{
+            outputfilter = productlist.filter((product) => {
                 return product.connection == "0"
             })
-            if(outputfilter.length > 0){
+            if (outputfilter.length > 0) {
                 console.log(outputfilter);
                 setDataFilter(outputfilter)
             }
-            else{
+            else {
                 setnewcheck('both')
                 setDataFilter([])
             }
         }
-        if(!onchecked && !offchecked){
+        if (!onchecked && !offchecked) {
             setfilter(false)
             console.log("2 2 nya mati mas");
             setDataFilter([])
@@ -270,8 +270,8 @@ function products() {
             console.log(dataFilter.length);
             setCount(dataFilter.length)
         }
-        if(onchecked && offchecked){
-            outputfilter = productlist.filter((product)=>{
+        if (onchecked && offchecked) {
+            outputfilter = productlist.filter((product) => {
                 return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
             })
             setnewcheck('')
@@ -284,15 +284,15 @@ function products() {
 
 
     //SORT HANDLER FUNCTION
-    const sorthandler= ()=>{
+    const sorthandler = () => {
 
         serialselect = sortbyserial.current.checked;
         producttypeselect = sortbyproducttype.current.checked;
         labelselect = sortbylabel.current.checked;
 
-        if(serialselect){
+        if (serialselect) {
             console.log('serial number selected');
-            setDataFilter(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a, b) => {
                 var statusA = a.serialnumberid.toLowerCase();
                 var statusB = b.serialnumberid.toLowerCase();
                 if (statusA > statusB) {
@@ -306,10 +306,10 @@ function products() {
             setsort(false)
         }
 
-        else if(producttypeselect){
+        else if (producttypeselect) {
             console.log('product selected');
             setsort(false)
-            setDataFilter(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a, b) => {
                 var statusA = a.producttype.toLowerCase();
                 var statusB = b.producttype.toLowerCase();
                 if (statusA > statusB) {
@@ -321,10 +321,10 @@ function products() {
                 return 0;
             }))
         }
-        else if(labelselect){
+        else if (labelselect) {
             console.log('label selected');
             setsort(false)
-            setDataFilter(filtered.sort((a,b)=>{
+            setDataFilter(filtered.sort((a, b) => {
                 var statusA = a.label.toLowerCase();
                 var statusB = b.label.toLowerCase();
                 if (statusA > statusB) {
@@ -336,16 +336,16 @@ function products() {
                 return 0;
             }))
         }
-        else{
+        else {
             console.log('jangepong');
             setsort(false)
         }
     }
 
     //JUST A BACKDROP
-    const backdrop = () =>{
-        return(
-            <div className='backdrop' onClick={()=>{
+    const backdrop = () => {
+        return (
+            <div className='backdrop' onClick={() => {
                 setfilter(false)
                 setsort(false)
             }}></div>
@@ -353,18 +353,18 @@ function products() {
     }
 
     //FILTER MODAL JSX
-    const filterModal =() =>{
-        return(
+    const filterModal = () => {
+        return (
             <div className='container filtercard'>
                 <h3>Filter products by</h3>
                 <form>
                     <div className='d-flex'>
                         <label>connection : on</label>
-                        <input ref={filterbyon} type='checkbox' name='on' value='on' checked={checked1} onChange={()=>setcheck1(!checked1)}></input>
+                        <input ref={filterbyon} type='checkbox' name='on' value='on' checked={checked1} onChange={() => setcheck1(!checked1)}></input>
                     </div>
                     <div className='d-flex'>
                         <label>connection : off</label>
-                        <input ref={filterbyoff} type='checkbox' name='off' value='off' checked={checked2} onChange={()=>setcheck2(!checked2)}></input>
+                        <input ref={filterbyoff} type='checkbox' name='off' value='off' checked={checked2} onChange={() => setcheck2(!checked2)}></input>
                     </div>
                 </form>
                 <hr></hr>
@@ -377,21 +377,21 @@ function products() {
     }
 
     //SORT MODAL JSX
-    const sortModal =() =>{
-        return(
+    const sortModal = () => {
+        return (
             <div className='container sortcard'>
                 <h3>Sort products by</h3>
                 <form>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbyserial} id='serial' type='radio' value='serial-number' checked={sortradio.serial?? false} onChange={()=> setsortradio((prevState)=>({serial : !prevState.serial}))}></input>
+                        <input className='form-check-input radio' ref={sortbyserial} id='serial' type='radio' value='serial-number' checked={sortradio.serial ?? false} onChange={() => setsortradio((prevState) => ({ serial: !prevState.serial }))}></input>
                         <label className='form-check-label' htmlFor='serial'>Serial Number</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbyproducttype} id='producttype' type='radio' value='producttype' checked={sortradio.producttype?? false} onChange={()=> setsortradio((prevState)=>({producttype : !prevState.producttype}))}></input>
+                        <input className='form-check-input radio' ref={sortbyproducttype} id='producttype' type='radio' value='producttype' checked={sortradio.producttype ?? false} onChange={() => setsortradio((prevState) => ({ producttype: !prevState.producttype }))}></input>
                         <label className='form-check-label' htmlFor='producttype'>Product type</label>
                     </div>
                     <div className='form-check'>
-                        <input className='form-check-input radio' ref={sortbylabel} id='label' type='radio' value='label' checked={sortradio.label?? false} onChange={()=> setsortradio((prevState)=>({label : !prevState.label}))}></input>
+                        <input className='form-check-input radio' ref={sortbylabel} id='label' type='radio' value='label' checked={sortradio.label ?? false} onChange={() => setsortradio((prevState) => ({ label: !prevState.label }))}></input>
                         <label className='form-check-label' htmlFor='label'>Label</label>
                     </div>
                 </form>
@@ -405,144 +405,154 @@ function products() {
     }
 
     // filter logic
-    let filtered; 
+    let filtered;
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(filtered);
-    },[dataFilter])
+    }, [dataFilter])
 
-    dataFilter.length > 0? filtered = dataFilter.filter((product)=>{
+    dataFilter.length > 0 ? filtered = dataFilter.filter((product) => {
         return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-    }):filtered = productlist.filter((product)=>{
+    }) : filtered = productlist.filter((product) => {
         return product.serialnumberid.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
-    if(newcheck == 'both'){
-        filtered = productlist.filter((product)=>{
+    if (newcheck == 'both') {
+        filtered = productlist.filter((product) => {
             return product.connection == 'none'
         });
     }
 
-    useEffect(()=>{
-        if(filtered.length > 0){
+    useEffect(() => {
+        if (filtered.length > 0) {
             let tempCount = filtered.length
             //console.log(tempCount);
-            let pageCount = Math.ceil(tempCount /rowPerPage)
+            let pageCount = Math.ceil(tempCount / rowPerPage)
             setCount(pageCount)
             //console.log(count);
         }
-        else{
+        else {
             setCount(1)
         }
     }, [filtered])
 
-    const handlePageChange = (event, value) =>{
+    const handlePageChange = (event, value) => {
         console.log(value);
         setPage(value);
     }
 
-    
-    return (
-        <div className="dashboard">
-            <Head props={{description:"product"}}></Head>
-            <div className="container-fluid wrapper-dashboard">
-                {filter?backdrop():''}
-                {filter?filterModal():''}
-                {sorttype?backdrop():''}
-                {sorttype?sortModal():''}
-                <div className="row table-row">
-                    <div className="col-md-12 col-sm-12 col-12 page-content">
-                        <div className="container-fluid">
-                            <div className="page-header">
-                                <h2>Your Products</h2>
-                            </div>
-                            <div className="row search_section">
-                                <div className='col-lg-8 col-md-8 col-sm-6 col-6 searchbar'>
-                                    <div className='container-fluid'>
-                                        <input type='text' onChange={(e)=>setsearch(e.target.value)} value={search} placeholder='Search Product...'></input>
-                                        <button type='button'><i className="fa fa-search" aria-hidden="true"></i></button>
+    if (username) {
+        return (
+            <div className="dashboard">
+                <Head props={{ description: "product" }}></Head>
+                <div className="container-fluid wrapper-dashboard">
+                    {filter ? backdrop() : ''}
+                    {filter ? filterModal() : ''}
+                    {sorttype ? backdrop() : ''}
+                    {sorttype ? sortModal() : ''}
+                    <div className="row table-row">
+                        <div className="col-md-12 col-sm-12 col-12 page-content">
+                            <div className="container-fluid">
+                                <div className="page-header">
+                                    <h2>Your Products</h2>
+                                </div>
+                                <div className="row search_section">
+                                    <div className='col-lg-8 col-md-8 col-sm-6 col-6 searchbar'>
+                                        <div className='container-fluid'>
+                                            <input type='text' onChange={(e) => setsearch(e.target.value)} value={search} placeholder='Search Product...'></input>
+                                            <button type='button'><i className="fa fa-search" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div className='col-lg-2 col-md-2 col-sm-3 col-3 sort'>
+                                        <button type='button' onClick={() => setsort(!sorttype)}>
+                                            <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                                            <span>Sort</span>
+                                        </button>
+                                    </div>
+                                    <div className='col-lg-2 col-md-2 col-sm-3 col-3 filter'>
+                                        <button type='button' onClick={() => setfilter(true)}>
+                                            <i className="fa fa-filter" aria-hidden="true"></i>
+                                            <span>Filter</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <div className='col-lg-2 col-md-2 col-sm-3 col-3 sort'>
-                                    <button type='button' onClick={()=>setsort(!sorttype)}>
-                                        <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
-                                        <span>Sort</span>
-                                    </button>
-                                </div>
-                                <div className='col-lg-2 col-md-2 col-sm-3 col-3 filter'>
-                                    <button type='button' onClick={()=>setfilter(true)}>
-                                        <i className="fa fa-filter" aria-hidden="true"></i>
-                                        <span>Filter</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="row products">
-                                <div className='col-12 table_product'>
-                                    <div className='table-responsive-sm'>
-                                        {tempFetchData ?
-                                        <table className='table table-hover product_list'>
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" className='first-sm'>Status</th>
-                                                    <th scope="col" className='second-sm'>Connection</th>
-                                                    <th scope="col">Serial Number</th>
-                                                    <th scope="col">Product</th>
-                                                    <th scope="col">Label</th>
-                                                    <th scope="col">Condition</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {tempFetchData && filtered.slice((page-1) * rowPerPage,(page-1) * rowPerPage + rowPerPage ).map(product => {
-                                                    return (
-                                                            <tr key={product.serialnumberid}>
-                                                                <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
-                                                                <td>
-                                                                    <Link href={{pathname:"/dashboard", query:{serial: product.serialnumberid} }} key={product.serialnumberid} passHref>
-                                                                        <a>{product.serialnumberid}</a>
-                                                                    </Link>
-                                                                </td>
-                                                                <td>{product.producttype}</td>
-                                                                <td>
-                                                                {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? 
-                                                                <form className='edit-label'>
-                                                                    <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
-                                                                    <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
-                                                                    <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
-                                                                </form> 
-                                                                : product.label}
+                                <div className="row products">
+                                    <div className='col-12 table_product'>
+                                        <div className='table-responsive-sm'>
+                                            {(tempFetchData && (tempFetchData.length > 0)) ?
+                                                <table className='table table-hover product_list'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" className='first-sm'>Status</th>
+                                                            <th scope="col" className='second-sm'>Connection</th>
+                                                            <th scope="col">Serial Number</th>
+                                                            <th scope="col">Product</th>
+                                                            <th scope="col">Label</th>
+                                                            <th scope="col">Condition</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {tempFetchData && filtered.slice((page - 1) * rowPerPage, (page - 1) * rowPerPage + rowPerPage).map(product => {
+                                                            return (
+                                                                <tr key={product.serialnumberid}>
+                                                                    <td className='first-sm'>{product.status == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                    <td className='second-sm'>{product.connection == '1' ? <span className='green_round'></span> : <span className='red_round'></span>}</td>
+                                                                    <td>
+                                                                        <Link href={{ pathname: "/dashboard", query: { serial: product.serialnumberid } }} key={product.serialnumberid} passHref>
+                                                                            <a>{product.serialnumberid}</a>
+                                                                        </Link>
+                                                                    </td>
+                                                                    <td>{product.producttype}</td>
+                                                                    <td>
+                                                                        {inEditMode.status && inEditMode.rowkey === product.serialnumberid ?
+                                                                            <form className='edit-label'>
+                                                                                <input placeholder="Edit label" name="label" className='inputLoc' onChange={(e) => seteditloc(e.target.value)} value={editloc}></input>
+                                                                                <i className="fa fa-check check-icon" aria-hidden="true" onClick={() => onSave({ id: product.serialnumberid, newLoc: editloc })}></i>
+                                                                                <i className="fa fa-ban ban-icon" aria-hidden="true" onClick={onCancel}></i>
+                                                                            </form>
+                                                                            : product.label}
 
-                                                                    {inEditMode.status && inEditMode.rowkey === product.serialnumberid?'':<i className="fa fa-pencil edit-icon" onClick={()=>onEdit({id:product.serialnumberid, currentLoc:product.label})}></i>}
-                                                                </td>
-                                                                <td>
-                                                                    {/* {(() => {
+                                                                        {inEditMode.status && inEditMode.rowkey === product.serialnumberid ? '' : <i className="fa fa-pencil edit-icon" onClick={() => onEdit({ id: product.serialnumberid, currentLoc: product.label })}></i>}
+                                                                    </td>
+                                                                    <td>
+                                                                        {/* {(() => {
                                                                     if (product.condition == 'okay') return <i className="fa fa-check okay" aria-hidden="true"></i>
                                                                     else if (product.condition == 'warning') return <i className="fa fa-exclamation-triangle warning" aria-hidden="true"></i>
                                                                     else return <i className="fa fa-exclamation-circle error" aria-hidden="true"></i>
                                                                 })()} */}
                                                                 unknown
                                                                 </td>
-                                                            </tr>
-                                                    )
-                                                })
-                                            }
-                                            </tbody>
-                                        </table>
-                                        :<div className='d-flex justify-content-center align-items-center' style={{"width" : "100%"}}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} /></div>}
+                                                                </tr>
+                                                            )
+                                                        })
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                                : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>}
+                                        </div>
+                                    </div>
+                                    <div className={classes.root}>
+                                        <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
                                     </div>
                                 </div>
-                                <div className={classes.root}>
-                                    <Pagination className={classes.root} count={count} page={page} color={'primary'} onChange={handlePageChange} showFirstButton showLastButton />
-                                </div>
+                                <br></br>
                             </div>
-                            <br></br>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    )
+        )
+    }
+    else {
+        return (
+            <div className='container-fluid' style={{"height":"30vh"}}>
+                <div className='d-flex flex-column justify-content-center align-items-center mt-5' style={{ "width": "100%", "height": "100%", "fontFamily":"Raleway"}}>
+                    <h2 style={{"color":"#fafafa"}}>Loading....</h2>
+                    <Loader type='ThreeDots' color="#00BFFF" height={60} width={60} />
+                </div>
+            </div>
+        )
+    }
 }
 
 
