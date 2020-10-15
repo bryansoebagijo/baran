@@ -48,8 +48,7 @@ function login() {
                 if(res.status !== 200){
                     setError('wrong username or password')
                 }
-            })
-            if (resp.ok){
+                else{
                     const data = await resp.json()
                     console.log(data);
                     dispatch(addUser(inputusername.username))
@@ -67,8 +66,8 @@ function login() {
                     //     //     username : inputusername.username
                     //     // }.
                     //  })
-                
-            }
+                }
+            })
 
             //const json = await res.json();
             
@@ -110,7 +109,7 @@ function login() {
                     <div className="login-header">
                         <h1>Sign In</h1>
                     </div>
-                    {error?<div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "color":"#cf0a06"}}/>:''}
+                    {error?<div className='d-flex justify-content-center align-items-center' style={{ "width": "100%", "color":"#cf0a06"}}>{error}</div>:''}
                     <form className='signin-form'>
                         <label className="email-label" htmlFor="email">Email Address</label>
                         <input ref={input1} type='email' className='form-control' id='email' name='email' placeholder='email address' required></input>
