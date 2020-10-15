@@ -517,7 +517,7 @@ function products() {
                                                         </tr>
                                                     )
                                                 })
-                                                    : <div className='d-flex justify-content-center align-items-center' style={{ "width": "100%" }}><Loader type='ThreeDots' color="#00BFFF" height={60} width={60} timeout={10000} /></div>
+                                                    :''
                                                 }
                                             </tbody>
                                         </table>
