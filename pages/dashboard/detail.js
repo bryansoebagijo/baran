@@ -3,6 +3,8 @@ import Head from '../../components/head';
 import Sidebar from '../../components/sidebar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Loader from 'react-loader-spinner'
+
 import { useSelector } from 'react-redux';
 
 export default function detail() {

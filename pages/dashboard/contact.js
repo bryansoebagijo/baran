@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
+import Loader from 'react-loader-spinner'
+
 
 const isProd = process.env.NODE_ENV === 'production';
 const PREFIX = isProd ? 'https://test.vincentreynard.com' : 'http://192.168.5.73'
