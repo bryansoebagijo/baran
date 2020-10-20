@@ -53,39 +53,10 @@ function login() {
                     dispatch(addUser(inputusername.username))
                     //location.assign(PREFIX+'/products')
                     route.push(PREFIX+'/products')
-                    //location.assign(PREFIX+'/products');
-                    // sessionStorage.setItem(
-                    //     'username', inputusername.username
-                    // )
-                    //route.push('/dashboard')
-                    //route.prefetch('/dashboard')
-                    //  route.push({
-                    //      pathname:'/dashboard',
-                    //      //query:{
-                    //     //     username : inputusername.username
-                    //     // }.
-                    //  })
                 }
             })
 
-            //const json = await res.json();
             
-            /*console.log(json);
-
-            if(json != null){
-                setResponse(prevstate => {
-                    return{
-                    type:'success',
-                    message:'Thank you for posting'
-                    }
-                });
-            }
-            else{
-                setResponse({
-                    type:'error',
-                    message :json.message
-                });
-            }*/
         }
         catch (error){
             console.log('An error occured', error);
